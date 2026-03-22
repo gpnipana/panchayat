@@ -524,6 +524,88 @@
   </style>
 </head>
 <body>
+<!-- ═══ TAX CONCESSION POPUP ═══ -->
+<div id="taxPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:99999;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:white;border-radius:18px;max-width:360px;width:100%;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.45);animation:popupIn 0.35s ease;">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#e65100,#ff6d00);padding:14px 18px;color:white;text-align:center;position:relative;">
+      <button onclick="closeTaxPopup()" style="position:absolute;top:8px;right:10px;background:rgba(255,255,255,0.2);border:none;color:white;width:26px;height:26px;border-radius:50%;font-size:0.9rem;cursor:pointer;font-weight:700;line-height:26px;">✕</button>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+        <div style="background:rgba(255,255,255,0.2);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;flex-shrink:0;">50%</div>
+        <div style="text-align:left;">
+          <div style="font-size:0.9rem;font-weight:800;line-height:1.3;">मुख्यमंत्री समृद्ध पंचायत राज</div>
+          <div style="font-size:0.72rem;opacity:0.85;">थकबाकीत ५०% सूट — विशेष सूचना</div>
+        </div>
+      </div>
+    </div>
+    <!-- Content -->
+    <div style="padding:14px 16px;">
+      <!-- 3 items in a row -->
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <div style="flex:1;background:#fff3e0;border-radius:8px;padding:8px;text-align:center;border-top:2px solid #e65100;">
+          <div style="font-size:1.1rem;">🏠</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#e65100;">घरपट्टी</div>
+        </div>
+        <div style="flex:1;background:#fff3e0;border-radius:8px;padding:8px;text-align:center;border-top:2px solid #e65100;">
+          <div style="font-size:1.1rem;">💧</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#e65100;">पाणीपट्टी</div>
+        </div>
+        <div style="flex:1;background:#fff3e0;border-radius:8px;padding:8px;text-align:center;border-top:2px solid #e65100;">
+          <div style="font-size:1.1rem;">💡</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#e65100;">दिवाबत्ती</div>
+        </div>
+      </div>
+      <!-- Deadline -->
+      <div style="background:#b71c1c;color:white;border-radius:10px;padding:8px 12px;text-align:center;margin-bottom:10px;">
+        <span style="font-size:0.72rem;opacity:0.85;">⏰ अंतिम मुदत — </span>
+        <strong style="font-size:0.92rem;">३१ मार्च २०२६</strong>
+      </div>
+      <!-- Condition -->
+      <div style="background:#e8f5e9;border-left:3px solid #2e7d32;border-radius:6px;padding:8px 10px;font-size:0.74rem;color:#2e7d32;margin-bottom:12px;">
+        ✅ चालू वर्षाचा कर भरा + जुनी ५०% थकबाकी एकरकमी भरा.
+      </div>
+      <!-- Buttons -->
+      <div style="display:flex;gap:8px;">
+        <a href="#karsavalt" onclick="closeTaxPopup()" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:9px;border-radius:10px;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती</a>
+        <button onclick="closeTaxPopup();dontShowAgain()" style="background:#f0f0f0;color:#666;border:none;padding:9px 12px;border-radius:10px;font-weight:600;font-size:0.76rem;cursor:pointer;">नको</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes popupIn {
+  from { transform: scale(0.85) translateY(-20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+</style>
+
+<script>
+function closeTaxPopup() {
+  document.getElementById('taxPopup').style.display = 'none';
+}
+function dontShowAgain() {
+  try { sessionStorage.setItem('taxPopupClosed','1'); } catch(e){}
+}
+// Show popup on load (once per session)
+window.addEventListener('load', function() {
+  try {
+    const deadline = new Date('2026-03-31');
+    const now = new Date();
+    if (now < deadline && !sessionStorage.getItem('taxPopupClosed')) {
+      setTimeout(function() {
+        document.getElementById('taxPopup').style.display = 'flex';
+      }, 1500);
+    }
+  } catch(e) {
+    setTimeout(function() {
+      document.getElementById('taxPopup').style.display = 'flex';
+    }, 1500);
+  }
+});
+</script>
+
+
 
 <!-- TOP STRIP -->
 <div class="top-strip">
@@ -585,7 +667,7 @@
     <h3>📢 सूचना फलक | Notice Board</h3>
     <div class="notice-item">
       📌 ग्रामपंचायत निपाणा — विशेष ग्रामसभा दिनांक २६ जानेवारी २०२६ रोजी सकाळी ११:०० वाजता संपन्न झाली.<br/>
-      <span>दिनांक: ०१ एप्रिल २०२५</span>
+      <span>दिनांक: २६ जानेवारी २०२६</span>
     </div>
     <div class="notice-item">
       📌 प्रधानमंत्री आवास योजना (ग्रामीण) — आता <strong>"आवास प्लस"</strong> App वरून थेट अर्ज करा! Google Play Store वरून <strong>Awaas Plus</strong> App डाउनलोड करा व ऑनलाईन अर्ज सादर करा. अधिक माहितीसाठी ग्रामपंचायत कार्यालयाशी संपर्क करा.<br/>
@@ -750,112 +832,6 @@
     </div>
   </div>
 </section>
-
-<!-- MEMBERS SECTION -->
-<section id="members" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0A2647,#1a3a5c,#0A2647);border-radius:24px;padding:48px 24px 40px;">
-  <div class="section-header">
-    <div class="section-icon">👥</div>
-    <div class="section-title">
-      <h3 style="color:white;">प्रशासक व प्रशासकीय समिती | Administrator & Committee</h3>
-      <p style="color:rgba(255,255,255,0.7);">ग्रामपंचायत निपाणा — दि. २५/०२/२०२६ पासून प्रशासक राजवट</p>
-    </div>
-  </div>
-  <button onclick="toggleSection('membersContent')" style="background:linear-gradient(135deg,var(--navy),#1a3a5c);color:white;border:none;padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;margin-bottom:20px;">👥 सदस्य यादी पहा / View Members List</button>
-  <div id="membersContent" style="display:none;">
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>अ.क्र.</th>
-          <th>सदस्याचे नाव</th>
-          <th>पद</th>
-          <th>प्रकार</th>
-          <th>मोबाईल</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:#fff3cd;">
-          <td>—</td>
-          <td><strong>श्री. प्रभाकर किसन घाटे</strong></td>
-          <td><span class="badge badge-sarpanch">🏛️ प्रशासक</span></td>
-          <td>माजी सरपंच → जि.प. CEO नेमणूक (२५/०२/२०२६)</td>
-          <td><a href="tel:9763847595">९७६३८४७५९५</a></td>
-        </tr>
-        <tr style="background:#e8f5e9;">
-          <td colspan="5" style="text-align:center;font-size:0.8rem;color:var(--green);font-weight:700;padding:6px;">
-            ── प्रशासकीय समिती (८ सदस्य) ──
-          </td>
-        </tr>
-        <tr>
-          <td>२</td>
-          <td>सौ. लीलाबाई श्रीकृष्ण भटकर</td>
-          <td><span class="badge badge-upa">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी उपसरपंच</td>
-          <td><a href="tel:9922153262">९९२२१५३२६२</a></td>
-        </tr>
-        <tr>
-          <td>३</td>
-          <td>श्री. नारायण यशवंत गावंडे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>४</td>
-          <td>श्री. गजानन रामकृष्ण भटकर</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>५</td>
-          <td>श्री. अभिमन्यू राजाराम अंभोरे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>६</td>
-          <td>सौ. स्वाती ज्ञानेश्वर चोपडे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>७</td>
-          <td>सौ. माधुरी सुरेश चोपडे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>८</td>
-          <td>सौ. प्रतिभा रवींद्र अंभोरे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>९</td>
-          <td>सौ. पूजा उद्धव अंभोरे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div id="membersTableSection" style="display:none;">
-  <!-- Admin Note Banner -->
-  <div style="margin-top:18px; background:linear-gradient(90deg,#fff3cd,#fff8e1); border-left:5px solid var(--gold); border-radius:10px; padding:16px 20px; font-size:0.9rem; color:#5a4000;">
-    <strong>📌 महत्त्वाची नोंद:</strong> दिनांक <strong>२५/०२/२०२६</strong> रोजी ग्रामपंचायत निपाणाची निर्वाचित कार्यकारणी समाप्त झाली असून, जिल्हा परिषद मुख्य कार्यकारी अधिकारी, बुलढाणा यांच्या आदेशानुसार <strong>श्री. प्रभाकर किसन घाटे</strong> यांची प्रशासक म्हणून नेमणूक करण्यात आली आहे. उर्वरित माजी सदस्यांची <strong>प्रशासकीय समिती</strong> स्थापन करण्यात आली आहे.
-  </div>
-  </div>
-</section>
-
-<!-- SCHEMES SECTION -->
 
 <!-- INTERACTIVE FORMS SECTION -->
 <section id="forms" style="background:linear-gradient(135deg,#0d1b3e,#1a2f6b,#0d2a5e);border-radius:24px;padding:48px 24px 40px;">
@@ -1323,6 +1299,112 @@ function showSwayam(type) {
 }
 </script>
 
+<!-- MEMBERS SECTION -->
+<section id="members" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0A2647,#1a3a5c,#0A2647);border-radius:24px;padding:48px 24px 40px;">
+  <div class="section-header">
+    <div class="section-icon">👥</div>
+    <div class="section-title">
+      <h3 style="color:white;">प्रशासक व प्रशासकीय समिती | Administrator & Committee</h3>
+      <p style="color:rgba(255,255,255,0.7);">ग्रामपंचायत निपाणा — दि. २५/०२/२०२६ पासून प्रशासक राजवट</p>
+    </div>
+  </div>
+  <button onclick="toggleSection('membersContent')" style="background:linear-gradient(135deg,var(--navy),#1a3a5c);color:white;border:none;padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;margin-bottom:20px;">👥 सदस्य यादी पहा / View Members List</button>
+  <div id="membersContent" style="display:none;">
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>अ.क्र.</th>
+          <th>सदस्याचे नाव</th>
+          <th>पद</th>
+          <th>प्रकार</th>
+          <th>मोबाईल</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff3cd;">
+          <td>—</td>
+          <td><strong>श्री. प्रभाकर किसन घाटे</strong></td>
+          <td><span class="badge badge-sarpanch">🏛️ प्रशासक</span></td>
+          <td>माजी सरपंच → जि.प. CEO नेमणूक (२५/०२/२०२६)</td>
+          <td><a href="tel:9763847595">९७६३८४७५९५</a></td>
+        </tr>
+        <tr style="background:#e8f5e9;">
+          <td colspan="5" style="text-align:center;font-size:0.8rem;color:var(--green);font-weight:700;padding:6px;">
+            ── प्रशासकीय समिती (८ सदस्य) ──
+          </td>
+        </tr>
+        <tr>
+          <td>२</td>
+          <td>सौ. लीलाबाई श्रीकृष्ण भटकर</td>
+          <td><span class="badge badge-upa">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी उपसरपंच</td>
+          <td><a href="tel:9922153262">९९२२१५३२६२</a></td>
+        </tr>
+        <tr>
+          <td>३</td>
+          <td>श्री. नारायण यशवंत गावंडे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>४</td>
+          <td>श्री. गजानन रामकृष्ण भटकर</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>५</td>
+          <td>श्री. अभिमन्यू राजाराम अंभोरे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>६</td>
+          <td>सौ. स्वाती ज्ञानेश्वर चोपडे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>७</td>
+          <td>सौ. माधुरी सुरेश चोपडे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>८</td>
+          <td>सौ. प्रतिभा रवींद्र अंभोरे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>९</td>
+          <td>सौ. पूजा उद्धव अंभोरे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="membersTableSection" style="display:none;">
+  <!-- Admin Note Banner -->
+  <div style="margin-top:18px; background:linear-gradient(90deg,#fff3cd,#fff8e1); border-left:5px solid var(--gold); border-radius:10px; padding:16px 20px; font-size:0.9rem; color:#5a4000;">
+    <strong>📌 महत्त्वाची नोंद:</strong> दिनांक <strong>२५/०२/२०२६</strong> रोजी ग्रामपंचायत निपाणाची निर्वाचित कार्यकारणी समाप्त झाली असून, जिल्हा परिषद मुख्य कार्यकारी अधिकारी, बुलढाणा यांच्या आदेशानुसार <strong>श्री. प्रभाकर किसन घाटे</strong> यांची प्रशासक म्हणून नेमणूक करण्यात आली आहे. उर्वरित माजी सदस्यांची <strong>प्रशासकीय समिती</strong> स्थापन करण्यात आली आहे.
+  </div>
+  </div>
+</section>
+
+<!-- SCHEMES SECTION -->
+
 <section id="schemes">
   <div class="section-header">
     <div class="section-icon">📜</div>
@@ -1445,7 +1527,7 @@ function showSwayam(type) {
     <button onclick="showProgram('p-gramsabha')" class="prog-btn" id="btn-p-gramsabha" style="padding:12px 18px;background:#5d4037;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">📅 ग्रामसभा</button>
     <button onclick="showProgram('p-mahila')" class="prog-btn" id="btn-p-mahila" style="padding:12px 18px;background:#b71c1c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👩 महिला दिन</button>
     
-    <button onclick="showProgram('p-viksit')" class="prog-btn" id="btn-p-viksit" style="padding:12px 18px;background:#e65100;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 विकसित भारत सभा</button>
+    <button onclick="showProgram('p-viksit')" class="prog-btn" id="btn-p-viksit" style="padding:12px 18px;background:#e65100;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 विकसित भारत- जी राम जी योजना</button>
     <button onclick="showProgram('p-samruddha')" class="prog-btn" id="btn-p-samruddha" style="padding:12px 18px;background:#4a148c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌱 समृद्ध पंचायत सभा</button>
     <button onclick="showProgram('p-swatantrata')" class="prog-btn" id="btn-p-swatantrata" style="padding:12px 18px;background:#1b5e20;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🎤 स्वातंत्र्य दिन ग्रामसभा</button>
     <button onclick="showProgram('p-divyang')" class="prog-btn" id="btn-p-divyang" style="padding:12px 18px;background:#0277bd;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">♿ दिव्यांग निधी वाटप</button>
@@ -1547,7 +1629,7 @@ function showSwayam(type) {
     <div id="p-viksit" class="prog-detail" style="display:none;">
       <div style="background:linear-gradient(135deg,#e65100,#f57c00);padding:20px 24px;color:white;">
         <div style="font-size:1.8rem;margin-bottom:6px;">🇮🇳</div>
-        <h3 style="margin:0;font-size:1.2rem;">विकसित भारत — जी राम जी विशेष ग्रामसभा</h3>
+        <h3 style="margin:0;font-size:1.2rem;">विकसित भारत- जी राम जी योजना</h3>
         <div style="font-size:0.82rem;opacity:0.8;margin-top:4px;">दिनांक: २६ डिसेंबर २०२५ | विकास</div>
       </div>
       <div style="padding:24px;font-size:0.9rem;line-height:1.8;color:#333;">
@@ -1799,14 +1881,6 @@ function showSwayam(type) {
     </div>
   </div>
 
-  <!-- ═══ PHOTO GALLERY (merged) ═══ -->
-  <div style="margin-top:32px;border-top:2px solid rgba(255,255,255,0.15);padding-top:28px;">
-    <div style="text-align:center;margin-bottom:16px;">
-      <span style="background:rgba(255,255,255,0.15);color:white;padding:8px 20px;border-radius:20px;font-size:0.88rem;font-weight:700;">📸 फोटो गॅलरी | Photo Gallery</span>
-    </div>
-    
-  </div>
-
 </section>
 
 <!-- SAMITI SECTION -->
@@ -1815,159 +1889,266 @@ function showSwayam(type) {
     <div class="section-icon" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);">🏛️</div>
     <div class="section-title">
       <h3 style="color:white;">ग्रामपंचायत समित्या | GP Committees</h3>
-      <p style="color:rgba(255,255,255,0.7);">ग्रामपंचायत निपाणा अंतर्गत कार्यरत समित्या — माहितीसाठी क्लिक करा</p>
+      <p style="color:rgba(255,255,255,0.7);">कोणत्याही समितीवर क्लिक करा — अध्यक्ष, सचिव व कार्ये पहा</p>
     </div>
   </div>
 
-  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
-    <button onclick="toggleSection('sc-dax')" style="padding:11px 16px;background:linear-gradient(135deg,#4a148c,#7b1fa2);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">👁️ ग्राम दक्षता समिती</button>
-    <button onclick="toggleSection('sc-pocra')" style="padding:11px 16px;background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">🌾 POCRA समिती</button>
-    <button onclick="toggleSection('sc-aadi')" style="padding:11px 16px;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">👩 आदिशक्ती समिती</button>
-    <button onclick="toggleSection('sc-shala')" style="padding:11px 16px;background:linear-gradient(135deg,#e65100,#f57c00);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">🏫 शाळा व्यवस्थापन समिती</button>
-    <button onclick="toggleSection('sc-pani')" style="padding:11px 16px;background:linear-gradient(135deg,#0277bd,#0288d1);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">💧 पाणीपुरवठा व स्वच्छता समिती</button>
-    <button onclick="toggleSection('sc-bandh')" style="padding:11px 16px;background:linear-gradient(135deg,#5d4037,#795548);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">🏗️ बांधकाम समिती</button>
-    <button onclick="toggleSection('sc-janmrutyu')" style="padding:11px 16px;background:linear-gradient(135deg,#00695c,#004d40);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;">📋 जन्ममृत्यू समिती</button>
+  <!-- Committee Buttons -->
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+    <button onclick="showSamiti('sc-dax')" id="btn-sc-dax" style="padding:11px 16px;background:linear-gradient(135deg,#4a148c,#7b1fa2);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👁️ ग्राम दक्षता</button>
+    <button onclick="showSamiti('sc-pocra')" id="btn-sc-pocra" style="padding:11px 16px;background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌾 POCRA</button>
+    <button onclick="showSamiti('sc-aadi')" id="btn-sc-aadi" style="padding:11px 16px;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👩 आदिशक्ती</button>
+    <button onclick="showSamiti('sc-shala')" id="btn-sc-shala" style="padding:11px 16px;background:linear-gradient(135deg,#e65100,#f57c00);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🏫 शाळा व्यवस्थापन</button>
+    <button onclick="showSamiti('sc-pani')" id="btn-sc-pani" style="padding:11px 16px;background:linear-gradient(135deg,#0277bd,#0288d1);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">💧 पाणीपुरवठा</button>
+    <button onclick="showSamiti('sc-bandh')" id="btn-sc-bandh" style="padding:11px 16px;background:linear-gradient(135deg,#5d4037,#795548);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🏗️ बांधकाम</button>
+    <button onclick="showSamiti('sc-janmrutyu')" id="btn-sc-janmrutyu" style="padding:11px 16px;background:linear-gradient(135deg,#00695c,#004d40);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">📋 जन्ममृत्यू</button>
   </div>
 
-  <!-- ग्राम दक्षता -->
-  <div id="sc-dax" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #4a148c;margin-bottom:12px;">
-    <h4 style="color:#4a148c;margin-bottom:14px;">👁️ ग्राम दक्षता समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:#4a148c18;border:2px solid #4a148c40;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-          <div style="font-size:0.68rem;color:#4a148c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध अध्यक्ष</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे (माजी सरपंच)</div>
-        </div>
-        <div style="background:#4a148c18;border:2px solid #4a148c40;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-          <div style="font-size:0.68rem;color:#4a148c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध सचिव</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे (ग्रामपंचायत अधिकारी)</div>
-        </div>
-      </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">ग्रामपंचायत कामकाजावर नागरिकांचे लक्ष ठेवणे, योजनांची अंमलबजावणी तपासणे व ग्रामसभेत अहवाल सादर करणे.<br/><strong>उद्देश:</strong> पारदर्शकता व उत्तरदायित्व.</p>
+  <!-- Default hint -->
+  <div id="samiti-hint" style="text-align:center;padding:28px;background:rgba(255,255,255,0.08);border-radius:16px;color:rgba(255,255,255,0.6);font-size:0.88rem;">
+    👆 वरील कोणत्याही समितीवर क्लिक करा — त्या समितीची संपूर्ण माहिती इथे दिसेल.
   </div>
 
-  <!-- POCRA -->
-  <div id="sc-pocra" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #1b5e20;margin-bottom:12px;">
-    <h4 style="color:#1b5e20;margin-bottom:14px;">🌾 POCRA समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:#1b5e2018;border:2px solid #1b5e2040;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-          <div style="font-size:0.68rem;color:#1b5e20;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध अध्यक्ष</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे (माजी सरपंच)</div>
-        </div>
-        <div style="background:#1b5e2018;border:2px solid #1b5e2040;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-          <div style="font-size:0.68rem;color:#1b5e20;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध सचिव</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे (ग्रामपंचायत अधिकारी)</div>
+  <!-- Committee Panels -->
+  
+  <div id="sc-dax" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#4a148c,#7b1fa2);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">👁️</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">ग्राम दक्षता समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">Village Vigilance Committee</p></div>
         </div>
       </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">हवामान बदलास सामोरे जाण्यासाठी शेतकऱ्यांना आधुनिक शेती तंत्रज्ञान, पाणी व्यवस्थापन व उत्पन्न वाढीसाठी सहाय्य.</p>
-  </div>
-
-  <!-- आदिशक्ती -->
-  <div id="sc-aadi" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #b71c1c;margin-bottom:12px;">
-    <h4 style="color:#b71c1c;margin-bottom:14px;">👩 आदिशक्ती अभियान समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:#b71c1c18;border:2px solid #b71c1c40;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-          <div style="font-size:0.68rem;color:#b71c1c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">सौ. कांचन गजानन एकडे</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#4a148c10,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#4a148c,#7b1fa2);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #4a148c44;">👑</div>
+          <div style="font-size:0.65rem;color:#4a148c;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध अध्यक्ष (माजी सरपंच)</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे</div>
         </div>
-        <div style="background:#b71c1c18;border:2px solid #b71c1c40;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-          <div style="font-size:0.68rem;color:#b71c1c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध सचिव</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे (ग्रामपंचायत अधिकारी)</div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#4a148c08,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
+          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">(ग्रामपंचायत अधिकारी)</span></div>
         </div>
       </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">महिलांचे आर्थिक, सामाजिक व शैक्षणिक सशक्तीकरण. बचत गट, कर्ज सुविधा, कौशल्य प्रशिक्षण.</p>
-  </div>
-
-  <!-- शाळा -->
-  <div id="sc-shala" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #e65100;margin-bottom:12px;">
-    <h4 style="color:#e65100;margin-bottom:14px;">🏫 शाळा व्यवस्थापन समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:#e6510018;border:2px solid #e6510040;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-          <div style="font-size:0.68rem;color:#e65100;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. पांडुरंग गावंडे</div>
-        </div>
-        <div style="background:#e6510018;border:2px solid #e6510040;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-          <div style="font-size:0.68rem;color:#e65100;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">शाळा मुख्याध्यापक</div>
-        </div>
-      </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">गावातील शाळांच्या विकासासाठी व गुणवत्तावाढीसाठी काम करणारी समिती. पायाभूत सुविधा व शिक्षण दर्जा सुधारणे.</p>
-  </div>
-
-  <!-- पाणीपुरवठा -->
-  <div id="sc-pani" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #0277bd;margin-bottom:12px;">
-    <h4 style="color:#0277bd;margin-bottom:14px;">💧 पाणीपुरवठा व स्वच्छता समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:#0277bd18;border:2px solid #0277bd40;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-          <div style="font-size:0.68rem;color:#0277bd;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध अध्यक्ष</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे (माजी सरपंच)</div>
-        </div>
-        <div style="background:#0277bd18;border:2px solid #0277bd40;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-          <div style="font-size:0.68rem;color:#0277bd;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध सचिव</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे (ग्रामपंचायत अधिकारी)</div>
-        </div>
-      </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">गावातील पाणी व्यवस्थापन, नळ पाणीपुरवठा योजनेचे सनियंत्रण व स्वच्छता उपक्रम राबवणे.<br/><strong>उद्देश:</strong> शुद्ध पाणी व स्वच्छ गाव.</p>
-  </div>
-
-  <!-- बांधकाम -->
-  <div id="sc-bandh" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #5d4037;margin-bottom:12px;">
-    <h4 style="color:#5d4037;margin-bottom:14px;">🏗️ बांधकाम व विकास समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:#5d403718;border:2px solid #5d403740;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-          <div style="font-size:0.68rem;color:#5d4037;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">अध्यक्ष</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">सौ. लीलाबाई श्रीकृष्ण भटकर (माजी उपसरपंच)</div>
-        </div>
-        <div style="background:#5d403718;border:2px solid #5d403740;border-radius:14px;padding:16px;text-align:center;">
-          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-          <div style="font-size:0.68rem;color:#5d4037;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
-          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध सचिव</div>
-          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे (ग्रामपंचायत अधिकारी)</div>
-        </div>
-      </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">ग्रामपंचायत विकास कामांचे नियोजन, देखरेख व गुणवत्ता तपासणी.<br/><strong>उद्देश:</strong> दर्जेदार बांधकाम व विकास.</p>
-  </div>
-
-  <!-- जन्ममृत्यू -->
-  <div id="sc-janmrutyu" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #00695c;margin-bottom:12px;">
-    <h4 style="color:#00695c;margin-bottom:14px;">📋 जन्ममृत्यू नोंदणी समिती</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-      <div style="background:#00695c18;border:2px solid #00695c40;border-radius:14px;padding:16px;text-align:center;">
-        <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
-        <div style="font-size:0.68rem;color:#00695c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">पदसिद्ध अध्यक्ष</div>
-        <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">ग्रामपंचायत अधिकारी व सचिव</div>
-        <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे</div>
-      </div>
-      <div style="background:#00695c18;border:2px solid #00695c40;border-radius:14px;padding:16px;text-align:center;">
-        <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
-        <div style="font-size:0.68rem;color:#00695c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">पदसिद्ध सचिव</div>
-        <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">आरोग्य सेविका</div>
-        <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">ग्रामीण आरोग्य सेविका, निपाणा</div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#4a148c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🔍</span>ग्रामपंचायत कामकाजावर नागरिक नियंत्रण</div><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📊</span>योजनांची अंमलबजावणी तपासणे</div><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📢</span>ग्रामसभेत अहवाल सादर करणे</div><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🔎</span>शासकीय निधी वापराचे परीक्षण</div></div>
+        <div style="margin-top:12px;background:#f3e5f5;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#4a148c;"><strong>🎯 उद्देश:</strong> ग्रामपंचायत कामकाजात पारदर्शकता व उत्तरदायित्व सुनिश्चित करणे.</div>
       </div>
     </div>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">जन्म व मृत्यू नोंदणीचे सनियंत्रण. जन्म झाल्यापासून २१ दिवसाच्या आत नोंदणी बंधनकारक.<br/><strong>उद्देश:</strong> अचूक जन्ममृत्यू नोंदी व प्रमाणपत्र वितरण.</p>
   </div>
+  <div id="sc-pocra" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">🌾</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">POCRA समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">Project on Climate Resilient Agriculture</p></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#1b5e2010,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1b5e20,#2e7d32);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #1b5e2044;">👑</div>
+          <div style="font-size:0.65rem;color:#1b5e20;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध अध्यक्ष (माजी सरपंच)</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे</div>
+        </div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#1b5e2008,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
+          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">(ग्रामपंचायत अधिकारी)</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#1b5e20;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🌾</span>हवामान बदलास सामोरे जाण्यासाठी शेतकरी सहाय्य</div><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">💧</span>पाणी व्यवस्थापन कार्यक्रम</div><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🌱</span>आधुनिक शेती तंत्रज्ञान प्रसार</div><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📋</span>शेतकरी उत्पन्न वाढ योजना</div></div>
+        <div style="margin-top:12px;background:#e8f5e9;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#1b5e20;"><strong>🎯 लाभार्थी:</strong> निपाणा गावातील सर्व शेतकरी.</div>
+      </div>
+    </div>
+  </div>
+  <div id="sc-aadi" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#b71c1c,#c62828);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">👩</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">आदिशक्ती अभियान समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">महिला सशक्तीकरण समिती</p></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#b71c1c10,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#b71c1c,#c62828);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #b71c1c44;">👑</div>
+          <div style="font-size:0.65rem;color:#b71c1c;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">निर्वाचित अध्यक्ष</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">सौ. कांचन गजानन एकडे</div>
+        </div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#b71c1c08,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
+          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">(ग्रामपंचायत अधिकारी)</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#b71c1c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#b71c1c12;border-left:3px solid #b71c1c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">👩</span>महिला सशक्तीकरण उपक्रम</div><div style="display:flex;align-items:center;gap:8px;background:#b71c1c12;border-left:3px solid #b71c1c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">💰</span>बचत गट स्थापना व कर्ज सुविधा</div><div style="display:flex;align-items:center;gap:8px;background:#b71c1c12;border-left:3px solid #b71c1c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🎓</span>कौशल्य प्रशिक्षण कार्यक्रम</div><div style="display:flex;align-items:center;gap:8px;background:#b71c1c12;border-left:3px solid #b71c1c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📢</span>महिला हक्क जागृती</div></div>
+        <div style="margin-top:12px;background:#ffebee;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#b71c1c;"><strong>🎯 उद्देश:</strong> महिला नेतृत्व विकास व बचत गट सक्षमीकरण.</div>
+      </div>
+    </div>
+  </div>
+  <div id="sc-shala" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#e65100,#f57c00);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">🏫</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">शाळा व्यवस्थापन समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">School Management Committee</p></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#e6510010,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#e65100,#f57c00);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #e6510044;">👑</div>
+          <div style="font-size:0.65rem;color:#e65100;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">निर्वाचित अध्यक्ष</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. पांडुरंग गावंडे</div>
+        </div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#e6510008,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
+          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">शाळा मुख्याध्यापक</div>
+        </div>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#e65100;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#e6510012;border-left:3px solid #e65100;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🏫</span>शाळेतील पायाभूत सुविधा विकास</div><div style="display:flex;align-items:center;gap:8px;background:#e6510012;border-left:3px solid #e65100;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📚</span>शिक्षणाचा दर्जा सुधारणे</div><div style="display:flex;align-items:center;gap:8px;background:#e6510012;border-left:3px solid #e65100;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">👨‍🏫</span>शिक्षक-पालक समन्वय</div><div style="display:flex;align-items:center;gap:8px;background:#e6510012;border-left:3px solid #e65100;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🍽️</span>मध्यान्ह भोजन देखरेख</div></div>
+        <div style="margin-top:12px;background:#fff3e0;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#e65100;"><strong>🎯 उद्देश:</strong> शिक्षणाचा दर्जा सुधारणे व शाळेचा सर्वांगीण विकास.</div>
+      </div>
+    </div>
+  </div>
+  <div id="sc-pani" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#0277bd,#0288d1);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">💧</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">पाणीपुरवठा व स्वच्छता समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">Water Supply & Sanitation Committee</p></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#0277bd10,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0277bd,#0288d1);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #0277bd44;">👑</div>
+          <div style="font-size:0.65rem;color:#0277bd;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध अध्यक्ष (माजी सरपंच)</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे</div>
+        </div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#0277bd08,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
+          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">(ग्रामपंचायत अधिकारी)</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#0277bd;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#0277bd12;border-left:3px solid #0277bd;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">💧</span>दैनंदिन पाणी पुरवठा सुनिश्चित करणे</div><div style="display:flex;align-items:center;gap:8px;background:#0277bd12;border-left:3px solid #0277bd;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🔧</span>पंप व पाईपलाईन देखभाल</div><div style="display:flex;align-items:center;gap:8px;background:#0277bd12;border-left:3px solid #0277bd;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🧪</span>पाण्याची शुद्धता तपासणे (क्लोरिनेशन)</div><div style="display:flex;align-items:center;gap:8px;background:#0277bd12;border-left:3px solid #0277bd;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📊</span>जल जीवन मिशन अहवाल</div></div>
+        <div style="margin-top:12px;background:#e3f2fd;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#0277bd;"><strong>🎯 उद्देश:</strong> शुद्ध पाणी पुरवठा व स्वच्छ गाव. जल जीवन मिशन — प्रत्येक घरापर्यंत नळ.</div>
+      </div>
+    </div>
+  </div>
+  <div id="sc-bandh" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#5d4037,#795548);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">🏗️</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">बांधकाम व विकास समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">Construction & Development Committee</p></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#5d403710,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#5d4037,#795548);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #5d403744;">👑</div>
+          <div style="font-size:0.65rem;color:#5d4037;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">माजी उपसरपंच</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">सौ. लीलाबाई श्रीकृष्ण भटकर</div>
+        </div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#5d403708,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
+          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">(ग्रामपंचायत अधिकारी)</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#5d4037;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#5d403712;border-left:3px solid #5d4037;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🏗️</span>विकास कामांचे नियोजन व देखरेख</div><div style="display:flex;align-items:center;gap:8px;background:#5d403712;border-left:3px solid #5d4037;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">✅</span>बांधकाम गुणवत्ता तपासणी</div><div style="display:flex;align-items:center;gap:8px;background:#5d403712;border-left:3px solid #5d4037;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">💰</span>निधी वापराचे सनियंत्रण</div><div style="display:flex;align-items:center;gap:8px;background:#5d403712;border-left:3px solid #5d4037;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📋</span>कामांचे मापन व मंजुरी</div></div>
+        <div style="margin-top:12px;background:#efebe9;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#5d4037;"><strong>🎯 उद्देश:</strong> दर्जेदार बांधकाम व ग्रामविकास.</div>
+      </div>
+    </div>
+  </div>
+  <div id="sc-janmrutyu" class="samiti-panel" style="display:none;">
+    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
+      <div style="background:linear-gradient(135deg,#00695c,#004d40);padding:24px 28px;color:white;position:relative;">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
+        <div style="display:flex;align-items:center;gap:14px;position:relative;">
+          <div style="font-size:2.8rem;">📋</div>
+          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">जन्ममृत्यू नोंदणी समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">Birth & Death Registration Committee</p></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
+        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#00695c10,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00695c,#004d40);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #00695c44;">👑</div>
+          <div style="font-size:0.65rem;color:#00695c;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">पदसिद्ध अध्यक्ष</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">ग्रामपंचायत अधिकारी व सचिव</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे</div>
+        </div>
+        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#00695c08,#fff);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00695c,#004d40);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #00695c44;">✍️</div>
+          <div style="font-size:0.65rem;color:#00695c;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">आरोग्य सेविका</div>
+          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">ग्रामीण आरोग्य सेविका<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">निपाणा</span></div>
+        </div>
+      </div>
+      <div style="padding:20px 24px;">
+        <div style="font-size:0.75rem;color:#00695c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#00695c12;border-left:3px solid #00695c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">👶</span>जन्म नोंदणी सनियंत्रण (२१ दिवसाच्या आत)</div><div style="display:flex;align-items:center;gap:8px;background:#00695c12;border-left:3px solid #00695c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">⚰️</span>मृत्यू नोंदणी देखरेख</div><div style="display:flex;align-items:center;gap:8px;background:#00695c12;border-left:3px solid #00695c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📋</span>जन्म-मृत्यू प्रमाणपत्र वितरण</div><div style="display:flex;align-items:center;gap:8px;background:#00695c12;border-left:3px solid #00695c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🏥</span>आरोग्य सेविकेशी समन्वय</div></div>
+        <div style="margin-top:12px;background:#e0f2f1;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#00695c;"><strong>⚠️ महत्त्वाचे:</strong> जन्म झाल्यापासून <strong>२१ दिवसाच्या आत</strong> नोंदणी करणे कायद्याने बंधनकारक आहे.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function showSamiti(id) {
+    // Hide hint
+    const hint = document.getElementById('samiti-hint');
+    if (hint) hint.style.display = 'none';
+    // Hide all panels
+    document.querySelectorAll('.samiti-panel').forEach(p => p.style.display = 'none');
+    // Reset button styles
+    document.querySelectorAll('[id^="btn-sc-"]').forEach(b => {
+      b.style.opacity = '0.7';
+      b.style.transform = 'scale(1)';
+    });
+    // Show selected panel
+    const panel = document.getElementById(id);
+    if (panel) {
+      panel.style.display = 'block';
+      panel.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    // Highlight active button
+    const btn = document.getElementById('btn-' + id);
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.style.transform = 'scale(1.05)';
+      btn.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+    }
+  }
+  </script>
 
 </section>
 
@@ -2596,7 +2777,7 @@ h2{font-size:14px;font-weight:bold;text-decoration:underline;text-align:center;m
   <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">नाव: ${naam}</p></div>
 </div>
 <div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong> | 📞 ७७९८७६१८३७</div>
-</body></html>`;
+</body></html`;
     const w=window.open('','_blank','width=820,height=1000');
     w.document.write(sw_html);w.document.close();
     setTimeout(()=>{w.focus();w.print();},600);
@@ -2608,7 +2789,6 @@ h2{font-size:14px;font-weight:bold;text-decoration:underline;text-align:center;m
     janma:'जन्म नोंद दाखला', mrutyu:'मृत्यू नोंद दाखला', vivah:'विवाह नोंदणी दाखला',
     bpl:'दारिद्र्यरेषेखालील दाखला', yenebaki:'येणेबाकी नसल्याचा दाखला',
     namuna8utara:'नमुना ८ उतारा', niradhar:'निराधार असल्याचा दाखला',
-    namuna8ferafar:'नमुना ८ फेरफार अर्ज',
   };
   const allInp = document.querySelectorAll('#formContent input, #formContent select, #formContent textarea');
   let rows = '';
@@ -2630,26 +2810,16 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 .footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;}
 @page{size:A4;margin:9mm;}@media print{body{padding:0;}}
 </style></head><body>
-<div class="hdr">
-  <div style="font-size:10px;color:#555;">महाराष्ट्र शासन | ग्रामविकास विभाग</div>
-  <div style="font-size:14px;font-weight:bold;color:#006633;">ग्रामपंचायत निपाणा</div>
-  <div style="font-size:10px;">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | 📞 ७७९८७६१८३७</div>
-</div>
+<div class="hdr"><div style="font-size:10px;color:#555;">महाराष्ट्र शासन | ग्रामविकास विभाग</div><div style="font-size:14px;font-weight:bold;color:#006633;">ग्रामपंचायत निपाणा</div><div style="font-size:10px;">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | 📞 ७७९८७६१८३७</div></div>
 <div style="text-align:right;font-size:10px;margin-bottom:4px;">दिनांक: ${dateStr}</div>
 <h2>${cT[formType]||formType} — अर्ज</h2>
 <div style="font-size:10px;color:#444;margin-bottom:7px;">महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५ | शासन निर्णय दि. १६ फेब्रुवारी २०१९</div>
-<div style="font-size:11px;margin-bottom:7px;"><strong>प्रती,</strong> मा. ग्रामपंचायत अधिकारी/प्रशासक, ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.</div>
+<div style="font-size:11px;margin-bottom:7px;"><strong>प्रती,</strong> मा. ग्रामपंचायत अधिकारी/प्रशासक, ग्रामपंचायत निपाणा.</div>
 <p style="font-size:11px;margin-bottom:7px;"><strong>विषय:</strong> ${cT[formType]||formType} मिळणेबाबत.</p>
-<p style="font-size:11px;margin-bottom:7px;">महोदय, मी खालील माहितीनुसार <strong>${cT[formType]||formType}</strong> मिळण्यासाठी विनंती करतो/करते:</p>
-<table>
-  <thead><tr style="background:#e8f5e9;"><th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">तपशील</th><th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">माहिती</th></tr></thead>
-  <tbody>${rows||'<tr><td colspan="2" style="padding:7px;text-align:center;color:#888;border:1px solid #ddd;font-size:11px;">माहिती भरलेली नाही</td></tr>'}</tbody>
-</table>
+<table><thead><tr style="background:#e8f5e9;"><th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">तपशील</th><th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">माहिती</th></tr></thead>
+<tbody>${rows||'<tr><td colspan="2" style="padding:7px;text-align:center;color:#888;border:1px solid #ddd;">माहिती भरलेली नाही</td></tr>'}</tbody></table>
 <p style="font-size:10.5px;margin:7px 0;">वरील सर्व माहिती खरी व बरोबर आहे. विहित कालमर्यादेत दाखला मिळावा ही विनंती.</p>
-<div class="sign">
-  <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:4px;">दिनांक: ${dateStr}</p></div>
-  <div class="seal">कार्यालय शिक्का</div>
-</div>
+<div class="sign"><div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:4px;">दिनांक: ${dateStr}</p></div><div class="seal">कार्यालय शिक्का</div></div>
 <div class="footer">(पोहोच) अर्ज क्र.: _____________ | दिनांक: _________ | कर्मचारी स्वाक्षरी: _____________</div>
 </body></html>`;
   const w2=window.open('','_blank','width=820,height=1000');
@@ -2658,5 +2828,5 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 }
 
 </script>
-
-</body></html>
+</body>
+</html>
