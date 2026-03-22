@@ -100,9 +100,12 @@
     .header-right .date { font-size: 0.95rem; color: var(--light-gold); font-weight: 600; }
 
     /* ─── NAV ─── */
+    /* ─── NAV ─── */
     nav {
       background: var(--saffron);
-      position: sticky; top: 0; z-index: 100;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       box-shadow: 0 2px 12px rgba(255,107,0,0.4);
     }
     nav ul {
@@ -110,19 +113,25 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0;
+      gap: 2px;
+      padding: 4px 8px;
+      margin: 0;
     }
     nav ul li a {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 4px;
       color: white;
       text-decoration: none;
-      padding: 14px 18px;
-      font-size: 0.88rem;
+      padding: 8px 12px;
+      font-size: 0.82rem;
       font-weight: 700;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, color 0.2s, border-bottom 0.2s;
+      letter-spacing: 0.2px;
+      transition: background 0.2s, color 0.2s;
+      border-radius: 8px;
       border-bottom: 3px solid transparent;
       white-space: nowrap;
+      line-height: 1.2;
     }
     nav ul li a:hover {
       background: var(--deep-saffron);
@@ -131,6 +140,22 @@
     nav ul li a.active {
       background: var(--deep-saffron);
       border-bottom-color: white;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding: 4px 8px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      nav ul::-webkit-scrollbar { display: none; }
+      nav ul li a {
+        padding: 7px 10px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
     }
 
     /* ─── HERO BANNER ─── */
@@ -533,6 +558,108 @@
     .stat-card .num {
       font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
     }
+
+    /* ─── RESPONSIVE: FORMS TAB BUTTONS ─── */
+    .tab-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .tab-btn-group button {
+      flex: 1 1 auto;
+      min-width: 120px;
+      max-width: 220px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    /* ─── RESPONSIVE: ABOUT SECTION PANELS ─── */
+    .panels-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 700px) {
+      .panels-2x2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── RESPONSIVE: SAMITI BUTTONS ─── */
+    .samiti-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .samiti-btn-group button {
+      flex: 1 1 auto;
+      min-width: 130px;
+      font-size: 0.82rem;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    /* ─── RESPONSIVE: SCHEME CARDS ─── */
+    @media (max-width: 600px) {
+      .scheme-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .hero-stats {
+        gap: 12px;
+      }
+      .stat-card {
+        min-width: 110px;
+        padding: 14px 16px;
+      }
+      .stat-card .num {
+        font-size: 1.6rem;
+      }
+      header {
+        padding: 12px 16px;
+        gap: 12px;
+      }
+      .header-text h1 {
+        font-size: 1.2rem;
+      }
+      .header-text h2 {
+        font-size: 0.75rem;
+      }
+      .header-text p {
+        font-size: 0.7rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .panels-2x2 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      main {
+        padding: 0 12px;
+      }
+      section {
+        padding: 32px 0 24px;
+      }
+    }
+
+    /* ─── SCROLLBAR HIDE FOR HORIZONTAL SCROLL ─── */
+    .h-scroll {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .h-scroll::-webkit-scrollbar { display: none; }
 </style>
 </head>
 <body>
@@ -689,6 +816,8 @@ window.addEventListener('load', function() {
   </script>
 </header>
 
+
+
 <!-- NAV -->
 <nav>
   <ul>
@@ -704,6 +833,34 @@ window.addEventListener('load', function() {
     <li><a href="#contact" style="color:white;">📞 संपर्क</a></li>
   </ul>
 </nav>
+<!-- ══ SCROLLING NOTICE TICKER ══ -->
+<div style="background:linear-gradient(135deg,#1a237e,#283593);overflow:hidden;padding:0;position:relative;border-bottom:2px solid #FFD600;">
+  <div style="display:flex;align-items:center;">
+    <div style="background:#e65100;color:white;padding:8px 16px;font-size:0.78rem;font-weight:800;white-space:nowrap;flex-shrink:0;letter-spacing:1px;z-index:1;">
+      📢 सूचना
+    </div>
+    <div style="overflow:hidden;flex:1;">
+      <div style="display:inline-block;white-space:nowrap;animation:tickerScroll 35s linear infinite;padding:8px 0;color:white;font-size:0.8rem;font-weight:600;">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        🌟 <strong style="color:#FFD600;">मुख्यमंत्री समृद्ध पंचायतराज अभियान २०२५-२६</strong> — घरपट्टी, पाणीपट्टी व दिवाबत्ती कर थकबाकीवर <strong style="color:#FFD600;">५०% सवलत</strong> मिळवण्याची सुवर्णसंधी! 
+        &nbsp;&nbsp;⏰ <strong style="color:#FF6B6B;">अंतिम मुदत: ३१ मार्च २०२६</strong> — 
+        &nbsp;&nbsp;✅ <strong>अट:</strong> चालू वर्षाचा (२०२५-२६) पूर्ण कर एकरकमी भरा + मागील थकबाकीपैकी ५०% भरा — बाकी थकबाकी माफ! 
+        &nbsp;&nbsp;📞 संपर्क: ग्रामपंचायत कार्यालय निपाणा — <strong style="color:#FFD600;">श्री. एस. टी. गव्हाळे: ७७९८७६१८३७</strong>
+        &nbsp;&nbsp;🏛️ महाराष्ट्र शासन | ग्रामविकास विभाग
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        🌟 <strong style="color:#FFD600;">मुख्यमंत्री समृद्ध पंचायतराज अभियान २०२५-२६</strong> — घरपट्टी, पाणीपट्टी व दिवाबत्ती कर थकबाकीवर <strong style="color:#FFD600;">५०% सवलत</strong> मिळवण्याची सुवर्णसंधी!
+        &nbsp;&nbsp;⏰ <strong style="color:#FF6B6B;">अंतिम मुदत: ३१ मार्च २०२६</strong>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
 
 <!-- HERO -->
 <section id="home" class="hero">
@@ -770,201 +927,170 @@ window.addEventListener('load', function() {
     </div>
   </div>
   <!-- ═══ ATTRACTIVE 3-PANEL ABOUT ═══ -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:0;margin-bottom:16px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.15);">
+  <!-- ══ 4 UNIFORM PANELS 2x2 GRID ══ -->
+  <div class="panels-2x2">
 
-    <!-- Panel 1: General Info — Dark Navy -->
-    <div style="background:linear-gradient(160deg,#0A2647 60%,#1a3a5c);padding:28px;color:white;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.04);"></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-        <div style="width:40px;height:40px;background:var(--saffron);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🏛️</div>
-        <h4 style="margin:0;font-size:1rem;color:white;letter-spacing:0.3px;">सामान्य माहिती</h4>
+    <!-- PANEL 1: सामान्य माहिती — Dark Navy -->
+    <div style="background:linear-gradient(160deg,#0A2647,#1a3a5c);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📋</div>
+        <div style="font-weight:800;font-size:0.95rem;color:white;">सामान्य माहिती</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:9px;font-size:0.86rem;">
-        <div style="display:flex;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <span style="color:rgba(255,255,255,0.55);">ग्रामपंचायत</span><span style="font-weight:700;color:#F5E6A3;">निपाणा</span>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">📍 जिल्हा</span>
+          <span style="font-size:0.82rem;font-weight:700;">बुलढाणा</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <span style="color:rgba(255,255,255,0.55);">तालुका</span><span style="font-weight:700;">खामगाव</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🏙️ तालुका</span>
+          <span style="font-size:0.82rem;font-weight:700;">खामगाव</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <span style="color:rgba(255,255,255,0.55);">जिल्हा</span><span style="font-weight:700;">बुलढाणा</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">📮 पिन कोड</span>
+          <span style="font-size:0.82rem;font-weight:700;">४४४३०६</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <span style="color:rgba(255,255,255,0.55);">पिन कोड</span><span style="font-weight:700;color:#F5E6A3;">४४४३०६</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🏠 एकूण घरे</span>
+          <span style="font-size:0.82rem;font-weight:700;">४६१</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <span style="color:rgba(255,255,255,0.55);">प्रशासक नेमणूक</span><span style="font-weight:700;color:#ff9800;">२५/०२/२०२६</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
+          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🕐 कार्यालय वेळ</span>
+          <span style="font-size:0.78rem;font-weight:700;">सोम–शुक्र ९.४५–६.१५</span>
         </div>
-        <div style="display:flex;justify-content:space-between;">
-          <span style="color:rgba(255,255,255,0.55);">कार्यालय वेळ</span><span style="font-weight:700;font-size:0.8rem;">सोम–शुक्र ९.४५–६.१५</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 12px;border:1px solid rgba(255,107,0,0.4);">
+          <span style="font-size:0.75rem;color:rgba(255,255,255,0.75);">📋 नोंदणी</span>
+          <span style="font-size:0.72rem;color:#FFD600;font-weight:600;">Maharashtra GP Act</span>
         </div>
-      </div>
-      <!-- Responsibilities chips -->
-      <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;">
-        <span style="background:rgba(255,107,0,0.2);color:#ffcc80;padding:4px 10px;border-radius:20px;font-size:0.74rem;border:1px solid rgba(255,107,0,0.3);">💧 पाणी</span>
-        <span style="background:rgba(255,107,0,0.2);color:#ffcc80;padding:4px 10px;border-radius:20px;font-size:0.74rem;border:1px solid rgba(255,107,0,0.3);">🧹 स्वच्छता</span>
-        <span style="background:rgba(255,107,0,0.2);color:#ffcc80;padding:4px 10px;border-radius:20px;font-size:0.74rem;border:1px solid rgba(255,107,0,0.3);">🛣️ रस्ते</span>
-        <span style="background:rgba(255,107,0,0.2);color:#ffcc80;padding:4px 10px;border-radius:20px;font-size:0.74rem;border:1px solid rgba(255,107,0,0.3);">📋 नोंदणी</span>
       </div>
     </div>
 
-    <!-- Panel 2: Population — Green -->
-    <div style="background:linear-gradient(160deg,#004d26 60%,#006633);padding:28px;color:white;position:relative;overflow:hidden;">
-      <div style="position:absolute;bottom:-20px;right:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-        <div style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📊</div>
-        <div>
-          <h4 style="margin:0;font-size:1rem;color:white;">लोकसंख्या</h4>
-          <span style="font-size:0.68rem;color:rgba(255,255,255,0.55);">जनगणना २०११</span>
-        </div>
+    <!-- PANEL 2: लोकसंख्या — Green -->
+    <div style="background:linear-gradient(160deg,#1B5E20,#2e7d32);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">👥</div>
+        <div style="font-weight:800;font-size:0.95rem;">लोकसंख्या (२०११)</div>
       </div>
-      <div style="text-align:center;margin-bottom:14px;">
-        <div style="font-size:2.8rem;font-weight:800;color:#F5E6A3;line-height:1;">२,१२२</div>
-        <div style="font-size:0.76rem;color:rgba(255,255,255,0.65);margin-top:3px;">एकूण लोकसंख्या</div>
-      </div>
-      <div style="margin-bottom:12px;">
-        <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:5px;">
-          <span>👨 पुरुष: <strong>१,१०६</strong></span><span>👩 महिला: <strong>१,०१६</strong></span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.5rem;font-weight:900;color:#F5E6A3;">२,१२२</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">एकूण लोकसंख्या</div>
         </div>
-        <div style="background:rgba(255,255,255,0.15);border-radius:20px;height:7px;overflow:hidden;display:flex;">
-          <div style="background:#64b5f6;width:52%;border-radius:20px 0 0 20px;"></div>
-          <div style="background:#f48fb1;width:48%;border-radius:0 20px 20px 0;"></div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.5rem;font-weight:900;color:#F5E6A3;">४६१</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">एकूण कुटुंबे</div>
         </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:0.78rem;">
-        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px;text-align:center;"><div style="font-weight:800;font-size:1.05rem;color:#F5E6A3;">४६१</div><div style="color:rgba(255,255,255,0.65);">घरे</div></div>
-        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px;text-align:center;"><div style="font-weight:800;font-size:1.05rem;color:#F5E6A3;">३०६</div><div style="color:rgba(255,255,255,0.65);">बाल (०-६)</div></div>
-        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px;text-align:center;"><div style="font-weight:800;font-size:1.05rem;color:#ffcc80;">२७७</div><div style="color:rgba(255,255,255,0.65);">SC (१३%)</div></div>
-        <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:8px;text-align:center;"><div style="font-weight:800;font-size:1.05rem;color:#ffcc80;">२६</div><div style="color:rgba(255,255,255,0.65);">ST (१.२%)</div></div>
-      </div>
-      <div style="margin-top:10px;background:rgba(255,255,255,0.1);border-radius:8px;padding:8px;text-align:center;font-size:0.79rem;">
-        📚 साक्षरता <strong style="color:#F5E6A3;">८५.१३%</strong> &nbsp;|&nbsp; लिंग गुणोत्तर <strong style="color:#F5E6A3;">९१९</strong>
-      </div>
-    </div>
-
-    
-  </div>
-
-  <!-- ══ VILLAGE INFO ══ -->
-  <div style="margin:16px 0;">
-    <div style="margin:16px 0;">
-      <div style="background:linear-gradient(135deg,#0A2647,#1a3a5c);border-radius:18px;padding:18px;margin-top:20px;">
-    <div style="text-align:center;margin-bottom:14px;">
-      <span style="background:rgba(255,255,255,0.15);color:#F5E6A3;padding:5px 16px;border-radius:16px;font-size:0.76rem;font-weight:700;letter-spacing:1px;">📌 निपाणा गाव — महत्त्वाची माहिती</span>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
-  
-      <!-- अंतर -->
-      <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;border-left:4px solid #FFD600;display:flex;align-items:center;gap:12px;">
-        <div style="font-size:2rem;flex-shrink:0;">📍</div>
-        <div>
-          <div style="font-size:0.68rem;color:#FFD600;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">जि.मुख्यालयापासून अंतर</div>
-          <div style="font-size:0.95rem;font-weight:800;color:white;">४५-५० किलोमीटर</div>
-          <div style="font-size:0.7rem;color:rgba(255,255,255,0.6);">बुलढाणा जिल्हा</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;font-weight:900;color:#76FF03;">१,१०६</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">पुरुष</div>
         </div>
-      </div>
-  
-      <!-- पिके -->
-      <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;border-left:4px solid #76FF03;display:flex;align-items:center;gap:12px;">
-        <div style="font-size:2rem;flex-shrink:0;">🌾</div>
-        <div>
-          <div style="font-size:0.68rem;color:#76FF03;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">मुख्य पिके</div>
-          <div style="font-size:0.82rem;font-weight:700;color:white;">☀️ खरीप: सोयाबीन व कापूस</div>
-          <div style="font-size:0.82rem;font-weight:700;color:white;">❄️ रब्बी: गहू व हरभरा</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;font-weight:900;color:#76FF03;">१,०१६</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">महिला</div>
         </div>
-      </div>
-  
-      <!-- मंदिर -->
-      <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;border-left:4px solid #FF4500;display:flex;align-items:center;gap:12px;">
-        <div style="font-size:2rem;flex-shrink:0;">⛩️</div>
-        <div>
-          <div style="font-size:0.68rem;color:#FF4500;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">धार्मिक स्थळ</div>
-          <div style="font-size:0.9rem;font-weight:800;color:white;">श्री जगदंबा माता मंदिर</div>
-          <div style="font-size:0.7rem;color:rgba(255,255,255,0.6);">ग्रामदेवता — निपाणा</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.2rem;font-weight:900;color:#F5E6A3;">८५.१३%</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">साक्षरता दर</div>
         </div>
-      </div>
-  
-      <!-- रेल्वे -->
-      <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;border-left:4px solid #00E5FF;display:flex;align-items:center;gap:12px;">
-        <div style="font-size:2rem;flex-shrink:0;">🚂</div>
-        <div>
-          <div style="font-size:0.68rem;color:#00E5FF;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:3px;">जवळचे रेल्वे स्टेशन</div>
-          <div style="font-size:0.95rem;font-weight:800;color:white;">नांदुरा — <span style="color:#00E5FF;">२० किमी</span></div>
-        </div>
-      </div>
-  
-    </div>
-  </div>
-  </div>
-  </div>
-
-  <!-- Panel 3: Officers -->
-  <div style="border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.15);">
-    <!-- Panel 3: Officers — Saffron -->
-    <div style="background:linear-gradient(160deg,#E85D00 60%,#FF6B00);padding:28px;color:white;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-20px;left:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,0.06);"></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-        <div style="width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">👨‍💼</div>
-        <h4 style="margin:0;font-size:1rem;color:white;">पदाधिकारी</h4>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="background:rgba(255,255,255,0.15);border-radius:12px;padding:11px 14px;border-left:4px solid #F5E6A3;">
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:1px;margin-bottom:2px;">ADMINISTRATOR / प्रशासक</div>
-          <div style="font-weight:800;font-size:0.94rem;">श्री. प्रभाकर किसन घाटे</div>
-          <a href="tel:9763847595" style="color:#F5E6A3;font-weight:700;font-size:0.8rem;text-decoration:none;">📞 ९७६३८४७५९५</a>
-        </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:11px 14px;border-left:4px solid rgba(255,255,255,0.4);">
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:1px;margin-bottom:2px;">माजी उपसरपंच / समिती</div>
-          <div style="font-weight:800;font-size:0.94rem;">सौ. लीलाबाई श्रीकृष्ण भटकर</div>
-          <a href="tel:9922153262" style="color:#F5E6A3;font-weight:700;font-size:0.8rem;text-decoration:none;">📞 ९९२२१५३२६२</a>
-        </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:11px 14px;border-left:4px solid rgba(255,255,255,0.4);">
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.65);letter-spacing:1px;margin-bottom:2px;">ग्रामपंचायत अधिकारी (सचिव)</div>
-          <div style="font-weight:800;font-size:0.94rem;">श्री. एस. टी. गव्हाळे</div>
-          <a href="tel:7798761837" style="color:#F5E6A3;font-weight:700;font-size:0.8rem;text-decoration:none;">📞 ७७९८७६१८३७</a>
-        </div>
-        <div style="background:rgba(0,0,0,0.12);border-radius:10px;padding:9px;text-align:center;font-size:0.78rem;">
-          🕐 सोम–शुक्र: ९.४५ – ६.१५ &nbsp;|&nbsp; शनि/रवि: बंद
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.2rem;font-weight:900;color:#F5E6A3;">९१९</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">लिंग गुणोत्तर</div>
         </div>
       </div>
     </div>
-  </div>
 
-<div style="margin-top:28px;">
-
-    <div style="margin-top:0px; background:linear-gradient(135deg,#e3f2fd,#f0f8ff); border-left:5px solid #1565c0; border-radius:12px; padding:20px 24px;">
-      <h4 style="color:#1565c0; font-size:1.05rem; margin-bottom:12px;">📋 स्वयंघोषणापत्र (Self-Declaration) — महत्त्वाची माहिती</h4>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;font-size:0.86rem;line-height:1.7;color:#333;">
-        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #e53935;">
-          <strong style="color:#e53935;">🚫 १५ प्रकारचे दाखले बंद झाले:</strong><br/>
-          विभक्त कुटुंब, बेरोजगार, हयातीचा दाखला, विधवा/परित्यक्ता, नळ-वीज जोडणी, शौचालय, रहिवासी दाखला (आता महसूल विभागाकडे) यासह एकूण १५ सेवांसाठी स्वतंत्र दाखल्याची गरज नाही.
-        </div>
-        <div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #2e7d32;">
-          <strong style="color:#2e7d32;">✅ स्वयंघोषणापत्रासाठी आवश्यक:</strong><br/>
-          नाव, वय, आधार क्रमांक, पत्ता, फोटो व दिनांक असणे अनिवार्य. अर्जासोबत स्वाक्षरी केलेले स्वयंघोषणापत्र कायदेशीररित्या ग्राह्य धरले जाईल.
-        </div>
-
+    <!-- PANEL 3: निपाणा गाव महत्त्वाची माहिती — Dark Blue -->
+    <div style="background:linear-gradient(160deg,#0A2647,#1a3a5c);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📌</div>
+        <div style="font-weight:800;font-size:0.95rem;">निपाणा गाव — माहिती</div>
       </div>
-      <p style="font-size:0.82rem;color:#1565c0;font-weight:700;margin-top:12px;">➡ अधिक माहितीसाठी ग्रामपंचायत कार्यालयात संपर्क करा — श्री. एस. टी. गव्हाळे: ७७९८७६१८३७</p>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,214,0,0.12);border-left:3px solid #FFD600;border-radius:8px;padding:9px 12px;">
+          <span style="font-size:1.1rem;flex-shrink:0;">📍</span>
+          <div>
+            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">जि.मुख्यालयापासून अंतर</div>
+            <div style="font-size:0.85rem;font-weight:700;">४५-५० किलोमीटर (बुलढाणा)</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(118,255,3,0.1);border-left:3px solid #76FF03;border-radius:8px;padding:9px 12px;">
+          <span style="font-size:1.1rem;flex-shrink:0;">🌾</span>
+          <div>
+            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">मुख्य पिके</div>
+            <div style="font-size:0.82rem;font-weight:700;">☀️ सोयाबीन, कापूस &nbsp;|&nbsp; ❄️ गहू, हरभरा</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,69,0,0.12);border-left:3px solid #FF4500;border-radius:8px;padding:9px 12px;">
+          <span style="font-size:1.1rem;flex-shrink:0;">⛩️</span>
+          <div>
+            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">धार्मिक स्थळ</div>
+            <div style="font-size:0.85rem;font-weight:700;">श्री जगदंबा माता मंदिर</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:rgba(0,229,255,0.1);border-left:3px solid #00E5FF;border-radius:8px;padding:9px 12px;">
+          <span style="font-size:1.1rem;flex-shrink:0;">🚂</span>
+          <div>
+            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">जवळचे रेल्वे स्टेशन</div>
+            <div style="font-size:0.85rem;font-weight:700;">नांदुरा — <span style="color:#00E5FF;">२० किमी</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <!-- PANEL 4: पदाधिकारी — Saffron/Orange -->
+    <div style="background:linear-gradient(160deg,#E85D00,#FF6B00);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🏛️</div>
+        <div style="font-weight:800;font-size:0.95rem;">पदाधिकारी</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:10px 14px;">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.85;margin-bottom:4px;">प्रशासक</div>
+          <div style="font-weight:800;font-size:0.88rem;">श्री. प्रभाकर किसन घाटे</div>
+          <div style="font-size:0.72rem;opacity:0.9;margin-top:2px;">📞 9763847595</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:10px 14px;">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.85;margin-bottom:4px;">माजी उपसरपंच</div>
+          <div style="font-weight:800;font-size:0.88rem;">सौ. लीलाबाई श्रीकृष्ण भटकर</div>
+          <div style="font-size:0.72rem;opacity:0.9;margin-top:2px;">📞 9922153262</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:10px 14px;">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.85;margin-bottom:4px;">ग्रा.प. अधिकारी (सचिव)</div>
+          <div style="font-weight:800;font-size:0.88rem;">श्री. एस. टी. गव्हाळे</div>
+          <div style="font-size:0.72rem;opacity:0.9;margin-top:2px;">📞 7798761837</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:7px 14px;text-align:center;border:1px solid rgba(255,255,255,0.25);">
+          <div style="font-size:0.72rem;opacity:0.9;">🕐 सोम–शुक्र: ९.४५–६.१५ &nbsp;|&nbsp; शनि/रवि: बंद</div>
+        </div>
+      </div>
+    </div>
+
+
 </section>
 
-<!-- INTERACTIVE FORMS SECTION -->
-<section id="forms" style="background:linear-gradient(135deg,#0d1b3e,#1a2f6b,#0d2a5e);border-radius:24px;padding:48px 24px 40px;">
+<!-- FORMS SECTION -->
+<section id="forms">
   <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#283593,#1a237e);">📝</div>
+    <div class="section-icon" style="background:linear-gradient(135deg,#1565c0,#1976d2);">📝</div>
     <div class="section-title">
-      <h3 style="color:white;">ऑनलाईन अर्ज | Online Applications</h3>
-      <p style="color:rgba(255,255,255,0.7);">महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५ — ग्रामपंचायत निपाणा</p>
+      <h3>ऑनलाइन अर्ज | Online Applications</h3>
+      <p>ग्रामपंचायत निपाणा — ७ दाखले, नमुना ८ फेरफार व १५ स्वयंघोषणापत्रे</p>
     </div>
   </div>
 
   <!-- TABS -->
-  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-    <button onclick="showTab('cert')" id="tab-cert" style="padding:10px 18px;background:var(--navy);color:white;border:none;border-radius:8px;font-size:0.88rem;font-weight:700;cursor:pointer;">📋 ७ अधिकृत दाखले</button>
-    <button onclick="showTab('swayam')" id="tab-swayam" style="padding:10px 18px;background:white;color:var(--navy);border:2px solid var(--navy);border-radius:8px;font-size:0.88rem;font-weight:700;cursor:pointer;">📄 स्वयंघोषणापत्रे (१५ बंद दाखले)</button>
-    <button onclick="showTab('namuna8')" id="tab-namuna8" style="padding:10px 18px;background:white;color:var(--navy);border:2px solid var(--navy);border-radius:8px;font-size:0.88rem;font-weight:700;cursor:pointer;">🏠 नमुना ८ फेरफार</button>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:flex-start;">
+    <button onclick="showTab('cert')" id="tab-cert"
+        style="flex:1;min-width:140px;max-width:260px;padding:11px 16px;background:var(--navy);color:white;border:none;border-radius:10px;font-size:0.84rem;font-weight:700;cursor:pointer;text-align:center;">
+        📋 ७ अधिकृत दाखले
+      </button>
+    <button onclick="showTab('namuna8')" id="tab-namuna8"
+        style="flex:1;min-width:140px;max-width:260px;padding:11px 16px;background:white;color:var(--navy);border:2px solid var(--navy);border-radius:10px;font-size:0.84rem;font-weight:700;cursor:pointer;text-align:center;">
+        🏠 नमुना ८ फेरफार
+      </button>
+      <button onclick="showTab('swayam')" id="tab-swayam"
+        style="flex:1;min-width:140px;max-width:260px;padding:11px 16px;background:white;color:var(--navy);border:2px solid var(--navy);border-radius:10px;font-size:0.84rem;font-weight:700;cursor:pointer;text-align:center;">
+        📄 १५ स्वयंघोषणापत्रे
+      </button>
   </div>
 
   <!-- TAB: 7 OFFICIAL CERTIFICATES -->
@@ -1650,17 +1776,17 @@ function showSwayam(type) {
   </div>
 
   <!-- Sub-tab buttons -->
-  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
-    <button onclick="showProgram('p-swach')" class="prog-btn" id="btn-p-swach" style="padding:12px 18px;background:var(--green);color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌿 स्वच्छता अभियान</button>
-    <button onclick="showProgram('p-prajasattak')" class="prog-btn" id="btn-p-prajasattak" style="padding:12px 18px;background:var(--navy);color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 प्रजासत्ताक दिन</button>
-    <button onclick="showProgram('p-vruksha')" class="prog-btn" id="btn-p-vruksha" style="padding:12px 18px;background:#2e7d32;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌱 वृक्षारोपण</button>
-    <button onclick="showProgram('p-gramsabha')" class="prog-btn" id="btn-p-gramsabha" style="padding:12px 18px;background:#5d4037;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">📅 ग्रामसभा</button>
-    <button onclick="showProgram('p-mahila')" class="prog-btn" id="btn-p-mahila" style="padding:12px 18px;background:#b71c1c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👩 महिला दिन</button>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+    <button onclick="showProgram('p-swach')" class="prog-btn" id="btn-p-swach" style="padding:9px 14px;background:var(--green);color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌿 स्वच्छता अभियान</button>
+    <button onclick="showProgram('p-prajasattak')" class="prog-btn" id="btn-p-prajasattak" style="padding:9px 14px;background:var(--navy);color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 प्रजासत्ताक दिन</button>
+    <button onclick="showProgram('p-vruksha')" class="prog-btn" id="btn-p-vruksha" style="padding:9px 14px;background:#2e7d32;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌱 वृक्षारोपण</button>
+    <button onclick="showProgram('p-gramsabha')" class="prog-btn" id="btn-p-gramsabha" style="padding:9px 14px;background:#5d4037;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">📅 ग्रामसभा</button>
+    <button onclick="showProgram('p-mahila')" class="prog-btn" id="btn-p-mahila" style="padding:9px 14px;background:#b71c1c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👩 महिला दिन</button>
     
-    <button onclick="showProgram('p-viksit')" class="prog-btn" id="btn-p-viksit" style="padding:12px 18px;background:#e65100;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 विकसित भारत- जी राम जी योजना</button>
-    <button onclick="showProgram('p-samruddha')" class="prog-btn" id="btn-p-samruddha" style="padding:12px 18px;background:#4a148c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌱 समृद्ध पंचायत सभा</button>
-    <button onclick="showProgram('p-swatantrata')" class="prog-btn" id="btn-p-swatantrata" style="padding:12px 18px;background:#1b5e20;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🎤 स्वातंत्र्य दिन ग्रामसभा</button>
-    <button onclick="showProgram('p-divyang')" class="prog-btn" id="btn-p-divyang" style="padding:12px 18px;background:#0277bd;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">♿ दिव्यांग निधी वाटप</button>
+    <button onclick="showProgram('p-viksit')" class="prog-btn" id="btn-p-viksit" style="padding:9px 14px;background:#e65100;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 विकसित भारत- जी राम जी योजना</button>
+    <button onclick="showProgram('p-samruddha')" class="prog-btn" id="btn-p-samruddha" style="padding:9px 14px;background:#4a148c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌱 समृद्ध पंचायत सभा</button>
+    <button onclick="showProgram('p-swatantrata')" class="prog-btn" id="btn-p-swatantrata" style="padding:9px 14px;background:#1b5e20;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🎤 स्वातंत्र्य दिन ग्रामसभा</button>
+    <button onclick="showProgram('p-divyang')" class="prog-btn" id="btn-p-divyang" style="padding:9px 14px;background:#0277bd;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">♿ दिव्यांग निधी वाटप</button>
   </div>
 
   <!-- Sub-tab content area -->
@@ -2881,192 +3007,86 @@ h2{font-size:14px;font-weight:bold;text-decoration:underline;text-align:center;m
   <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">नाव: ${naam}</p></div>
 </div>
 <div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong> | 📞 ७७९८७६१८३७</div>
-
-
-<!-- ══ ABHIYAN INFO MODAL ══ -->
-<div id="abhiyanInfoModal" onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
-  <div style="background:white;border-radius:20px;max-width:580px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.5);">
-    <!-- Header -->
-    <div style="background:linear-gradient(135deg,#FF9933,#e65100);padding:18px 22px;color:white;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
-      <div style="display:flex;align-items:center;gap:12px;position:relative;">
-        <div style="font-size:2.2rem;">🏛️</div>
-        <div style="flex:1;">
-          <div style="font-size:1rem;font-weight:800;">मुख्यमंत्री समृद्ध पंचायतराज अभियान</div>
-          <div style="font-size:0.72rem;opacity:0.85;">Mukhyamantri Samruddha Panchayatraj Abhiyan · 2025-26</div>
-        </div>
-        <button onclick="document.getElementById('abhiyanInfoModal').style.display='none'"
-          style="background:rgba(255,255,255,0.2);border:none;color:white;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;flex-shrink:0;">✕</button>
-      </div>
-      <!-- Tricolor strip -->
-      <div style="display:flex;height:4px;margin-top:12px;border-radius:2px;overflow:hidden;">
-        <div style="flex:1;background:#FF9933;"></div>
-        <div style="flex:1;background:white;"></div>
-        <div style="flex:1;background:#138808;"></div>
-      </div>
-    </div>
-    <div style="padding:18px 20px;max-height:70vh;overflow-y:auto;">
-      <!-- Tagline -->
-      <div style="background:linear-gradient(90deg,#138808,#1aaa10);color:white;text-align:center;padding:8px 14px;border-radius:8px;font-size:0.78rem;font-weight:700;margin-bottom:16px;letter-spacing:0.8px;">
-        🌾 डिजिटल गाव · समृद्ध महाराष्ट्र · Empowering Every Gram Panchayat 🌾
-      </div>
-
-      <!-- Coverage Info -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
-        <div style="background:#f8f9ff;border-radius:10px;padding:10px;text-align:center;border:1px solid #dde3f5;">
-          <div style="font-size:1.3rem;">🗺️</div>
-          <div style="font-size:0.62rem;color:#666;font-weight:600;text-transform:uppercase;margin:3px 0;">Coverage</div>
-          <div style="font-size:0.8rem;font-weight:800;color:#1a237e;">34 Districts<br/>Maharashtra</div>
-        </div>
-        <div style="background:#f8f9ff;border-radius:10px;padding:10px;text-align:center;border:1px solid #dde3f5;">
-          <div style="font-size:1.3rem;">🏘️</div>
-          <div style="font-size:0.62rem;color:#666;font-weight:600;text-transform:uppercase;margin:3px 0;">Target</div>
-          <div style="font-size:0.8rem;font-weight:800;color:#1a237e;">28,000+<br/>Gram Panchayats</div>
-        </div>
-        <div style="background:#f8f9ff;border-radius:10px;padding:10px;text-align:center;border:1px solid #dde3f5;">
-          <div style="font-size:1.3rem;">📋</div>
-          <div style="font-size:0.62rem;color:#666;font-weight:600;text-transform:uppercase;margin:3px 0;">Mission Year</div>
-          <div style="font-size:0.8rem;font-weight:800;color:#1a237e;">2025 – 2026<br/>Annual Campaign</div>
-        </div>
-      </div>
-
-      <!-- 7 Pillars -->
-      <div style="font-size:0.82rem;font-weight:800;color:#2c3e6e;text-align:center;margin-bottom:12px;">7 Key Pillars | ७ मुख्य स्तंभ</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
-        <div style="background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #FF9933;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">🏛️</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">Good Governance</div><div style="font-size:0.68rem;color:#666;">सुशासन व पारदर्शकता</div></div>
-        </div>
-        <div style="background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #138808;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">💰</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">Financial Strength</div><div style="font-size:0.68rem;color:#666;">आर्थिक सक्षमता</div></div>
-        </div>
-        <div style="background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #1565C0;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">💧</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">Water & Climate</div><div style="font-size:0.68rem;color:#666;">पाणी व हवामान कृती</div></div>
-        </div>
-        <div style="background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #7B1FA2;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">🔨</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">MGNREGS Works</div><div style="font-size:0.68rem;color:#666;">मनरेगा कामे</div></div>
-        </div>
-        <div style="background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #E65100;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">🏫</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">Digital Schools</div><div style="font-size:0.68rem;color:#666;">डिजिटल शाळा व अंगणवाडी</div></div>
-        </div>
-        <div style="background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #880E4F;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">👩‍💼</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">Lakhpati Didi</div><div style="font-size:0.68rem;color:#666;">उपजीविका व लखपती दीदी</div></div>
-        </div>
-        <div style="grid-column:1/-1;background:white;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid #1B5E20;display:flex;align-items:center;gap:8px;">
-          <span style="font-size:1.3rem;">🤝</span>
-          <div><div style="font-size:0.75rem;font-weight:700;color:#2c3e6e;">Public Participation & Jan Andolan</div><div style="font-size:0.68rem;color:#666;">लोकसहभाग व जनआंदोलन</div></div>
-        </div>
-      </div>
-
-      <!-- Deadline -->
-      <div style="background:linear-gradient(135deg,#1a237e,#1565C0);border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="color:rgba(255,255,255,0.75);font-size:0.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">⏰ Final Deadline</div>
-          <div style="color:#FFE566;font-size:1.1rem;font-weight:900;">📅 ३१ मार्च २०२६</div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:2rem;">🏆</div>
-          <div style="color:rgba(255,255,255,0.75);font-size:0.68rem;">Complete all tasks<br/>before deadline</div>
-        </div>
-      </div>
-
-      <div style="margin-top:10px;text-align:center;font-size:0.7rem;color:#777;">
-        Maharashtra Gram Vikas Department · gram.maharashtra.gov.in
-      </div>
-
-      <button onclick="document.getElementById('abhiyanInfoModal').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#FF9933,#e65100);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
-        बंद करा ✕
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ TAX INFO MODAL (50% concession) ══ -->
-<div id="taxInfoModal" onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
-  <div style="background:white;border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.5);">
-    <!-- Header -->
-    <div style="background:linear-gradient(135deg,#b71c1c,#c62828);padding:18px 22px;color:white;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
-      <div style="display:flex;align-items:center;gap:12px;position:relative;">
-        <div style="background:rgba(255,255,255,0.2);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;flex-shrink:0;">50%</div>
-        <div style="flex:1;">
-          <div style="font-size:1rem;font-weight:800;">कर थकबाकी ५०% सवलत</div>
-          <div style="font-size:0.72rem;opacity:0.85;">मुख्यमंत्री समृद्ध पंचायतराज अभियान अंतर्गत</div>
-        </div>
-        <button onclick="document.getElementById('taxInfoModal').style.display='none'"
-          style="background:rgba(255,255,255,0.2);border:none;color:white;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;flex-shrink:0;">✕</button>
-      </div>
-    </div>
-    <div style="padding:18px 20px;">
-      <!-- 3 Tax types -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">
-        <div style="background:#fff3e0;border-radius:10px;padding:12px 8px;text-align:center;border-top:3px solid #e65100;">
-          <div style="font-size:1.4rem;">🏠</div>
-          <div style="font-size:0.75rem;font-weight:800;color:#e65100;margin-top:4px;">घरकर</div>
-          <div style="font-size:0.66rem;color:#555;">(आरोग्य कर + दिवाबत्ती कर समाविष्ट)</div>
-        </div>
-        <div style="background:#e3f2fd;border-radius:10px;padding:12px 8px;text-align:center;border-top:3px solid #0277bd;">
-          <div style="font-size:1.4rem;">💧</div>
-          <div style="font-size:0.75rem;font-weight:800;color:#0277bd;margin-top:4px;">पाणीपट्टी</div>
-          <div style="font-size:0.66rem;color:#555;">पाणी वापर थकबाकी</div>
-        </div>
-        <div style="background:#fce4ec;border-radius:10px;padding:12px 8px;text-align:center;border-top:3px solid #880e4f;">
-          <div style="font-size:1.4rem;">📋</div>
-          <div style="font-size:0.75rem;font-weight:800;color:#880e4f;margin-top:4px;">सर्व थकबाकी</div>
-          <div style="font-size:0.66rem;color:#555;">१ एप्रिल २०२५ पूर्वीची</div>
-        </div>
-      </div>
-
-      <!-- Rules -->
-      <div style="display:grid;gap:8px;margin-bottom:14px;">
-        <div style="background:#ffebee;border-left:4px solid #b71c1c;border-radius:8px;padding:10px 14px;font-size:0.82rem;">
-          <strong style="color:#b71c1c;">🔴 मागील थकबाकी (१ एप्रिल २०२५ पूर्वीची)</strong><br/>
-          <span style="color:#333;">→ ५०% सवलत मिळते — फक्त ५०% भरणे आवश्यक</span>
-        </div>
-        <div style="background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:8px;padding:10px 14px;font-size:0.82rem;">
-          <strong style="color:#2e7d32;">🟢 चालू वर्षाचे कर (२०२५-२६)</strong><br/>
-          <span style="color:#333;">→ १००% भरणा करणे बंधनकारक</span>
-        </div>
-        <div style="background:#fff3e0;border-left:4px solid #f57f17;border-radius:8px;padding:10px 14px;font-size:0.82rem;">
-          <strong style="color:#f57f17;">⚠️ महत्त्वाची अट</strong><br/>
-          <span style="color:#333;">चालू वर्षाचा संपूर्ण कर भरणे अनिवार्य, तरच मागील थकबाकीवर ५०% सवलत लागू होईल</span>
-        </div>
-      </div>
-
-      <!-- Deadline -->
-      <div style="background:#b71c1c;border-radius:10px;padding:12px 16px;text-align:center;margin-bottom:14px;">
-        <div style="color:rgba(255,255,255,0.8);font-size:0.72rem;font-weight:600;margin-bottom:4px;">⏰ अंतिम मुदत</div>
-        <div style="color:#FFE566;font-size:1.2rem;font-weight:900;">३१ मार्च २०२६</div>
-        <div style="color:rgba(255,255,255,0.8);font-size:0.72rem;margin-top:2px;">मुदत संपण्यापूर्वी लाभ घ्या!</div>
-      </div>
-
-      <!-- Contact -->
-      <div style="background:#f5f5f5;border-radius:8px;padding:10px 14px;font-size:0.78rem;color:#555;text-align:center;">
-        📞 अधिक माहितीसाठी: <strong style="color:#e65100;">ग्रामपंचायत कार्यालय निपाणा</strong><br/>
-        श्री. एस. टी. गव्हाळे: <strong>७७९८७६१८३७</strong>
-      </div>
-
-      <button onclick="document.getElementById('taxInfoModal').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
-        बंद करा ✕
-      </button>
-    </div>
-  </div>
-</div>
-
 </body></html>`;
   const w2=window.open('','_blank','width=820,height=1000');
   w2.document.write(sw_html);w2.document.close();
   setTimeout(()=>{w2.focus();w2.print();},600);
-}
+    return;  // end swayam block
+  }
+
+  // ── 7 Official Certificates + Namuna 8 Ferafar PDF ──
+  const cT = {
+    janma:'जन्म नोंद दाखला',
+    mrutyu:'मृत्यू नोंद दाखला',
+    vivah:'विवाह नोंदणी दाखला',
+    bpl:'दारिद्र्यरेषेखालील दाखला',
+    yenebaki:'येणेबाकी नसल्याचा दाखला',
+    namuna8utara:'नमुना ८ उतारा',
+    niradhar:'निराधार असल्याचा दाखला',
+    namuna8ferafar:'नमुना ८ फेरफार अर्ज',
+  };
+
+  // Collect all form inputs
+  const allInp = document.querySelectorAll(
+    '#formContent input, #formContent select, #formContent textarea, ' +
+    '#tab-namuna8-content input, #tab-namuna8-content select, #tab-namuna8-content textarea'
+  );
+  let rows = '';
+  allInp.forEach(inp => {
+    const lbl = inp.placeholder || inp.getAttribute('aria-label') || '';
+    const val = inp.tagName === 'SELECT' ? (inp.options[inp.selectedIndex]?.text||'') : inp.value;
+    if (lbl && val && val.trim() && val !== 'निवडा...') {
+      rows += `<tr>
+        <td style="padding:7px 10px;border:1px solid #ddd;font-weight:600;background:#f9f9f9;width:38%;font-size:11px;">${lbl}</td>
+        <td style="padding:7px 10px;border:1px solid #ddd;font-size:11px;">${val.trim()}</td>
+      </tr>`;
+    }
+  });
+
+  const certTitle = cT[formType] || formType;
+
+  const certPDF = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Devanagari',Arial,sans-serif;padding:14px 18px;font-size:11.5px;color:#000;max-width:210mm;}
+.hdr{border:2px solid #006633;padding:9px 12px;text-align:center;margin-bottom:10px;border-radius:5px;}
+h2{font-size:13px;font-weight:bold;text-align:center;margin:7px 0;border-bottom:2px solid #000;padding-bottom:5px;}
+table{width:100%;border-collapse:collapse;margin:7px 0;}
+.sign-row{display:flex;justify-content:space-between;margin-top:18px;font-size:11px;}
+.seal{border:1px dashed #aaa;width:85px;height:52px;text-align:center;padding-top:14px;font-size:10px;color:#888;}
+.footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;}
+@page{size:A4;margin:9mm;}
+@media print{body{padding:0;}}
+</style></head><body>
+<div class="hdr">
+  <div style="font-size:10px;color:#555;">महाराष्ट्र शासन | ग्रामविकास विभाग</div>
+  <div style="font-size:14px;font-weight:bold;color:#006633;">ग्रामपंचायत निपाणा</div>
+  <div style="font-size:10px;">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | 📞 ७७९८७६१८३७</div>
+</div>
+<div style="text-align:right;font-size:10px;margin-bottom:4px;">दिनांक: ${dateStr}</div>
+<h2>${certTitle} — अर्ज</h2>
+<div style="font-size:10px;color:#444;margin-bottom:7px;">महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५ | शासन निर्णय दि. १६ फेब्रुवारी २०१९</div>
+<div style="font-size:11px;margin-bottom:7px;"><strong>प्रती,</strong> मा. ग्रामपंचायत अधिकारी / प्रशासक,<br/>ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.</div>
+<p style="font-size:11px;margin-bottom:7px;"><strong>विषय:</strong> ${certTitle} मिळणेबाबत विनंती.</p>
+<p style="font-size:11px;margin-bottom:7px;">महोदय/महोदया,<br/>मी खालील माहितीनुसार <strong>${certTitle}</strong> मिळण्यासाठी विनंती करतो/करते:</p>
+<table>
+  <thead><tr style="background:#e8f5e9;">
+    <th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">तपशील</th>
+    <th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">माहिती</th>
+  </tr></thead>
+  <tbody>${rows || '<tr><td colspan="2" style="padding:8px;text-align:center;color:#888;border:1px solid #ddd;">माहिती भरलेली नाही</td></tr>'}</tbody>
+</table>
+<p style="font-size:10.5px;margin:7px 0;">वरील सर्व माहिती खरी व बरोबर आहे. विहित कालमर्यादेत दाखला मिळावा ही विनंती.</p>
+<div class="sign-row">
+  <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">दिनांक: ${dateStr}</p></div>
+  <div class="seal">कार्यालय शिक्का</div>
+</div>
+<div class="footer">(पोहोच) अर्ज क्र.: _____________ | दिनांक: _________ | कर्मचारी स्वाक्षरी: _____________</div>
+</body></html>`;
+
+  const w3 = window.open('','_blank','width=820,height=1000');
+  w3.document.write(certPDF);
+  w3.document.close();
+  setTimeout(()=>{w3.focus();w3.print();},600);
 }
 
 </script>
