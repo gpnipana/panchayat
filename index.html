@@ -228,6 +228,11 @@
     }
     .section-title p { font-size: 0.85rem; color: var(--gray); margin-top: 2px; }
 
+    /* ─── NUMBER INPUT - integers only ─── */
+    input[type="number"] { -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
     /* ─── INFO CARDS ─── */
     .info-grid {
       display: grid;
@@ -581,11 +586,11 @@
     <h3>📢 सूचना फलक | Notice Board</h3>
     <div class="notice-item">
       📌 ग्रामपंचायत निपाणा — विशेष ग्रामसभा दिनांक २६ जानेवारी २०२६ रोजी सकाळी ११:०० वाजता संपन्न झाली.<br/>
-      <span>दिनांक: २६ जानेवारी २०२६</span>
+      <span>दिनांक: ०१ एप्रिल २०२५</span>
     </div>
     <div class="notice-item">
       📌 प्रधानमंत्री आवास योजना (ग्रामीण) — आता <strong>"आवास प्लस"</strong> App वरून थेट अर्ज करा! Google Play Store वरून <strong>Awaas Plus</strong> App डाउनलोड करा व ऑनलाईन अर्ज सादर करा. अधिक माहितीसाठी ग्रामपंचायत कार्यालयाशी संपर्क करा.<br/>
-      <span>दिनांक: २६ जानेवारी २०२६</span>
+      <span>दिनांक: ०१ एप्रिल २०२५</span>
     </div>
 
   </div>
@@ -728,16 +733,6 @@
   </div>
 
 <div style="margin-top:28px;">
-    <h4 style="margin-bottom:12px; color:var(--navy); font-size:1rem;">📜 ग्रामपंचायतमार्फत दिले जाणारे ९ दाखले | 9 Certificates by GP</h4>
-    <div class="quick-services">
-      <a class="qs-btn" href="#">👶 जन्म दाखला</a>
-      <a class="qs-btn" href="#">⚰️ मृत्यू दाखला</a>
-      <a class="qs-btn" href="#">💍 विवाह नोंदणी दाखला</a>
-      <a class="qs-btn" href="#">🏠 मालमत्ता नोंद उतारा</a>
-      <a class="qs-btn" href="#">💧 नळ जोडणी दाखला</a>
-      <a class="qs-btn" href="#">💰 घरपट्टी / कर भरणा पावती</a>
-      <a class="qs-btn" href="#" style="border-color:#1565c0;color:#1565c0;">📋 स्वयंघोषणापत्र (रहिवास)</a>
-    </div>
 
     <div style="margin-top:0px; background:linear-gradient(135deg,#e3f2fd,#f0f8ff); border-left:5px solid #1565c0; border-radius:12px; padding:20px 24px;">
       <h4 style="color:#1565c0; font-size:1.05rem; margin-bottom:12px;">📋 स्वयंघोषणापत्र (Self-Declaration) — महत्त्वाची माहिती</h4>
@@ -1054,7 +1049,161 @@ function showForm(type) {
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">वडिलांचे नाव:</label><input type="text" placeholder="वडिलांचे पूर्ण नाव" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">आईचे नाव:</label><input type="text" placeholder="आईचे पूर्ण नाव" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
       </div>
-      <button onclick="generatePDF('janma',{})" style="margin-top:16px;padding:10px 24px;background:var(--green);color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`,
+      <button onclick="generatePDF('janma',{})" style="margin-top:16px;padding:10px 24px;background:var(--green);color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`
+      <div style="margin-top:14px;"><button onclick="toggleSection('docs-bpl')" style="background:linear-gradient(135deg,#e65100,#e65100cc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">📎 आवश्यक कागदपत्रे पहा / Required Documents</button><div id="docs-bpl" style="display:none;background:#fafafa;border:2px solid #e6510030;border-radius:12px;padding:16px;margin-top:8px;"><div style="font-size:0.85rem;font-weight:800;color:#e65100;margin-bottom:10px;border-bottom:2px solid #e6510030;padding-bottom:6px;">📋 दारिद्र्यरेषेखालील दाखला — आवश्यक कागदपत्रे</div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">📋</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">विनंती अर्ज</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराचा विनंती अर्ज</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">🪪</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">ओळखीचा पुरावा</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">आधार कार्ड (स्वःसाक्षांकित)</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">🏠</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">रहिवास पुरावा</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">रेशन कार्ड / अधिवास प्रमाणपत्र</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">उत्पन्न दाखला</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">तहसीलदार उत्पन्न दाखला</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">📸</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">पासपोर्ट फोटो</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">पासपोर्ट साईज फोटो</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">शासकीय शुल्क</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">प्रमाणपत्र शासकीय शुल्क</div></div></div><div style="margin-top:10px;background:#e6510015;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित</strong> करून सादर करावीत. | शासन निर्णय दि. १६ फेब्रुवारी २०१९</div></div></div>
+    
+        <!-- आवश्यक कागदपत्रे toggle for namuna8utara -->
+        <div style="margin-top:14px;">
+          <button onclick="toggleSection('docs-namuna8utara')" style="background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">
+            📎 आवश्यक कागदपत्रे पहा / Required Documents
+          </button>
+          <div id="docs-namuna8utara" style="display:none;background:#fafafa;border:2px solid #6a1b9a30;border-radius:12px;padding:16px;margin-top:8px;">
+            <div style="font-size:0.85rem;font-weight:800;color:#6a1b9a;margin-bottom:10px;border-bottom:2px solid #6a1b9a30;padding-bottom:6px;">
+              📋 नमुना ८ उतारा — आवश्यक कागदपत्रे
+            </div>
+            
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📋</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">विनंती अर्ज</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराचा विनंती अर्ज</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🏠</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">घरकर/पाणीकर पावती</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">घरकर पाणीकर भरणा केल्याची पावती</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">💰</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">शासकीय शुल्क</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">प्रमाणपत्र शासकीय शुल्क</div>
+                </div>
+              </div>
+            <div style="margin-top:10px;background:#6a1b9a15;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">
+              ⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित (Self-attested)</strong> करून सादर करावीत. | संदर्भ: शासन निर्णय दि. १६ फेब्रुवारी २०१९
+            </div>
+          </div>
+        </div>
+    
+        <!-- आवश्यक कागदपत्रे toggle for mrutyu -->
+        <div style="margin-top:14px;">
+          <button onclick="toggleSection('docs-mrutyu')" style="background:linear-gradient(135deg,#5d4037,#5d4037cc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">
+            📎 आवश्यक कागदपत्रे पहा / Required Documents
+          </button>
+          <div id="docs-mrutyu" style="display:none;background:#fafafa;border:2px solid #5d403730;border-radius:12px;padding:16px;margin-top:8px;">
+            <div style="font-size:0.85rem;font-weight:800;color:#5d4037;margin-bottom:10px;border-bottom:2px solid #5d403730;padding-bottom:6px;">
+              📋 मृत्यू नोंद दाखला — आवश्यक कागदपत्रे
+            </div>
+            
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📋</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">नोंदणी अर्ज</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">मृत्यू झाल्यापासून २१ दिवसाच्या आतील नोंदणी अर्ज</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📄</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">पंचनामा अहवाल</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">जन्म मृत्यू समितीचा मृतकाचा मृत्यू घरी झाल्याचा पंचनामा अहवाल</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🪪</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">मृत व्यक्तीचा ओळखपत्र</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">मृत व्यक्तीचा ओळखीचा पुरावा (आधार कार्ड)</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🪪</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">अर्जदाराचे ओळखपत्र</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराच्या ओळखीचा पुराव्याची स्वःसाक्षांकित प्रत</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🏥</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">मृत्यू कारण प्रमाणपत्र</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">संबंधित डॉक्टरकडून मृत्यूच्या कारणाचे प्रमाणपत्र</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📜</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">शव विच्छेदन पंचनामा</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">शव विच्छेदन पंचनामा / दसनिधी कार्य पावती</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🚔</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">पोलीस पंचनामा</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अपघाती मृत्यू झाल्यास पोलिसांचा घटनास्थळ पंचनामा</div>
+                </div>
+              </div>
+            <div style="margin-top:10px;background:#5d403715;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">
+              ⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित (Self-attested)</strong> करून सादर करावीत. | संदर्भ: शासन निर्णय दि. १६ फेब्रुवारी २०१९
+            </div>
+          </div>
+        </div>
+    
+        <!-- आवश्यक कागदपत्रे toggle for janma -->
+        <div style="margin-top:14px;">
+          <button onclick="toggleSection('docs-janma')" style="background:linear-gradient(135deg,#1565c0,#1565c0cc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">
+            📎 आवश्यक कागदपत्रे पहा / Required Documents
+          </button>
+          <div id="docs-janma" style="display:none;background:#fafafa;border:2px solid #1565c030;border-radius:12px;padding:16px;margin-top:8px;">
+            <div style="font-size:0.85rem;font-weight:800;color:#1565c0;margin-bottom:10px;border-bottom:2px solid #1565c030;padding-bottom:6px;">
+              📋 जन्म नोंद दाखला — आवश्यक कागदपत्रे
+            </div>
+            
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📋</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">नोंदणी अर्ज</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">आशा/आरोग्य सेविकेचा जन्म झाल्यापासून २१ दिवसाच्या आतील नोंदणी अर्ज</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📄</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">पंचनामा अहवाल</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">जन्म मृत्यू समितीचा बाळाचा जन्म घरी झाल्याचा पंचनामा अहवाल</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🪪</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">ओळखपत्र (अर्जदार)</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराच्या ओळखीच्या पुराव्याची स्वःसाक्षांकित प्रत (आधार कार्ड)</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🪪</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">ओळखपत्र (आई-वडील)</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">बाळाच्या आई आणि वडिलांच्या ओळखीच्या पुराव्याची स्वःसाक्षांकित प्रत (आधार)</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">✍️</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">स्वाक्षरी/अंगठा</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराने नोंदणी पुस्तकात सर्व माहिती बरोबर असल्याची खात्री करून सही/अंगठा</div>
+                </div>
+              </div>
+            <div style="margin-top:10px;background:#1565c015;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">
+              ⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित (Self-attested)</strong> करून सादर करावीत. | संदर्भ: शासन निर्णय दि. १६ फेब्रुवारी २०१९
+            </div>
+          </div>
+        </div>,
     mrutyu: `<h4 style="color:#555;margin-bottom:16px;">⚰️ मृत्यू नोंद दाखला — अर्ज (कालमर्यादा: ७ दिवस)</h4>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.87rem;">
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">अर्जदाराचे नाव:</label><input type="text" placeholder="पूर्ण नाव" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
@@ -1073,7 +1222,8 @@ function showForm(type) {
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">विवाह स्थळ:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">मोबाईल क्र.:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
       </div>
-      <button onclick="generatePDF(currentFormType||\'cert\',{})" style="margin-top:16px;padding:10px 24px;background:#c2185b;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`,
+      <button onclick="generatePDF(currentFormType||\'cert\',{})" style="margin-top:16px;padding:10px 24px;background:#c2185b;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`
+      <div style="margin-top:14px;"><button onclick="toggleSection('docs-vivah')" style="background:linear-gradient(135deg,#880e4f,#880e4fcc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">📎 आवश्यक कागदपत्रे पहा / Required Documents</button><div id="docs-vivah" style="display:none;background:#fafafa;border:2px solid #880e4f30;border-radius:12px;padding:16px;margin-top:8px;"><div style="font-size:0.85rem;font-weight:800;color:#880e4f;margin-bottom:10px;border-bottom:2px solid #880e4f30;padding-bottom:6px;">📋 विवाह नोंद दाखला — आवश्यक कागदपत्रे</div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">📋</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">नोंदणी फॉर्म</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">विवाह नोंदणी फॉर्म (नमुना-ड)</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">🎂</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">वयाचा पुरावा</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">वर व वधू — शाळा सोडल्याचा दाखला / जन्म दाखला</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">📸</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">फोटो</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">लग्न प्रसंगीचा फोटो (4×6) + साक्षीदारांचे पासपोर्ट फोटो</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">🪪</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">राहण्याचा पुरावा</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">वर, वधू व साक्षीदार — आधार कार्ड / रेशन कार्ड</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">💌</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">लग्नपत्रिका</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">मूळ लग्नपत्रिका किंवा ₹100 स्टॅम्प पेपरवर प्रतिज्ञापत्र</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">शासकीय शुल्क</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">९० दिवसांत ₹65 | ९०दिवस-१वर्ष ₹115 | १वर्षानंतर ₹215</div></div></div><div style="margin-top:10px;background:#880e4f15;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित</strong> करून सादर करावीत. | शासन निर्णय दि. १६ फेब्रुवारी २०१९</div></div></div>,
     yenebaki: `<h4 style="color:#0277bd;margin-bottom:16px;">✅ ग्रामपंचायत येणे बाकी नसल्याचा दाखला (कालमर्यादा: ५ दिवस)</h4>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.87rem;">
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">अर्जदाराचे नाव:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
@@ -1081,7 +1231,8 @@ function showForm(type) {
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">मोबाईल क्र.:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">दाखला कशासाठी:</label><input type="text" placeholder="कारण" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
       </div>
-      <button onclick="generatePDF(currentFormType||\'cert\',{})" style="margin-top:16px;padding:10px 24px;background:#0277bd;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`,
+      <button onclick="generatePDF(currentFormType||\'cert\',{})" style="margin-top:16px;padding:10px 24px;background:#0277bd;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`
+      <div style="margin-top:14px;"><button onclick="toggleSection('docs-yenebaki')" style="background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">📎 आवश्यक कागदपत्रे पहा / Required Documents</button><div id="docs-yenebaki" style="display:none;background:#fafafa;border:2px solid #2e7d3230;border-radius:12px;padding:16px;margin-top:8px;"><div style="font-size:0.85rem;font-weight:800;color:#2e7d32;margin-bottom:10px;border-bottom:2px solid #2e7d3230;padding-bottom:6px;">📋 येणेबाकी नसल्याचा दाखला — आवश्यक कागदपत्रे</div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">📋</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">विनंती अर्ज</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराचा विनंती अर्ज</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">🏠</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">घरकर/पाणीकर पावती</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">घरकर व पाणीकर भरणा केल्याची पावती</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.1rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">शासकीय शुल्क</div><div style="font-size:0.78rem;color:#555;line-height:1.5;">प्रमाणपत्र शासकीय शुल्क</div></div></div><div style="margin-top:10px;background:#2e7d3215;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित</strong> करून सादर करावीत. | शासन निर्णय दि. १६ फेब्रुवारी २०१९</div></div></div>,
     namuna8utara: `<h4 style="color:#5d4037;margin-bottom:16px;">🏠 नमुना ८ उतारा मागणी अर्ज (कालमर्यादा: ५ दिवस)</h4>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.87rem;">
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">अर्जदाराचे नाव:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
@@ -1094,7 +1245,7 @@ function showForm(type) {
       <p style="font-size:0.82rem;color:#666;margin-bottom:12px;">पदनिर्देशित अधिकारी: सहायक गट विकास अधिकारी | द्वितीय अपील: उपमुख्य कार्यकारी अधिकारी (पंचायत)</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.87rem;">
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">अर्जदाराचे नाव:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
-        <div><label style="font-weight:600;display:block;margin-bottom:4px;">कुटुंबातील एकूण सदस्य:</label><input type="number" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
+        <div><label style="font-weight:600;display:block;margin-bottom:4px;">कुटुंबातील एकूण सदस्य:</label><input type="number" min="0" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;" oninput="this.value=this.value.replace(/[^0-9]/g,'')" onkeypress="return /[0-9]/.test(event.key)"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">BPL कार्ड क्र. (असल्यास):</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">मोबाईल क्र.:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
       </div>
@@ -1102,12 +1253,91 @@ function showForm(type) {
     niradhar: `<h4 style="color:#6a1b9a;margin-bottom:16px;">🤲 निराधार असल्याचा दाखला (कालमर्यादा: २० दिवस)</h4>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.87rem;">
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">अर्जदाराचे नाव:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
-        <div><label style="font-weight:600;display:block;margin-bottom:4px;">वय:</label><input type="number" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
+        <div><label style="font-weight:600;display:block;margin-bottom:4px;">वय:</label><input type="number" min="0" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;" oninput="this.value=this.value.replace(/[^0-9]/g,'')" onkeypress="return /[0-9]/.test(event.key)"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">आधार क्र.:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
         <div><label style="font-weight:600;display:block;margin-bottom:4px;">मोबाईल क्र.:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>
         <div style="grid-column:1/-1;"><label style="font-weight:600;display:block;margin-bottom:4px;">निराधार असल्याचे कारण:</label><textarea rows="3" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;"></textarea></div>
       </div>
-      <button onclick="generatePDF(currentFormType||\'cert\',{})" style="margin-top:16px;padding:10px 24px;background:#6a1b9a;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`,
+      <button onclick="generatePDF(currentFormType||\'cert\',{})" style="margin-top:16px;padding:10px 24px;background:#6a1b9a;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 अर्ज PDF डाउनलोड करा</button>`
+    
+        <!-- आवश्यक कागदपत्रे toggle for niradhar -->
+        <div style="margin-top:14px;">
+          <button onclick="toggleSection('docs-niradhar')" style="background:linear-gradient(135deg,#c62828,#c62828cc);color:white;border:none;padding:9px 18px;border-radius:20px;font-size:0.82rem;font-weight:700;cursor:pointer;width:100%;text-align:left;">
+            📎 आवश्यक कागदपत्रे पहा / Required Documents
+          </button>
+          <div id="docs-niradhar" style="display:none;background:#fafafa;border:2px solid #c6282830;border-radius:12px;padding:16px;margin-top:8px;">
+            <div style="font-size:0.85rem;font-weight:800;color:#c62828;margin-bottom:10px;border-bottom:2px solid #c6282830;padding-bottom:6px;">
+              📋 निराधार असल्याचा दाखला — आवश्यक कागदपत्रे
+            </div>
+            
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📋</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">विनंती अर्ज</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अर्जदाराचा विनंती अर्ज</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🪪</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">ओळखीचा पुरावा</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">आधार कार्ड / ओळखीचा पुरावा (स्वःसाक्षांकित)</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🏠</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">रहिवास पुरावा</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">रेशन कार्ड / अधिवास प्रमाणपत्र</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🎂</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">वयाचा पुरावा</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">शाळा सोडल्याचा दाखला / जन्म दाखला</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">💰</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">उत्पन्न दाखला</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">तहसीलदार उत्पन्न दाखला (साधारणपणे ₹21,000 च्या आत)</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">🏥</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">वैद्यकीय प्रमाणपत्र</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">अपंग असेल तर जिल्हा शल्य चिकित्सालयाचे वैद्यकीय प्रमाणपत्र</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📄</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">मृत्यू दाखला</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">विधवा असेल तर पतीचा मृत्यू दाखला</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">📸</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">फोटो</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">पासपोर्ट साईज फोटो</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                <span style="font-size:1.2rem;flex-shrink:0;">💰</span>
+                <div>
+                  <div style="font-weight:700;font-size:0.82rem;color:#1a1a2e;">शासकीय शुल्क</div>
+                  <div style="font-size:0.78rem;color:#555;line-height:1.5;">प्रमाणपत्र शासकीय शुल्क</div>
+                </div>
+              </div>
+            <div style="margin-top:10px;background:#c6282815;border-radius:8px;padding:8px 12px;font-size:0.75rem;color:#555;">
+              ⚠️ वरील कागदपत्रे <strong>स्वःसाक्षांकित (Self-attested)</strong> करून सादर करावीत. | संदर्भ: शासन निर्णय दि. १६ फेब्रुवारी २०१९
+            </div>
+          </div>
+        </div>,
   };
   const area = document.getElementById('formArea');
   const content = document.getElementById('formContent');
@@ -1144,7 +1374,7 @@ function showSwayam(type) {
     veejjodan: common('वीज जोडणीसाठी स्वयंघोषणापत्र', `<div style="grid-column:1/-1;background:#fff8e1;border-radius:8px;padding:10px;font-size:0.83rem;">मी घोषित करतो/करते की, मी घरगुती विद्युत वीज जोडणी मिळण्यास पात्र आहे.</div>`),
     charitra: common('चारित्र्याचा दाखला — स्वयंघोषणापत्र', `<div style="grid-column:1/-1;background:#e8f5e9;border-radius:8px;padding:10px;font-size:0.83rem;">मी घोषित करतो/करते की, माझ्याविरुद्ध कोणताही गुन्हा न्यायालयात प्रलंबित नाही व माझे चारित्र्य चांगले आहे.</div>`),
     koniYojana: common('कोणत्याही योजनेचा लाभ न घेतल्याचे', `<div style="grid-column:1/-1;background:#ffebee;border-radius:8px;padding:10px;font-size:0.83rem;">मी घोषित करतो/करते की, मी आजपर्यंत शासनाच्या कोणत्याही योजनेचा लाभ घेतलेला नाही.</div>`),
-    vayabat: common('वयाबाबत स्वयंघोषणापत्र (निराधार)', `<div><label style="font-weight:600;display:block;margin-bottom:4px;">सध्याचे वय (वर्षे):</label><input type="number" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>`),
+    vayabat: common('वयाबाबत स्वयंघोषणापत्र (निराधार)', `<div><label style="font-weight:600;display:block;margin-bottom:4px;">सध्याचे वय (वर्षे):</label><input type="number" min="0" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;" oninput="this.value=this.value.replace(/[^0-9]/g,'')" onkeypress="return /[0-9]/.test(event.key)"/></div>`),
     vyavsay: common('व्यवसाय ना-हरकत स्वयंघोषणापत्र', `<div><label style="font-weight:600;display:block;margin-bottom:4px;">नवीन व्यवसाय:</label><input type="text" placeholder="व्यवसायाचे नाव" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div><div><label style="font-weight:600;display:block;margin-bottom:4px;">ग्रामपंचायत हद्द:</label><input type="text" value="निपाणा" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>`),
     gawthan: common('गावठाण स्वयंघोषणापत्र', `<div><label style="font-weight:600;display:block;margin-bottom:4px;">मालमत्ता/घर क्रमांक:</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div><div><label style="font-weight:600;display:block;margin-bottom:4px;">मौजा/गाव:</label><input type="text" value="निपाणा" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div>`),
     panipattiRadd: common('पाणीपट्टी रद्द — नळ जोडणी नसल्याचे', `<div><label style="font-weight:600;display:block;margin-bottom:4px;">मालमत्ता क्रमांक (नमुना ८):</label><input type="text" style="width:100%;padding:8px;border:1.5px solid #ddd;border-radius:8px;"/></div><div style="grid-column:1/-1;background:#fff8e1;border-radius:8px;padding:10px;font-size:0.83rem;">मी घोषित करतो/करते की, माझ्या मालमत्तेत ग्रामपंचायतीची कोणतीही पेयजल नळ जोडणी घेतलेली नाही. तरी नमुना ८ वरील पाणीपट्टीची नोंद रद्द करण्यात यावी.</div>`),
@@ -1711,20 +1941,76 @@ function showSwayam(type) {
     <p style="font-size:0.88rem;color:#444;line-height:1.8;">हवामान बदलास सामोरे जाण्यासाठी शेतकऱ्यांना सहाय्य करणे. आधुनिक शेती तंत्रज्ञान, पाणी व्यवस्थापन व शेतकरी उत्पन्न वाढीसाठी कार्यक्रम राबवणे.<br/><br/><strong>लाभार्थी:</strong> निपाणा गावातील सर्व शेतकरी.</p>
   </div>
   <div id="sc-aadi" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #b71c1c;margin-bottom:16px;">
-    <h4 style="color:#b71c1c;margin-bottom:10px;">👩 आदिशक्ती समिती (महिला सशक्तीकरण)</h4>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">महिलांचे आर्थिक, सामाजिक व शैक्षणिक सशक्तीकरण. बचत गटांची स्थापना, कर्ज सुविधा, कौशल्य प्रशिक्षण व महिला हक्क जागृती.<br/><br/><strong>उद्देश:</strong> महिला नेतृत्व विकास व बचत गट सक्षमीकरण.</p>
+    <h4 style="color:#b71c1c;margin-bottom:14px;">👩 आदिशक्ती अभियान समिती (महिला सशक्तीकरण)</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+        <div style="background:#b71c1c15;border:2px solid #b71c1c40;border-radius:14px;padding:16px;text-align:center;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
+          <div style="font-size:0.68rem;color:#b71c1c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
+          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">अध्यक्ष</div>
+          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">सौ. कांचन गजानन एकडे</div>
+        </div>
+        <div style="background:#b71c1c15;border:2px solid #b71c1c40;border-radius:14px;padding:16px;text-align:center;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
+          <div style="font-size:0.68rem;color:#b71c1c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
+          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">पदसिद्ध सचिव</div>
+          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे (ग्रामपंचायत अधिकारी)</div>
+        </div>
+      </div>
+    <p style="font-size:0.88rem;color:#444;line-height:1.8;">महिलांचे आर्थिक, सामाजिक व शैक्षणिक सशक्तीकरण. बचत गटांची स्थापना, कर्ज सुविधा, कौशल्य प्रशिक्षण व महिला हक्क जागृती.<br/><strong>उद्देश:</strong> महिला नेतृत्व विकास व बचत गट सक्षमीकरण.</p>
   </div>
   <div id="sc-shala" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #e65100;margin-bottom:16px;">
-    <h4 style="color:#e65100;margin-bottom:10px;">🏫 शाळा व्यवस्थापन समिती</h4>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">गावातील शाळांच्या विकासासाठी व गुणवत्तावाढीसाठी काम करणारी समिती. शाळेतील पायाभूत सुविधा व शिक्षण दर्जा सुधारणे.<br/><br/><strong>उद्देश:</strong> शिक्षणाचा दर्जा सुधारणे.</p>
+    <h4 style="color:#e65100;margin-bottom:14px;">🏫 शाळा व्यवस्थापन समिती</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+        <div style="background:#e6510015;border:2px solid #e6510040;border-radius:14px;padding:16px;text-align:center;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
+          <div style="font-size:0.68rem;color:#e65100;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
+          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">अध्यक्ष</div>
+          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. पांडुरंग गावंडे</div>
+        </div>
+        <div style="background:#e6510015;border:2px solid #e6510040;border-radius:14px;padding:16px;text-align:center;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
+          <div style="font-size:0.68rem;color:#e65100;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">सचिव</div>
+          <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">सचिव</div>
+          <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">शाळा मुख्याध्यापक</div>
+        </div>
+      </div>
+    <p style="font-size:0.88rem;color:#444;line-height:1.8;">गावातील शाळांच्या विकासासाठी व गुणवत्तावाढीसाठी काम करणारी समिती. शाळेतील पायाभूत सुविधा व शिक्षण दर्जा सुधारणे.<br/><strong>उद्देश:</strong> शिक्षणाचा दर्जा सुधारणे.</p>
   </div>
   <div id="sc-pani" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #0277bd;margin-bottom:16px;">
     <h4 style="color:#0277bd;margin-bottom:10px;">💧 पाणीपुरवठा व स्वच्छता समिती</h4>
     <p style="font-size:0.88rem;color:#444;line-height:1.8;">गावातील पाणी व्यवस्थापन, नळ पाणीपुरवठा योजनेचे सनियंत्रण व स्वच्छता उपक्रम राबवणे.<br/><br/><strong>उद्देश:</strong> शुद्ध पाणी व स्वच्छ गाव.</p>
   </div>
   <div id="sc-bandh" style="display:none;background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-top:5px solid #5d4037;margin-bottom:16px;">
-    <h4 style="color:#5d4037;margin-bottom:10px;">🏗️ बांधकाम व विकास समिती</h4>
-    <p style="font-size:0.88rem;color:#444;line-height:1.8;">ग्रामपंचायत विकास कामांचे नियोजन, देखरेख व गुणवत्ता तपासणी करणारी समिती.<br/><br/><strong>उद्देश:</strong> दर्जेदार बांधकाम व विकास.</p>
+    <h4 style="color:#5d4037;margin-bottom:14px;">🏗️ बांधकाम व विकास समिती</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+      <div style="background:#5d403715;border:2px solid #5d403740;border-radius:14px;padding:16px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">👑</div>
+        <div style="font-size:0.68rem;color:#5d4037;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">अध्यक्ष</div>
+        <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">माजी उपसरपंच</div>
+        <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">सौ. लीलाबाई श्रीकृष्ण भटकर</div>
+      </div>
+      <div style="background:#5d403715;border:2px solid #5d403740;border-radius:14px;padding:16px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
+        <div style="font-size:0.68rem;color:#5d4037;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">पदसिद्ध सचिव</div>
+        <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">ग्रामपंचायत अधिकारी</div>
+        <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे</div>
+      </div>
+    </div>
+    <p style="font-size:0.88rem;color:#444;line-height:1.8;">ग्रामपंचायत विकास कामांचे नियोजन, देखरेख व गुणवत्ता तपासणी करणारी समिती.<br/><strong>उद्देश:</strong> दर्जेदार बांधकाम व विकास.</p>
+  </div>
+        <div style="font-size:0.68rem;color:#00695c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">पदसिद्ध अध्यक्ष</div>
+        <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">ग्रामपंचायत अधिकारी व सचिव</div>
+        <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे</div>
+      </div>
+      <div style="background:#e0f2f1;border:2px solid #00695c40;border-radius:14px;padding:16px;text-align:center;">
+        <div style="font-size:1.8rem;margin-bottom:6px;">✍️</div>
+        <div style="font-size:0.68rem;color:#00695c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">पदसिद्ध सचिव</div>
+        <div style="font-size:0.72rem;color:#666;margin-bottom:4px;">आरोग्य सेविका</div>
+        <div style="font-size:0.9rem;font-weight:800;color:#1a1a2e;">ग्रामीण आरोग्य सेविका, निपाणा</div>
+      </div>
+    </div>
+    <p style="font-size:0.88rem;color:#444;line-height:1.8;">जन्म व मृत्यू नोंदणीचे सनियंत्रण करणारी समिती. जन्म झाल्यापासून २१ दिवसाच्या आत नोंदणी होणे बंधनकारक.<br/><strong>उद्देश:</strong> अचूक जन्ममृत्यू नोंदी व प्रमाणपत्र वितरण.</p>
+  </div>
   </div>
 </section>
 
@@ -2254,53 +2540,40 @@ function showSwayam(type) {
   </div>
 
   <script>
-  // ── Real Visitor Counter using CountAPI ──
+  // ── Real Visitor Counter using GoatCounter (free, works on GitHub Pages) ──
   (function() {
-    const SITE = 'gpnipana.github.io';
-    const KEY  = 'gp_nipana_portal_v1';
-    const el   = document.getElementById('visitorCount');
+    const el    = document.getElementById('visitorCount');
     const elDay = document.getElementById('todayCount');
+    const d = new Date();
+    const months = ['जाने','फेब्रु','मार्च','एप्रिल','मे','जून','जुलै','ऑग','सप्टें','ऑक्टो','नोव्हें','डिसें'];
 
-    // Animate a number count up
-    function animateCount(target) {
-      let start = Math.max(0, target - 60);
-      const step = Math.ceil((target - start) / 35);
-      const timer = setInterval(() => {
-        start = Math.min(start + step, target);
-        el.textContent = start.toLocaleString('hi-IN');
-        if (start >= target) clearInterval(timer);
-      }, 35);
-    }
-
-    // Hit counter: increment + get total
-    fetch('https://api.countapi.xyz/hit/' + SITE + '/' + KEY)
-      .then(r => r.json())
-      .then(data => {
-        if (data && data.value) {
-          animateCount(data.value);
-          // Today's date in Marathi
-          const d = new Date();
-          const months = ['जाने','फेब्रु','मार्च','एप्रिल','मे','जून','जुलै','ऑग','सप्टें','ऑक्टो','नोव्हें','डिसें'];
-          elDay.textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' पर्यंत';
+    // Use hits.seeyoufarm.com - free real counter for GitHub Pages
+    // Badge API returns real count
+    fetch('https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgpnipana.github.io%2Fpanchayat&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visits&edge_flat=false')
+      .then(r => r.text())
+      .then(svg => {
+        // Parse total count from SVG text
+        const match = svg.match(/>(\d+)<\/text>/g);
+        if (match && match.length >= 2) {
+          const nums = match.map(m => parseInt(m.replace(/<\/?[^>]+(>|$)/g,"")));
+          const total = Math.max(...nums.filter(n => !isNaN(n)));
+          if (total > 0) {
+            let c = 0;
+            const t = setInterval(() => {
+              c += Math.ceil((total - c) / 20);
+              if (c >= total) { c = total; clearInterval(t); }
+              el.textContent = c.toLocaleString('hi-IN');
+            }, 40);
+            elDay.textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear() + ' पर्यंत';
+            return;
+          }
         }
+        throw new Error('parse failed');
       })
       .catch(() => {
-        // Fallback: if API fails, show estimated count from localStorage
-        try {
-          const lsKey = 'gp_nipana_est';
-          let est = parseInt(localStorage.getItem(lsKey) || '5312');
-          const last = localStorage.getItem(lsKey + '_d');
-          const today = new Date().toDateString();
-          if (last !== today) {
-            est += Math.floor(Math.random() * 8) + 3;
-            localStorage.setItem(lsKey, est);
-            localStorage.setItem(lsKey + '_d', today);
-          }
-          animateCount(est);
-          elDay.textContent = '(ऑफलाइन अंदाज)';
-        } catch(e2) {
-          el.textContent = '५,३१२+';
-        }
+        // Clean fallback - no "offline" message, just hide if not available
+        el.textContent = '—';
+        elDay.textContent = 'GitHub Pages वर Live होईल';
       });
   })();
   </script>
