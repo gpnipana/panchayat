@@ -524,93 +524,6 @@
   </style>
 </head>
 <body>
-<!-- ═══ TAX CONCESSION POPUP ═══ -->
-<div id="taxPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:99999;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:white;border-radius:24px;max-width:520px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.5);animation:popupIn 0.4s ease;">
-    <!-- Header -->
-    <div style="background:linear-gradient(135deg,#e65100,#ff6d00,#ff8f00);padding:20px 24px;color:white;text-align:center;position:relative;">
-      <button onclick="closeTaxPopup()" style="position:absolute;top:12px;right:14px;background:rgba(255,255,255,0.25);border:none;color:white;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;font-weight:700;">✕</button>
-      <div style="font-size:2.5rem;margin-bottom:6px;">🔔</div>
-      <h3 style="margin:0;font-size:1.2rem;font-weight:800;">मुख्यमंत्री समृद्ध पंचायत राज अभियान</h3>
-      <p style="font-size:0.82rem;opacity:0.9;margin-top:4px;">ग्रामपंचायत निपाणा — विशेष सूचना</p>
-    </div>
-    <!-- Content -->
-    <div style="padding:24px;">
-      <!-- Big 50% badge -->
-      <div style="text-align:center;margin-bottom:18px;">
-        <div style="display:inline-block;background:linear-gradient(135deg,#e65100,#ff8f00);color:white;border-radius:50%;width:100px;height:100px;line-height:100px;font-size:2.2rem;font-weight:900;box-shadow:0 8px 24px rgba(230,81,0,0.4);">50%</div>
-        <div style="font-size:1rem;font-weight:800;color:#e65100;margin-top:8px;">थकबाकीत सूट मिळवा!</div>
-      </div>
-      <!-- Info cards -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
-        <div style="background:#fff3e0;border-radius:12px;padding:12px;text-align:center;border-top:3px solid #e65100;">
-          <div style="font-size:1.4rem;">🏠</div>
-          <div style="font-size:0.75rem;font-weight:700;color:#e65100;margin-top:4px;">घरपट्टी</div>
-          <div style="font-size:0.7rem;color:#555;">थकबाकी माफ</div>
-        </div>
-        <div style="background:#fff3e0;border-radius:12px;padding:12px;text-align:center;border-top:3px solid #e65100;">
-          <div style="font-size:1.4rem;">💧</div>
-          <div style="font-size:0.75rem;font-weight:700;color:#e65100;margin-top:4px;">पाणीपट्टी</div>
-          <div style="font-size:0.7rem;color:#555;">थकबाकी माफ</div>
-        </div>
-        <div style="background:#fff3e0;border-radius:12px;padding:12px;text-align:center;border-top:3px solid #e65100;">
-          <div style="font-size:1.4rem;">💡</div>
-          <div style="font-size:0.75rem;font-weight:700;color:#e65100;margin-top:4px;">दिवाबत्ती</div>
-          <div style="font-size:0.7rem;color:#555;">थकबाकी माफ</div>
-        </div>
-      </div>
-      <!-- Deadline alert -->
-      <div style="background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border-radius:14px;padding:14px 18px;text-align:center;margin-bottom:16px;">
-        <div style="font-size:0.75rem;opacity:0.85;margin-bottom:3px;">⏰ अंतिम मुदत</div>
-        <div style="font-size:1.4rem;font-weight:900;">३१ मार्च २०२६</div>
-        <div style="font-size:0.75rem;opacity:0.85;margin-top:3px;">मुदत संपण्यापूर्वी लाभ घ्या!</div>
-      </div>
-      <!-- Condition -->
-      <div style="background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:#2e7d32;margin-bottom:18px;">
-        ✅ <strong>अट:</strong> चालू वर्षाचा (२०२५-२६) पूर्ण कर भरणे आवश्यक + जुन्या थकबाकीची ५०% रक्कम एकरकमी भरावी.
-      </div>
-      <!-- Buttons -->
-      <div style="display:flex;gap:10px;">
-        <a href="#karsavalt" onclick="closeTaxPopup()" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:12px;border-radius:12px;font-weight:700;font-size:0.88rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती पहा</a>
-        <button onclick="closeTaxPopup();dontShowAgain()" style="background:#f5f5f5;color:#555;border:none;padding:12px 16px;border-radius:12px;font-weight:600;font-size:0.8rem;cursor:pointer;">आज नको</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-@keyframes popupIn {
-  from { transform: scale(0.85) translateY(-20px); opacity: 0; }
-  to   { transform: scale(1) translateY(0); opacity: 1; }
-}
-</style>
-
-<script>
-function closeTaxPopup() {
-  document.getElementById('taxPopup').style.display = 'none';
-}
-function dontShowAgain() {
-  try { sessionStorage.setItem('taxPopupClosed','1'); } catch(e){}
-}
-// Show popup on load (once per session)
-window.addEventListener('load', function() {
-  try {
-    const deadline = new Date('2026-03-31');
-    const now = new Date();
-    if (now < deadline && !sessionStorage.getItem('taxPopupClosed')) {
-      setTimeout(function() {
-        document.getElementById('taxPopup').style.display = 'flex';
-      }, 1500);
-    }
-  } catch(e) {
-    setTimeout(function() {
-      document.getElementById('taxPopup').style.display = 'flex';
-    }, 1500);
-  }
-});
-</script>
-
-
 
 <!-- TOP STRIP -->
 <div class="top-strip">
@@ -672,7 +585,7 @@ window.addEventListener('load', function() {
     <h3>📢 सूचना फलक | Notice Board</h3>
     <div class="notice-item">
       📌 ग्रामपंचायत निपाणा — विशेष ग्रामसभा दिनांक २६ जानेवारी २०२६ रोजी सकाळी ११:०० वाजता संपन्न झाली.<br/>
-      <span>दिनांक: २६ जानेवारी २०२६</span>
+      <span>दिनांक: ०१ एप्रिल २०२५</span>
     </div>
     <div class="notice-item">
       📌 प्रधानमंत्री आवास योजना (ग्रामीण) — आता <strong>"आवास प्लस"</strong> App वरून थेट अर्ज करा! Google Play Store वरून <strong>Awaas Plus</strong> App डाउनलोड करा व ऑनलाईन अर्ज सादर करा. अधिक माहितीसाठी ग्रामपंचायत कार्यालयाशी संपर्क करा.<br/>
@@ -837,6 +750,112 @@ window.addEventListener('load', function() {
     </div>
   </div>
 </section>
+
+<!-- MEMBERS SECTION -->
+<section id="members" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0A2647,#1a3a5c,#0A2647);border-radius:24px;padding:48px 24px 40px;">
+  <div class="section-header">
+    <div class="section-icon">👥</div>
+    <div class="section-title">
+      <h3 style="color:white;">प्रशासक व प्रशासकीय समिती | Administrator & Committee</h3>
+      <p style="color:rgba(255,255,255,0.7);">ग्रामपंचायत निपाणा — दि. २५/०२/२०२६ पासून प्रशासक राजवट</p>
+    </div>
+  </div>
+  <button onclick="toggleSection('membersContent')" style="background:linear-gradient(135deg,var(--navy),#1a3a5c);color:white;border:none;padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;margin-bottom:20px;">👥 सदस्य यादी पहा / View Members List</button>
+  <div id="membersContent" style="display:none;">
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>अ.क्र.</th>
+          <th>सदस्याचे नाव</th>
+          <th>पद</th>
+          <th>प्रकार</th>
+          <th>मोबाईल</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff3cd;">
+          <td>—</td>
+          <td><strong>श्री. प्रभाकर किसन घाटे</strong></td>
+          <td><span class="badge badge-sarpanch">🏛️ प्रशासक</span></td>
+          <td>माजी सरपंच → जि.प. CEO नेमणूक (२५/०२/२०२६)</td>
+          <td><a href="tel:9763847595">९७६३८४७५९५</a></td>
+        </tr>
+        <tr style="background:#e8f5e9;">
+          <td colspan="5" style="text-align:center;font-size:0.8rem;color:var(--green);font-weight:700;padding:6px;">
+            ── प्रशासकीय समिती (८ सदस्य) ──
+          </td>
+        </tr>
+        <tr>
+          <td>२</td>
+          <td>सौ. लीलाबाई श्रीकृष्ण भटकर</td>
+          <td><span class="badge badge-upa">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी उपसरपंच</td>
+          <td><a href="tel:9922153262">९९२२१५३२६२</a></td>
+        </tr>
+        <tr>
+          <td>३</td>
+          <td>श्री. नारायण यशवंत गावंडे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>४</td>
+          <td>श्री. गजानन रामकृष्ण भटकर</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>५</td>
+          <td>श्री. अभिमन्यू राजाराम अंभोरे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>६</td>
+          <td>सौ. स्वाती ज्ञानेश्वर चोपडे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>७</td>
+          <td>सौ. माधुरी सुरेश चोपडे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>८</td>
+          <td>सौ. प्रतिभा रवींद्र अंभोरे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>९</td>
+          <td>सौ. पूजा उद्धव अंभोरे</td>
+          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
+          <td>माजी सदस्य</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="membersTableSection" style="display:none;">
+  <!-- Admin Note Banner -->
+  <div style="margin-top:18px; background:linear-gradient(90deg,#fff3cd,#fff8e1); border-left:5px solid var(--gold); border-radius:10px; padding:16px 20px; font-size:0.9rem; color:#5a4000;">
+    <strong>📌 महत्त्वाची नोंद:</strong> दिनांक <strong>२५/०२/२०२६</strong> रोजी ग्रामपंचायत निपाणाची निर्वाचित कार्यकारणी समाप्त झाली असून, जिल्हा परिषद मुख्य कार्यकारी अधिकारी, बुलढाणा यांच्या आदेशानुसार <strong>श्री. प्रभाकर किसन घाटे</strong> यांची प्रशासक म्हणून नेमणूक करण्यात आली आहे. उर्वरित माजी सदस्यांची <strong>प्रशासकीय समिती</strong> स्थापन करण्यात आली आहे.
+  </div>
+  </div>
+</section>
+
+<!-- SCHEMES SECTION -->
 
 <!-- INTERACTIVE FORMS SECTION -->
 <section id="forms" style="background:linear-gradient(135deg,#0d1b3e,#1a2f6b,#0d2a5e);border-radius:24px;padding:48px 24px 40px;">
@@ -1304,112 +1323,6 @@ function showSwayam(type) {
 }
 </script>
 
-<!-- MEMBERS SECTION -->
-<section id="members" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0A2647,#1a3a5c,#0A2647);border-radius:24px;padding:48px 24px 40px;">
-  <div class="section-header">
-    <div class="section-icon">👥</div>
-    <div class="section-title">
-      <h3 style="color:white;">प्रशासक व प्रशासकीय समिती | Administrator & Committee</h3>
-      <p style="color:rgba(255,255,255,0.7);">ग्रामपंचायत निपाणा — दि. २५/०२/२०२६ पासून प्रशासक राजवट</p>
-    </div>
-  </div>
-  <button onclick="toggleSection('membersContent')" style="background:linear-gradient(135deg,var(--navy),#1a3a5c);color:white;border:none;padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:700;cursor:pointer;margin-bottom:20px;">👥 सदस्य यादी पहा / View Members List</button>
-  <div id="membersContent" style="display:none;">
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>अ.क्र.</th>
-          <th>सदस्याचे नाव</th>
-          <th>पद</th>
-          <th>प्रकार</th>
-          <th>मोबाईल</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:#fff3cd;">
-          <td>—</td>
-          <td><strong>श्री. प्रभाकर किसन घाटे</strong></td>
-          <td><span class="badge badge-sarpanch">🏛️ प्रशासक</span></td>
-          <td>माजी सरपंच → जि.प. CEO नेमणूक (२५/०२/२०२६)</td>
-          <td><a href="tel:9763847595">९७६३८४७५९५</a></td>
-        </tr>
-        <tr style="background:#e8f5e9;">
-          <td colspan="5" style="text-align:center;font-size:0.8rem;color:var(--green);font-weight:700;padding:6px;">
-            ── प्रशासकीय समिती (८ सदस्य) ──
-          </td>
-        </tr>
-        <tr>
-          <td>२</td>
-          <td>सौ. लीलाबाई श्रीकृष्ण भटकर</td>
-          <td><span class="badge badge-upa">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी उपसरपंच</td>
-          <td><a href="tel:9922153262">९९२२१५३२६२</a></td>
-        </tr>
-        <tr>
-          <td>३</td>
-          <td>श्री. नारायण यशवंत गावंडे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>४</td>
-          <td>श्री. गजानन रामकृष्ण भटकर</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>५</td>
-          <td>श्री. अभिमन्यू राजाराम अंभोरे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>६</td>
-          <td>सौ. स्वाती ज्ञानेश्वर चोपडे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>७</td>
-          <td>सौ. माधुरी सुरेश चोपडे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>८</td>
-          <td>सौ. प्रतिभा रवींद्र अंभोरे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>९</td>
-          <td>सौ. पूजा उद्धव अंभोरे</td>
-          <td><span class="badge badge-member">प्रशासकीय समिती सदस्य</span></td>
-          <td>माजी सदस्य</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div id="membersTableSection" style="display:none;">
-  <!-- Admin Note Banner -->
-  <div style="margin-top:18px; background:linear-gradient(90deg,#fff3cd,#fff8e1); border-left:5px solid var(--gold); border-radius:10px; padding:16px 20px; font-size:0.9rem; color:#5a4000;">
-    <strong>📌 महत्त्वाची नोंद:</strong> दिनांक <strong>२५/०२/२०२६</strong> रोजी ग्रामपंचायत निपाणाची निर्वाचित कार्यकारणी समाप्त झाली असून, जिल्हा परिषद मुख्य कार्यकारी अधिकारी, बुलढाणा यांच्या आदेशानुसार <strong>श्री. प्रभाकर किसन घाटे</strong> यांची प्रशासक म्हणून नेमणूक करण्यात आली आहे. उर्वरित माजी सदस्यांची <strong>प्रशासकीय समिती</strong> स्थापन करण्यात आली आहे.
-  </div>
-  </div>
-</section>
-
-<!-- SCHEMES SECTION -->
-
 <section id="schemes">
   <div class="section-header">
     <div class="section-icon">📜</div>
@@ -1532,7 +1445,7 @@ function showSwayam(type) {
     <button onclick="showProgram('p-gramsabha')" class="prog-btn" id="btn-p-gramsabha" style="padding:12px 18px;background:#5d4037;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">📅 ग्रामसभा</button>
     <button onclick="showProgram('p-mahila')" class="prog-btn" id="btn-p-mahila" style="padding:12px 18px;background:#b71c1c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👩 महिला दिन</button>
     
-    <button onclick="showProgram('p-viksit')" class="prog-btn" id="btn-p-viksit" style="padding:12px 18px;background:#e65100;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 विकसित भारत- जी राम जी योजना</button>
+    <button onclick="showProgram('p-viksit')" class="prog-btn" id="btn-p-viksit" style="padding:12px 18px;background:#e65100;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🇮🇳 विकसित भारत सभा</button>
     <button onclick="showProgram('p-samruddha')" class="prog-btn" id="btn-p-samruddha" style="padding:12px 18px;background:#4a148c;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌱 समृद्ध पंचायत सभा</button>
     <button onclick="showProgram('p-swatantrata')" class="prog-btn" id="btn-p-swatantrata" style="padding:12px 18px;background:#1b5e20;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🎤 स्वातंत्र्य दिन ग्रामसभा</button>
     <button onclick="showProgram('p-divyang')" class="prog-btn" id="btn-p-divyang" style="padding:12px 18px;background:#0277bd;color:white;border:none;border-radius:10px;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;">♿ दिव्यांग निधी वाटप</button>
@@ -1634,7 +1547,7 @@ function showSwayam(type) {
     <div id="p-viksit" class="prog-detail" style="display:none;">
       <div style="background:linear-gradient(135deg,#e65100,#f57c00);padding:20px 24px;color:white;">
         <div style="font-size:1.8rem;margin-bottom:6px;">🇮🇳</div>
-        <h3 style="margin:0;font-size:1.2rem;">विकसित भारत- जी राम जी योजना</h3>
+        <h3 style="margin:0;font-size:1.2rem;">विकसित भारत — जी राम जी विशेष ग्रामसभा</h3>
         <div style="font-size:0.82rem;opacity:0.8;margin-top:4px;">दिनांक: २६ डिसेंबर २०२५ | विकास</div>
       </div>
       <div style="padding:24px;font-size:0.9rem;line-height:1.8;color:#333;">
@@ -1884,6 +1797,14 @@ function showSwayam(type) {
         <div style="color:#ffcdd2;font-size:0.88rem;margin-top:4px;">अंतिम मुदत — आजच लाभ घ्या!</div>
       </div>
     </div>
+  </div>
+
+  <!-- ═══ PHOTO GALLERY (merged) ═══ -->
+  <div style="margin-top:32px;border-top:2px solid rgba(255,255,255,0.15);padding-top:28px;">
+    <div style="text-align:center;margin-bottom:16px;">
+      <span style="background:rgba(255,255,255,0.15);color:white;padding:8px 20px;border-radius:20px;font-size:0.88rem;font-weight:700;">📸 फोटो गॅलरी | Photo Gallery</span>
+    </div>
+    
   </div>
 
 </section>
@@ -2675,4 +2596,67 @@ h2{font-size:14px;font-weight:bold;text-decoration:underline;text-align:center;m
   <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">नाव: ${naam}</p></div>
 </div>
 <div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong> | 📞 ७७९८७६१८३७</div>
+</body></html>`;
+    const w=window.open('','_blank','width=820,height=1000');
+    w.document.write(sw_html);w.document.close();
+    setTimeout(()=>{w.focus();w.print();},600);
+    return;
+  }
+
+  // ── 7 Official Certificate PDF ──
+  const cT = {
+    janma:'जन्म नोंद दाखला', mrutyu:'मृत्यू नोंद दाखला', vivah:'विवाह नोंदणी दाखला',
+    bpl:'दारिद्र्यरेषेखालील दाखला', yenebaki:'येणेबाकी नसल्याचा दाखला',
+    namuna8utara:'नमुना ८ उतारा', niradhar:'निराधार असल्याचा दाखला',
+    namuna8ferafar:'नमुना ८ फेरफार अर्ज',
+  };
+  const allInp = document.querySelectorAll('#formContent input, #formContent select, #formContent textarea');
+  let rows = '';
+  allInp.forEach(inp => {
+    const lbl = inp.placeholder || inp.getAttribute('aria-label') || '';
+    const val = inp.tagName==='SELECT' ? (inp.options[inp.selectedIndex]?.text||'') : inp.value;
+    if (lbl && val && val.trim() && val!=='निवडा...') {
+      rows += `<tr><td style="padding:6px 10px;border:1px solid #ddd;font-weight:600;background:#f9f9f9;width:38%;font-size:11px;">${lbl}</td><td style="padding:6px 10px;border:1px solid #ddd;font-size:11px;">${val.trim()}</td></tr>`;
+    }
+  });
+  const cert_html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Devanagari',Arial,sans-serif;padding:14px 18px;font-size:11.5px;color:#000;max-width:210mm;}
+.hdr{border:2px solid #006633;padding:9px 12px;text-align:center;margin-bottom:10px;border-radius:5px;}
+h2{font-size:13px;font-weight:bold;text-align:center;margin:7px 0;border-bottom:2px solid #000;padding-bottom:5px;}
+table{width:100%;border-collapse:collapse;margin:7px 0;}
+.sign{display:flex;justify-content:space-between;margin-top:18px;font-size:11px;}
+.seal{border:1px dashed #aaa;width:85px;height:52px;text-align:center;padding-top:14px;font-size:10px;color:#888;}
+.footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;}
+@page{size:A4;margin:9mm;}@media print{body{padding:0;}}
+</style></head><body>
+<div class="hdr">
+  <div style="font-size:10px;color:#555;">महाराष्ट्र शासन | ग्रामविकास विभाग</div>
+  <div style="font-size:14px;font-weight:bold;color:#006633;">ग्रामपंचायत निपाणा</div>
+  <div style="font-size:10px;">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | 📞 ७७९८७६१८३७</div>
+</div>
+<div style="text-align:right;font-size:10px;margin-bottom:4px;">दिनांक: ${dateStr}</div>
+<h2>${cT[formType]||formType} — अर्ज</h2>
+<div style="font-size:10px;color:#444;margin-bottom:7px;">महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५ | शासन निर्णय दि. १६ फेब्रुवारी २०१९</div>
+<div style="font-size:11px;margin-bottom:7px;"><strong>प्रती,</strong> मा. ग्रामपंचायत अधिकारी/प्रशासक, ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.</div>
+<p style="font-size:11px;margin-bottom:7px;"><strong>विषय:</strong> ${cT[formType]||formType} मिळणेबाबत.</p>
+<p style="font-size:11px;margin-bottom:7px;">महोदय, मी खालील माहितीनुसार <strong>${cT[formType]||formType}</strong> मिळण्यासाठी विनंती करतो/करते:</p>
+<table>
+  <thead><tr style="background:#e8f5e9;"><th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">तपशील</th><th style="padding:6px 10px;border:1px solid #aaa;text-align:left;font-size:11px;">माहिती</th></tr></thead>
+  <tbody>${rows||'<tr><td colspan="2" style="padding:7px;text-align:center;color:#888;border:1px solid #ddd;font-size:11px;">माहिती भरलेली नाही</td></tr>'}</tbody>
+</table>
+<p style="font-size:10.5px;margin:7px 0;">वरील सर्व माहिती खरी व बरोबर आहे. विहित कालमर्यादेत दाखला मिळावा ही विनंती.</p>
+<div class="sign">
+  <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:4px;">दिनांक: ${dateStr}</p></div>
+  <div class="seal">कार्यालय शिक्का</div>
+</div>
+<div class="footer">(पोहोच) अर्ज क्र.: _____________ | दिनांक: _________ | कर्मचारी स्वाक्षरी: _____________</div>
+</body></html>`;
+  const w2=window.open('','_blank','width=820,height=1000');
+  w2.document.write(cert_html);w2.document.close();
+  setTimeout(()=>{w2.focus();w2.print();},600);
+}
+
+</script>
+
 </body></html>
