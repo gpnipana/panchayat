@@ -786,6 +786,7 @@ window.addEventListener('load', function() {
     <a href="#samiti" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">🏛️ <span>ग्रामपंचायत समित्या</span></a>
     <a href="#staff" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">👨‍💼 <span>ग्रामपंचायत कर्मचारी</span></a>
     <a href="#contact" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📞 <span>संपर्क माहिती</span></a>
+    <a href="#location" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-top:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📍 <span>गाव स्थान (Map)</span></a>
   </div>
 
   <script>
@@ -831,6 +832,7 @@ window.addEventListener('load', function() {
     <li><a href="#samiti" style="background:rgba(255,255,255,0.15);border-radius:4px;">🏛️ समित्या</a></li>
     <li><a href="#staff" style="color:white;background:rgba(255,255,255,0.2);">👨‍💼 कर्मचारी</a></li>
     <li><a href="#contact" style="color:white;">📞 संपर्क</a></li>
+    <li><a href="#location" style="color:white;">📍 स्थान</a></li>
   </ul>
 </nav>
 <!-- ══ SCROLLING NOTICE TICKER ══ -->
@@ -953,10 +955,6 @@ window.addEventListener('load', function() {
           <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🏠 एकूण घरे</span>
           <span style="font-size:0.82rem;font-weight:700;">४६१</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🕐 कार्यालय वेळ</span>
-          <span style="font-size:0.78rem;font-weight:700;">सोम–शुक्र ९.४५–६.१५</span>
-        </div>
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 12px;border:1px solid rgba(255,107,0,0.4);">
           <span style="font-size:0.75rem;color:rgba(255,255,255,0.75);">📋 नोंदणी</span>
           <span style="font-size:0.72rem;color:#FFD600;font-weight:600;">Maharashtra GP Act</span>
@@ -1036,33 +1034,7 @@ window.addEventListener('load', function() {
       </div>
     </div>
 
-    <!-- PANEL 4: पदाधिकारी — Saffron/Orange -->
-    <div style="background:linear-gradient(160deg,#E85D00,#FF6B00);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:12px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🏛️</div>
-        <div style="font-weight:800;font-size:0.95rem;">पदाधिकारी</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
-        <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:10px 14px;">
-          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.85;margin-bottom:4px;">प्रशासक</div>
-          <div style="font-weight:800;font-size:0.88rem;">श्री. प्रभाकर किसन घाटे</div>
-          <div style="font-size:0.72rem;opacity:0.9;margin-top:2px;">📞 9763847595</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:10px 14px;">
-          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.85;margin-bottom:4px;">माजी उपसरपंच</div>
-          <div style="font-weight:800;font-size:0.88rem;">सौ. लीलाबाई श्रीकृष्ण भटकर</div>
-          <div style="font-size:0.72rem;opacity:0.9;margin-top:2px;">📞 9922153262</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:10px 14px;">
-          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.8px;opacity:0.85;margin-bottom:4px;">ग्रा.प. अधिकारी (सचिव)</div>
-          <div style="font-weight:800;font-size:0.88rem;">श्री. एस. टी. गव्हाळे</div>
-          <div style="font-size:0.72rem;opacity:0.9;margin-top:2px;">📞 7798761837</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:7px 14px;text-align:center;border:1px solid rgba(255,255,255,0.25);">
-          <div style="font-size:0.72rem;opacity:0.9;">🕐 सोम–शुक्र: ९.४५–६.१५ &nbsp;|&nbsp; शनि/रवि: बंद</div>
-        </div>
-      </div>
-    </div>
+
 
 
 </section>
@@ -3080,15 +3052,7 @@ function showSwayam(type) {
         <a href="tel:7798761837">७७९८७६१८३७</a>
       </p>
     </div>
-    <div class="contact-card">
-      <span class="c-icon">🕐</span>
-      <h4>कार्यालय वेळ</h4>
-      <p>
-        सोमवार – शुक्रवार<br/>
-        सकाळी ९.४५ – सायंकाळी ६.१५<br/><br/>
-        <strong>शनिवार / रविवार:</strong> शासकीय सुट्टी — बंद
-      </p>
-    </div>
+
     <div class="contact-card">
       <span class="c-icon">🔗</span>
       <h4>उपयुक्त लिंक्स व सोशल मीडिया</h4>
@@ -3096,12 +3060,43 @@ function showSwayam(type) {
         <a href="https://zp.buldhana.gov.in" target="_blank">जि.प. बुलढाणा</a><br/>
         <a href="https://maharashtra.gov.in" target="_blank">महाराष्ट्र शासन</a><br/>
         <a href="https://egramswaraj.gov.in" target="_blank">eGramSwaraj</a><br/>
+        <a href="http://www.khamgaonpanchayatsamiti.com" target="_blank" style="color:var(--green);font-weight:700;" onclick="window.open('http://www.khamgaonpanchayatsamiti.com','_blank');event.preventDefault();">🏛️ खामगाव पंचायत समिती</a><br/>
         <a href="https://www.instagram.com/gp_nipana_172812?igsh=MTEzcW1pMHIxYmttdw==" target="_blank" style="color:#E1306C;font-weight:700;">📸 Instagram: @gp_nipana_172812</a><br/>
         <span style="color:var(--saffron);font-weight:700;">✉️ <span id="emailDisplay">nipana172812[at]gmail.com</span> <button onclick="document.getElementById('emailDisplay').innerHTML='<a href=&quot;mailto:nipana172812@gmail.com&quot;>nipana172812@gmail.com</a>';this.style.display='none'" style="font-size:0.75rem;background:var(--saffron);color:white;border:none;border-radius:6px;padding:2px 8px;cursor:pointer;">दाखवा</button></span>
       </p>
     </div>
   </div>
 </section>
+
+<!-- ══ VILLAGE LOCATION MAP ══ -->
+<section id="location" style="scroll-margin-top:60px;">
+  <div class="section-header">
+    <div class="section-icon">📍</div>
+    <div class="section-title">
+      <h3 style="color:var(--navy);">गाव स्थान | Village Location</h3>
+      <p>निपाणा गाव, तालुका खामगाव, जिल्हा बुलढाणा — Google Maps</p>
+    </div>
+  </div>
+  <div style="border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:3px solid var(--green);">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.5!2d76.5700!3d20.7100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd72e0000000001%3A0x1!2sNipana%2C+Khamgaon%2C+Buldhana%2C+Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+      width="100%" height="420" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="निपाणा गाव, तालुका खामगाव, जिल्हा बुलढाणा">
+    </iframe>
+  </div>
+  <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+    <a href="https://maps.google.com/?q=Nipana+Khamgaon+Buldhana+Maharashtra" target="_blank"
+      style="display:inline-flex;align-items:center;gap:8px;background:var(--green);color:white;text-decoration:none;padding:10px 20px;border-radius:12px;font-weight:700;font-size:0.88rem;box-shadow:0 4px 14px rgba(0,102,51,0.3);">
+      📍 Google Maps वर उघडा
+    </a>
+    <a href="https://maps.google.com/?q=Nipana+Khamgaon+Buldhana+Maharashtra&dirflg=d" target="_blank"
+      style="display:inline-flex;align-items:center;gap:8px;background:var(--saffron);color:white;text-decoration:none;padding:10px 20px;border-radius:12px;font-weight:700;font-size:0.88rem;box-shadow:0 4px 14px rgba(255,107,0,0.3);">
+      🗺️ मार्गदर्शन मिळवा
+    </a>
+  </div>
+</section>
+
 
 </main>
 
@@ -3125,11 +3120,19 @@ function showSwayam(type) {
     <div>
       <h4>🔗 शासकीय पोर्टल्स</h4>
       <ul>
-        <li><a href="https://maharashtra.gov.in" style="color:#aaa;">महाराष्ट्र शासन</a></li>
-        <li><a href="https://zp.buldhana.gov.in" style="color:#aaa;">जि.प. बुलढाणा</a></li>
-        <li><a href="https://egramswaraj.gov.in" style="color:#aaa;">eGramSwaraj</a></li>
-        <li><a href="https://mahaonline.gov.in" style="color:#aaa;">MahaOnline</a></li>
-        <li><a href="https://www.instagram.com/gp_nipana_172812" style="color:#E1306C;">📸 Instagram</a></li>
+        <li><a href="https://maharashtra.gov.in" target="_blank" style="color:#aaa;">महाराष्ट्र शासन</a></li>
+        <li><a href="https://zp.buldhana.gov.in" target="_blank" style="color:#aaa;">जि.प. बुलढाणा</a></li>
+        <li><a href="http://www.khamgaonpanchayatsamiti.com" target="_blank" style="color:#aaa;">खामगाव पंचायत समिती</a></li>
+        <li><a href="https://egramswaraj.gov.in" target="_blank" style="color:#aaa;">eGramSwaraj</a></li>
+        <li><a href="https://mahaonline.gov.in" target="_blank" style="color:#aaa;">MahaOnline</a></li>
+        <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" style="color:#aaa;">आपले सरकार</a></li>
+        <li><a href="https://pmayg.nic.in" target="_blank" style="color:#aaa;">PM आवास योजना</a></li>
+        <li><a href="https://nreganarep.nic.in" target="_blank" style="color:#aaa;">MGNREGS पोर्टल</a></li>
+        <li><a href="https://jaljeevanmission.gov.in" target="_blank" style="color:#aaa;">जल जीवन मिशन</a></li>
+        <li><a href="https://pmsuryaghar.gov.in" target="_blank" style="color:#aaa;">PM सूर्य घर योजना</a></li>
+        <li><a href="https://swachhbharatmission.gov.in" target="_blank" style="color:#aaa;">स्वच्छ भारत मिशन</a></li>
+        <li><a href="https://india.gov.in" target="_blank" style="color:#aaa;">भारत सरकार पोर्टल</a></li>
+        <li><a href="https://www.instagram.com/gp_nipana_172812" target="_blank" style="color:#E1306C;">📸 Instagram</a></li>
       </ul>
     </div>
     <div>
@@ -3270,7 +3273,7 @@ h2{font-size:14px;font-weight:bold;text-decoration:underline;text-align:center;m
   <div><p>ठिकाण: निपाणा, ता. खामगाव</p><p style="margin-top:5px;">दिनांक: ${dateStr}</p></div>
   <div><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">नाव: ${naam}</p></div>
 </div>
-<div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong> | 📞 ७७९८७६१८३७</div>
+<div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong> | ✉️ nipana172812@gmail.com</div>
 </body></html>`;
   const w2=window.open('','_blank','width=820,height=1000');
   w2.document.write(sw_html);w2.document.close();
@@ -3324,7 +3327,7 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 <div class="hdr">
   <div style="font-size:10px;color:#555;">महाराष्ट्र शासन | ग्रामविकास विभाग</div>
   <div style="font-size:14px;font-weight:bold;color:#006633;">ग्रामपंचायत निपाणा</div>
-  <div style="font-size:10px;">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | 📞 ७७९८७६१८३७</div>
+  <div style="font-size:10px;">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | ✉️ nipana172812@gmail.com</div>
 </div>
 <div style="text-align:right;font-size:10px;margin-bottom:4px;">दिनांक: ${dateStr}</div>
 <h2>${certTitle} — अर्ज</h2>
