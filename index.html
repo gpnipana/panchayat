@@ -11,159 +11,55 @@
   <title>ग्रामपंचायत निपाणा | Grampanchayat Nipana</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --saffron: #FF6B00;
-      --deep-saffron: #E85D00;
-      --green: #006633;
-      --deep-green: #004d26;
-      --gold: #D4A017;
+      /* Brand */
+      --saffron:    #E65100;
+      --deep-saffron:#bf360c;
+      --green:      #1B5E20;
+      --deep-green: #003300;
+      --gold:       #D4A017;
       --light-gold: #F5E6A3;
-      --navy: #0A2647;
-      --cream: #FFF8F0;
-      --white: #ffffff;
+      --navy:       #0A2647;
+      /* UI */
+      --bg:         #F9FAFB;
+      --cream:      #FFF8F0;
+      --white:      #ffffff;
       --gray-light: #F4F6F9;
-      --gray: #6B7280;
-      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+      --gray:       #4B5563;
+      --text:       #111827;
+      /* Shadows */
+      --shadow-sm:  0 1px 4px rgba(0,0,0,0.08);
+      --shadow:     0 4px 24px rgba(0,0,0,0.10);
+      --shadow-lg:  0 8px 40px rgba(0,0,0,0.16);
+      /* Nav height for scroll-margin */
+      --nav-h: 56px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :focus-visible { outline: 3px solid var(--saffron); outline-offset: 2px; border-radius: 4px; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    :focus-visible { outline: 3px solid var(--saffron); outline-offset: 3px; border-radius: 4px; }
+
+    html { scroll-behavior: smooth; font-size: 18px; }
 
     body {
-      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
-      background: var(--cream);
-      color: #1a1a1a;
+      font-family: 'Mukta', 'Noto Sans Devanagari', 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
+      line-height: 1.6;
+      min-width: 320px;
     }
 
-    /* ─── TOP STRIP ─── */
-    .top-strip {
-      background: var(--navy);
-      color: #fff;
-      font-size: 0.78rem;
-      padding: 6px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      letter-spacing: 0.3px;
-    }
-    .top-strip a { color: var(--light-gold); text-decoration: none; margin-left: 16px; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
 
-    /* ─── HEADER ─── */
-    header {
-      background: linear-gradient(135deg, var(--green) 0%, var(--deep-green) 60%, #002d14 100%);
-      color: white;
-      padding: 18px 32px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      box-shadow: 0 4px 20px rgba(0,102,51,0.5);
-      position: relative;
-      overflow: hidden;
-    }
-    header::before {
-      content: '';
-      position: absolute;
-      right: -60px; top: -60px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
-      border-radius: 50%;
-    }
-    .emblem {
-      width: 80px; height: 80px;
-      background: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 4px var(--gold);
-      flex-shrink: 0;
-      font-size: 2.4rem;
-    }
-    .header-text h1 {
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      font-size: 1.9rem;
-      line-height: 1.2;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    .header-text h2 {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--light-gold);
-      margin-top: 2px;
-    }
-    .header-text p {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.7);
-      margin-top: 4px;
-    }
-    .header-right {
-      margin-left: auto;
-      text-align: right;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.75);
-    }
-    .header-right .date { font-size: 0.95rem; color: var(--light-gold); font-weight: 600; }
-
-    /* ─── NAV ─── */
-    nav {
-      background: var(--saffron);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(255,107,0,0.4);
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2px;
-      padding: 4px 8px;
-      margin: 0;
-    }
-    nav ul li a {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      transition: background 0.2s, color 0.2s;
-      border-radius: 8px;
-      border-bottom: 3px solid transparent;
-      white-space: nowrap;
-      line-height: 1.2;
-    }
-    nav ul li a:hover {
-      background: var(--deep-saffron);
-      border-bottom-color: rgba(255,255,255,0.6);
-    }
-    nav ul li a.active {
-      background: var(--deep-saffron);
-      border-bottom-color: white;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        justify-content: flex-start;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding: 4px 8px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      nav ul::-webkit-scrollbar { display: none; }
-      nav ul li a {
-        padding: 7px 10px;
-        font-size: 0.75rem;
-        white-space: nowrap;
-      }
-    }
+    /* ─── TOP STRIP (kept for compatibility if needed) ─── */
+    .top-strip { display: none; }
+    /* Legacy header/nav selectors — overridden by new site-header */
+    header:not(.site-header) { display: none; }
+    nav:not(.main-nav) { display: none; }
 
 
     /* ─── HERO BANNER ─── */
@@ -185,8 +81,8 @@
       font-size: 4rem; opacity: 0.12;
     }
     .hero h2 {
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      font-size: 2.2rem;
+      font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
       color: var(--green);
       margin-bottom: 10px;
     }
@@ -231,8 +127,10 @@
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 16px;
+      overflow-x: clip;
     }
+    @media (min-width: 640px) { main { padding: 0 24px; } }
 
     /* ─── SECTION COMMON ─── */
     section {
@@ -255,9 +153,10 @@
       flex-shrink: 0;
     }
     .section-title h3 {
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      font-size: 1.6rem;
+      font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
       color: var(--navy);
+      line-height: 1.3;
     }
     .section-title p { font-size: 0.85rem; color: var(--gray); margin-top: 2px; }
 
@@ -556,18 +455,17 @@
     }
 
     @media (max-width: 640px) {
-      header { flex-direction: column; text-align: center; padding: 20px 16px; }
-      .header-right { margin: 0; }
-      .hero { padding: 32px 16px; }
-      .hero h2 { font-size: 1.5rem; }
-      .hero-stats { gap: 14px; }
-      nav ul li a { padding: 12px 14px; font-size: 0.82rem; }
+      .hero { padding: 28px 16px; }
+      .hero h2 { font-size: 1.4rem; }
+      .hero-stats { gap: 10px; }
+      .stat-card { min-width: 100px; padding: 14px 16px; }
     }
   
     /* ─── FONTS ─── */
     h1, h2, h3, h4, h5 {
-      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+      font-family: 'Mukta', 'Noto Sans Devanagari', 'Poppins', sans-serif;
       letter-spacing: -0.2px;
+      line-height: 1.3;
     }
     nav ul li a, button, .apply-btn, .qs-btn {
       font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
@@ -577,6 +475,16 @@
     }
 
     /* ─── RESPONSIVE: FORMS TAB BUTTONS ─── */
+    /* Form grid responsive — 2-col on mobile is too cramped */
+    @media (max-width: 480px) {
+      #formContent .form-grid,
+      #swayamArea > div[style*="grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+      .schemes-grid { grid-template-columns: 1fr !important; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+      .info-grid { grid-template-columns: 1fr !important; }
+    }
     .tab-btn-group {
       display: flex;
       flex-wrap: wrap;
@@ -597,49 +505,161 @@
       text-align: center;
     }
 
-    /* ─── RESPONSIVE: ABOUT SECTION PANELS ─── */
+    /* ─── ABOUT SECTION PANELS — Fully Responsive ─── */
     .panels-2x2 {
       display: grid;
-      grid-template-columns: 1.1fr 1.3fr 1.1fr;
-      gap: 18px;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: clamp(10px, 2vw, 18px);
       margin-bottom: 16px;
       align-items: stretch;
     }
-    .panels-2x2 .panel-loksankhya {
-      grid-row: unset;
-    }
-    @media (max-width: 900px) {
+
+    /* Tablet: loksankhya full-width on top, side panels below */
+    @media (max-width: 860px) {
       .panels-2x2 {
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
       }
       .panels-2x2 .panel-loksankhya {
         grid-column: 1 / -1;
+        grid-row: 1;
       }
     }
-    @media (max-width: 540px) {
+
+    /* Mobile: all stack in one column */
+    @media (max-width: 520px) {
       .panels-2x2 {
         grid-template-columns: 1fr;
+        grid-template-rows: unset;
       }
       .panels-2x2 .panel-loksankhya {
         grid-column: unset;
+        grid-row: unset;
       }
     }
+
+    /* Base panel card */
+    .about-panel {
+      border-radius: clamp(12px, 2vw, 18px);
+      padding: clamp(14px, 3vw, 22px);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+    .about-panel--navy  { background: linear-gradient(160deg,#0A2647,#1a3a5c); }
+    .about-panel--green { background: linear-gradient(160deg,#1B5E20,#2e7d32); }
+
+    /* Panel header row */
+    .about-panel__header {
+      display: flex;
+      align-items: center;
+      gap: clamp(8px, 1.5vw, 12px);
+      margin-bottom: clamp(10px, 2vw, 16px);
+      padding-bottom: clamp(8px, 1.5vw, 12px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .about-panel__icon {
+      width: clamp(32px, 4vw, 42px);
+      height: clamp(32px, 4vw, 42px);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+      flex-shrink: 0;
+    }
+
     /* Panel heading size upgrade */
     .panel-heading-title {
       font-weight: 800;
-      font-size: 1.08rem !important;
+      font-size: clamp(0.82rem, 1.8vw, 1.05rem);
       color: white;
       line-height: 1.3;
     }
-    /* ─── MODAL TRANSITIONS ─── */
-    [id$="Modal"], [id^="modal-"] {
-      transition: opacity 0.15s ease;
-    }
     .panel-heading-subtitle {
-      font-size: 0.72rem !important;
+      font-size: clamp(0.58rem, 1.2vw, 0.72rem);
       color: rgba(255,255,255,0.65);
       margin-top: 2px;
     }
+
+    /* Panel 1 & 3 — info rows */
+    .about-panel__rows {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(4px, 0.8vw, 7px);
+      flex: 1;
+    }
+    .about-panel__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: clamp(5px, 0.9vw, 8px) clamp(8px, 1.2vw, 12px);
+      gap: 6px;
+    }
+    .about-panel__row--accent {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,107,0,0.4);
+    }
+    .about-panel__row-label {
+      font-size: clamp(0.62rem, 1.2vw, 0.74rem);
+      color: rgba(255,255,255,0.8);
+      white-space: nowrap;
+    }
+    .about-panel__row-value {
+      font-size: clamp(0.64rem, 1.2vw, 0.76rem);
+      font-weight: 700;
+      text-align: right;
+    }
+    .about-panel__row-value--gold {
+      font-size: clamp(0.56rem, 1.1vw, 0.65rem);
+      color: #FFD600;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Panel 3 — इतर माहिती item rows */
+    .about-panel__item {
+      display: flex;
+      align-items: center;
+      gap: clamp(7px, 1.2vw, 11px);
+      border-radius: 8px;
+      padding: clamp(6px, 1vw, 9px) clamp(8px, 1.2vw, 12px);
+    }
+    .about-panel__item-icon {
+      font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+      flex-shrink: 0;
+    }
+    .about-panel__item-label {
+      font-size: clamp(0.58rem, 1.1vw, 0.68rem);
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .about-panel__item-value {
+      font-size: clamp(0.7rem, 1.3vw, 0.84rem);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .about-panel__item-sub {
+      font-size: clamp(0.58rem, 1.1vw, 0.7rem);
+      color: rgba(255,255,255,0.55);
+      margin-top: 1px;
+    }
+
+    /* Loksankhya panel number sizes */
+    .lok-big-num  { font-size: clamp(1.2rem, 3vw, 1.7rem); font-weight: 900; }
+    .lok-mid-num  { font-size: clamp(0.95rem, 2vw, 1.2rem); font-weight: 900; }
+    .lok-sm-num   { font-size: clamp(0.85rem, 1.8vw, 1.05rem); font-weight: 900; }
+    .lok-xs-num   { font-size: clamp(0.82rem, 1.6vw, 1rem); font-weight: 900; }
+    .lok-label    { font-size: clamp(0.6rem, 1.1vw, 0.68rem); color: rgba(255,255,255,0.85); margin-top: 2px; }
+    .lok-sublabel { font-size: clamp(0.54rem, 1vw, 0.61rem); color: rgba(255,255,255,0.55); margin-top: 1px; }
+    .lok-sec-head { font-size: clamp(0.62rem, 1.1vw, 0.73rem); font-weight: 800; letter-spacing: 1px; color: #FFD600; }
+
+    /* ─── MODAL TRANSITIONS ─── */
+    [id$="Modal"], [id^="modal-"] { transition: opacity 0.15s ease; }
 
     /* ─── RESPONSIVE: SAMITI BUTTONS ─── */
     .samiti-btn-group {
@@ -794,94 +814,347 @@ window.addEventListener('load', function() {
 
 
 
-<!-- TOP STRIP -->
-<div class="top-strip">
-  <span>🏛️ जिल्हा परिषद, बुलढाणा | Zilla Parishad, Buldhana</span>
-  <div>
-    <a href="#">मुख्यपृष्ठ</a>
-    <a href="#">साइटमॅप</a>
-    <a href="#">मदत</a>
-  </div>
-</div>
+<!-- ══ SITE HEADER ══ -->
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <!-- Brand -->
+    <a href="#home" class="site-header__brand" aria-label="ग्रामपंचायत निपाणा — मुख्यपृष्ठ">
+      <div class="site-header__emblem" aria-hidden="true">🏛️</div>
+      <div class="site-header__text">
+        <span class="site-header__title">ग्रामपंचायत निपाणा</span>
+        <span class="site-header__sub">ता. खामगाव · जि. बुलढाणा · महाराष्ट्र</span>
+      </div>
+    </a>
 
-<!-- HEADER -->
-<header style="position:relative;">
-  <div class="emblem">🏛️</div>
-  <div class="header-text">
-    <h1>ग्रामपंचायत निपाणा</h1>
-    <h2>Grampanchayat Nipana — Citizen Services Portal</h2>
-    <p>तालुका: खामगाव | जिल्हा: बुलढाणा | राज्य: महाराष्ट्र</p>
-  </div>
-  <div class="header-right" style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-    <div class="date" id="dateDisplay"></div>
-    <!-- Hamburger Menu Button -->
-    <button id="menuToggleBtn" onclick="toggleHeaderMenu()" aria-label="मुख्य मेनू"
-      style="background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);color:white;padding:8px 14px;border-radius:10px;cursor:pointer;font-size:0.82rem;font-weight:700;display:flex;align-items:center;gap:8px;transition:background 0.2s;">
-      <span id="menuIcon" style="font-size:1.1rem;">☰</span>
-      <span>मुख्य मेनू</span>
-    </button>
-  </div>
+    <!-- Desktop Nav -->
+    <nav class="main-nav" id="mainNav" aria-label="मुख्य नेव्हिगेशन">
+      <ul class="main-nav__list" role="list">
+        <li><a href="#home" class="main-nav__link active">🏠 मुख्यपृष्ठ</a></li>
 
-  <!-- Dropdown Menu -->
-  <div id="headerDropdown" style="display:none;position:absolute;top:100%;right:0;z-index:9000;background:linear-gradient(135deg,#0A2647,#1a3a5c);border-radius:0 0 16px 16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);min-width:240px;overflow:hidden;border-top:3px solid var(--saffron);">
-    <a href="#home" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">🏠 <span>मुख्यपृष्ठ</span></a>
-    <a href="#about" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📋 <span>ग्रामपंचायत माहिती</span></a>
-    <a href="#forms" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📝 <span>ऑनलाईन अर्ज</span></a>
-    <a href="#members" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">👥 <span>सदस्य यादी</span></a>
-    <a href="#schemes" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📜 <span>योजना व सेवा</span></a>
-    <a href="#programs" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">🎉 <span>कार्यक्रम व गॅलरी</span></a>
-    
-    <a href="#samiti" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">🏛️ <span>ग्रामपंचायत समित्या</span></a>
-    <a href="#staff" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">👨‍💼 <span>ग्रामपंचायत कर्मचारी</span></a>
-    <a href="#contact" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📞 <span>संपर्क माहिती</span></a>
-    <a href="#location" onclick="closeHeaderMenu()" style="display:flex;align-items:center;gap:10px;padding:12px 20px;color:white;text-decoration:none;font-size:0.88rem;font-weight:600;border-top:1px solid rgba(255,255,255,0.08);transition:background 0.15s;" onmouseover="this.style.background='rgba(255,107,0,0.3)'" onmouseout="this.style.background=''">📍 <span>गाव स्थान (Map)</span></a>
-  </div>
+        <li class="main-nav__item--dropdown">
+          <button class="main-nav__link main-nav__dropdown-btn" aria-haspopup="true" aria-expanded="false" id="ddAdmin">
+            🏛️ प्रशासन <span class="dd-arrow" aria-hidden="true">▾</span>
+          </button>
+          <ul class="main-nav__dropdown" role="list" aria-labelledby="ddAdmin">
+            <li><a href="#members" class="main-nav__dd-link">👥 सदस्य यादी</a></li>
+            <li><a href="#staff" class="main-nav__dd-link">👨‍💼 कर्मचारी</a></li>
+            <li><a href="#samiti" class="main-nav__dd-link">🏛️ समित्या</a></li>
+          </ul>
+        </li>
 
-  <script>
-  function toggleHeaderMenu() {
-    var d = document.getElementById('headerDropdown');
-    var icon = document.getElementById('menuIcon');
-    if (d.style.display === 'none') {
-      d.style.display = 'block';
-      icon.textContent = '✕';
-    } else {
-      d.style.display = 'none';
-      icon.textContent = '☰';
-    }
-  }
-  function closeHeaderMenu() {
-    document.getElementById('headerDropdown').style.display = 'none';
-    document.getElementById('menuIcon').textContent = '☰';
-  }
-  // Close menu when clicking outside
-  document.addEventListener('click', function(e) {
-    var btn = document.getElementById('menuToggleBtn');
-    var drop = document.getElementById('headerDropdown');
-    if (btn && drop && !btn.contains(e.target) && !drop.contains(e.target)) {
-      drop.style.display = 'none';
-      document.getElementById('menuIcon').textContent = '☰';
-    }
-  });
-  </script>
+        <li class="main-nav__item--dropdown">
+          <button class="main-nav__link main-nav__dropdown-btn" aria-haspopup="true" aria-expanded="false" id="ddServices">
+            📝 सेवा <span class="dd-arrow" aria-hidden="true">▾</span>
+          </button>
+          <ul class="main-nav__dropdown" role="list" aria-labelledby="ddServices">
+            <li><a href="#forms" class="main-nav__dd-link">📋 ऑनलाईन अर्ज</a></li>
+            <li><a href="#about" class="main-nav__dd-link">📋 ग्रामपंचायत माहिती</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#schemes" class="main-nav__link">📜 योजना</a></li>
+        <li><a href="#programs" class="main-nav__link">🎉 गॅलरी</a></li>
+        <li><a href="#contact" class="main-nav__link">📞 संपर्क</a></li>
+        <li><a href="#location" class="main-nav__link">📍 स्थान</a></li>
+      </ul>
+    </nav>
+
+    <!-- Right: date + hamburger -->
+    <div class="site-header__right">
+      <div class="site-header__date" id="dateDisplay" aria-live="polite"></div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="मेनू उघडा / बंद करा" aria-controls="mainNav" aria-expanded="false">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+    </div>
+  </div>
 </header>
 
+<style>
+/* ══════════════════════════════════════
+   SITE HEADER — Mobile-first sticky
+══════════════════════════════════════ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, var(--green) 0%, var(--deep-green) 100%);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  min-height: var(--nav-h);
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+/* Brand */
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.site-header__emblem {
+  width: 40px; height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 0 3px var(--gold);
+  flex-shrink: 0;
+}
+.site-header__text { display: flex; flex-direction: column; }
+.site-header__title {
+  font-size: clamp(0.82rem, 2.5vw, 1rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+}
+.site-header__sub {
+  font-size: 0.62rem;
+  color: var(--light-gold);
+  font-weight: 500;
+  display: none;
+}
+@media (min-width: 480px) { .site-header__sub { display: block; } }
 
+/* Right side */
+.site-header__right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.site-header__date {
+  font-size: 0.72rem;
+  color: var(--light-gold);
+  font-weight: 600;
+  display: none;
+  white-space: nowrap;
+}
+@media (min-width: 900px) { .site-header__date { display: block; } }
 
-<!-- NAV -->
-<nav>
-  <ul>
-    <li><a href="#home" class="active">🏠 मुख्यपृष्ठ</a></li>
-    <li><a href="#about">📋 ग्रामपंचायत माहिती</a></li>
-    <li><a href="#forms">📝 ऑनलाईन अर्ज</a></li>
-    <li><a href="#members">👥 सदस्य यादी</a></li>
-    <li><a href="#schemes">📜 योजना व सेवा</a></li>
-    <li><a href="#programs">🎉 कार्यक्रम व गॅलरी</a></li>
-    <li><a href="#samiti">🏛️ समित्या</a></li>
-    <li><a href="#staff">👨‍💼 कर्मचारी</a></li>
-    <li><a href="#contact">📞 संपर्क</a></li>
-    <li><a href="#location">📍 स्थान</a></li>
-  </ul>
-</nav>
+/* Hamburger button */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px 9px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.hamburger:hover { background: rgba(255,255,255,0.22); }
+.hamburger__bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+/* Active (open) state */
+.hamburger[aria-expanded="true"] .hamburger__bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] .hamburger__bar:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] .hamburger__bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (min-width: 900px) { .hamburger { display: none; } }
+
+/* ── MAIN NAV ── */
+.main-nav {
+  /* Mobile: full-width overlay below header */
+  display: none;
+  position: absolute;
+  top: var(--nav-h);
+  left: 0; right: 0;
+  background: linear-gradient(160deg, #0A2647, #1a3a5c);
+  border-top: 3px solid var(--saffron);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  z-index: 999;
+  max-height: calc(100vh - var(--nav-h));
+  overflow-y: auto;
+}
+.main-nav.is-open { display: block; }
+
+.main-nav__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+.main-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.15s;
+  text-align: left;
+}
+.main-nav__link:hover, .main-nav__link:focus-visible { background: rgba(230,81,0,0.35); }
+.main-nav__link.active { background: rgba(230,81,0,0.5); border-left: 4px solid var(--saffron); }
+.dd-arrow { font-size: 0.7rem; margin-left: auto; transition: transform 0.2s; }
+.main-nav__dropdown-btn[aria-expanded="true"] .dd-arrow { transform: rotate(180deg); }
+
+/* Dropdown (mobile: inline accordion) */
+.main-nav__dropdown {
+  display: none;
+  list-style: none;
+  background: rgba(0,0,0,0.25);
+}
+.main-nav__dropdown.is-open { display: block; }
+.main-nav__dd-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px 11px 36px;
+  color: rgba(255,255,255,0.88);
+  font-size: 0.84rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.15s;
+}
+.main-nav__dd-link:hover { background: rgba(230,81,0,0.25); color: white; }
+
+/* ── DESKTOP NAV (≥900px) ── */
+@media (min-width: 900px) {
+  .main-nav {
+    display: flex !important;
+    position: static;
+    background: none;
+    border: none;
+    box-shadow: none;
+    max-height: none;
+    overflow: visible;
+    flex: 1;
+    margin-left: 20px;
+  }
+  .main-nav__list {
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    padding: 0;
+    flex-wrap: nowrap;
+  }
+  .main-nav__item--dropdown { position: relative; }
+  .main-nav__link {
+    padding: 8px 11px;
+    font-size: 0.78rem;
+    border-bottom: 3px solid transparent;
+    border-radius: 6px 6px 0 0;
+    white-space: nowrap;
+  }
+  .main-nav__link:hover { background: rgba(255,255,255,0.12); border-bottom-color: rgba(255,255,255,0.5); }
+  .main-nav__link.active { background: rgba(230,81,0,0.4); border-bottom-color: white; }
+  /* Desktop dropdown */
+  .main-nav__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: #0A2647;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    border-top: 2px solid var(--saffron);
+    z-index: 2000;
+  }
+  .main-nav__dd-link { padding: 11px 18px; font-size: 0.82rem; }
+  .main-nav__item--dropdown:hover .main-nav__dropdown,
+  .main-nav__item--dropdown:focus-within .main-nav__dropdown { display: block; }
+  .main-nav__dropdown-btn[aria-expanded="true"] + .main-nav__dropdown { display: block; }
+}
+
+/* scroll-margin so sticky header doesn't cover sections */
+section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+</style>
+
+<script>
+(function() {
+  var btn = document.getElementById('hamburgerBtn');
+  var nav = document.getElementById('mainNav');
+
+  // Hamburger toggle
+  btn.addEventListener('click', function() {
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !open);
+    nav.classList.toggle('is-open', !open);
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !nav.contains(e.target)) {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    }
+  });
+
+  // Dropdown buttons (accessible)
+  document.querySelectorAll('.main-nav__dropdown-btn').forEach(function(ddBtn) {
+    ddBtn.addEventListener('click', function() {
+      var open = ddBtn.getAttribute('aria-expanded') === 'true';
+      // close all others first
+      document.querySelectorAll('.main-nav__dropdown-btn').forEach(function(b) {
+        b.setAttribute('aria-expanded', 'false');
+        var sib = b.nextElementSibling;
+        if (sib) sib.classList.remove('is-open');
+      });
+      if (!open) {
+        ddBtn.setAttribute('aria-expanded', 'true');
+        var dd = ddBtn.nextElementSibling;
+        if (dd) dd.classList.add('is-open');
+      }
+    });
+  });
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.main-nav__link:not(.main-nav__dropdown-btn), .main-nav__dd-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+      document.querySelectorAll('.main-nav__dropdown-btn').forEach(function(b) {
+        b.setAttribute('aria-expanded', 'false');
+        var sib = b.nextElementSibling;
+        if (sib) sib.classList.remove('is-open');
+      });
+    });
+  });
+
+  // Active section highlight on scroll
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.main-nav__link[href^="#"]');
+  function updateActive() {
+    var scrollY = window.scrollY + 80;
+    var current = '';
+    sections.forEach(function(s) { if (scrollY >= s.offsetTop) current = s.id; });
+    navLinks.forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActive, { passive: true });
+})();
+</script>
 <!-- ══ SCROLLING NOTICE TICKER ══ -->
 <div style="background:linear-gradient(135deg,#1a237e,#283593);overflow:hidden;padding:0;position:relative;border-bottom:2px solid #FFD600;">
   <div style="display:flex;align-items:center;">
@@ -979,184 +1252,181 @@ window.addEventListener('load', function() {
   <!-- ══ 4 UNIFORM PANELS 2x2 GRID ══ -->
   <div class="panels-2x2">
 
-    <!-- PANEL 1: सामान्य माहिती — Dark Navy -->
-    <div style="background:linear-gradient(160deg,#0A2647,#1a3a5c);border-radius:18px;padding:22px;color:white;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
-        <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📋</div>
+    <!-- PANEL 1: सामान्य माहिती -->
+    <div class="about-panel about-panel--navy">
+      <div class="about-panel__header">
+        <div class="about-panel__icon">📋</div>
         <div class="panel-heading-title">सामान्य माहिती</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">📍 जिल्हा</span>
-          <span style="font-size:0.82rem;font-weight:700;">बुलढाणा</span>
+      <div class="about-panel__rows">
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">📍 जिल्हा</span>
+          <span class="about-panel__row-value">बुलढाणा</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🏙️ तालुका</span>
-          <span style="font-size:0.82rem;font-weight:700;">खामगाव</span>
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">🏙️ तालुका</span>
+          <span class="about-panel__row-value">खामगाव</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">📮 पिन कोड</span>
-          <span style="font-size:0.82rem;font-weight:700;">४४४३०६</span>
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">📮 पिन कोड</span>
+          <span class="about-panel__row-value">४४४३०६</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🏠 एकूण घरे</span>
-          <span style="font-size:0.82rem;font-weight:700;">४६१</span>
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">🏠 एकूण घरे</span>
+          <span class="about-panel__row-value">४६१</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 12px;border:1px solid rgba(255,107,0,0.4);">
-          <span style="font-size:0.75rem;color:rgba(255,255,255,0.75);">📋 नोंदणी</span>
-          <span style="font-size:0.68rem;color:#FFD600;font-weight:600;text-align:right;">Maharashtra Village<br/>Panchayats Act, 1958</span>
+        <div class="about-panel__row about-panel__row--accent">
+          <span class="about-panel__row-label">📋 नोंदणी</span>
+          <span class="about-panel__row-value--gold">Maharashtra Village<br/>Panchayats Act, 1958</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🗓️ स्थापना वर्ष</span>
-          <span style="font-size:0.82rem;font-weight:700;">१९७१</span>
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">🗓️ स्थापना वर्ष</span>
+          <span class="about-panel__row-value">१९७१</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">👥 सदस्य संख्या</span>
-          <span style="font-size:0.82rem;font-weight:700;">९</span>
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">👥 सदस्य संख्या</span>
+          <span class="about-panel__row-value">९</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
-          <span style="font-size:0.78rem;color:rgba(255,255,255,0.8);">🗂️ एकूण वॉर्ड</span>
-          <span style="font-size:0.82rem;font-weight:700;">३</span>
+        <div class="about-panel__row">
+          <span class="about-panel__row-label">🗂️ एकूण वॉर्ड</span>
+          <span class="about-panel__row-value">३</span>
         </div>
       </div>
     </div>
 
-    <!-- PANEL 2: लोकसंख्या — Green (EXPANDED with full census data) -->
-    <div class="panel-loksankhya" style="background:linear-gradient(160deg,#1B5E20,#2e7d32);border-radius:18px;padding:22px;color:white;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:10px;">
-        <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">👥</div>
+    <!-- PANEL 2: लोकसंख्या -->
+    <div class="about-panel about-panel--green panel-loksankhya">
+      <div class="about-panel__header">
+        <div class="about-panel__icon">👥</div>
         <div>
           <div class="panel-heading-title">लोकसंख्या माहिती (जनगणना २०११)</div>
           <div class="panel-heading-subtitle">स्रोत: भारत सरकार, जनगणना विभाग | Village Code: 528797</div>
         </div>
       </div>
 
-      <!-- Row 1: Total Population -->
-      <div style="margin-bottom:8px;">
-        <div style="background:rgba(255,255,255,0.16);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.6rem;font-weight:900;color:#F5E6A3;">२,१२२</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.85);margin-top:2px;">एकूण लोकसंख्या</div>
+      <!-- Total Population -->
+      <div style="background:rgba(255,255,255,0.16);border-radius:12px;padding:clamp(8px,1.5vw,12px);text-align:center;margin-bottom:clamp(6px,1.2vw,8px);">
+        <div class="lok-big-num" style="color:#F5E6A3;">२,१२२</div>
+        <div class="lok-label">एकूण लोकसंख्या</div>
+      </div>
+
+      <!-- Male + Female -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(5px,1vw,8px);margin-bottom:clamp(6px,1.2vw,8px);">
+        <div style="background:rgba(100,181,246,0.2);border-left:3px solid #90CAF9;border-radius:10px;padding:clamp(7px,1.2vw,10px);text-align:center;">
+          <div class="lok-mid-num" style="color:#90CAF9;">१,१०६</div>
+          <div class="lok-label">👨 पुरुष</div>
+        </div>
+        <div style="background:rgba(240,98,146,0.2);border-left:3px solid #F48FB1;border-radius:10px;padding:clamp(7px,1.2vw,10px);text-align:center;">
+          <div class="lok-mid-num" style="color:#F48FB1;">१,०१६</div>
+          <div class="lok-label">👩 महिला</div>
         </div>
       </div>
 
-      <!-- Row 2: Male + Female -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-        <div style="background:rgba(100,181,246,0.2);border-left:3px solid #90CAF9;border-radius:10px;padding:10px;text-align:center;">
-          <div style="font-size:1.2rem;font-weight:900;color:#90CAF9;">१,१०६</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👨 पुरुष</div>
+      <!-- Literacy + Sex Ratio -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(5px,1vw,8px);margin-bottom:clamp(6px,1.2vw,8px);">
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:clamp(7px,1.2vw,10px);text-align:center;">
+          <div class="lok-sm-num" style="color:#76FF03;">८५.१३%</div>
+          <div class="lok-label">📚 साक्षरता दर</div>
+          <div class="lok-sublabel">पुरुष ९१.६७% | महिला ७८.१८%</div>
         </div>
-        <div style="background:rgba(240,98,146,0.2);border-left:3px solid #F48FB1;border-radius:10px;padding:10px;text-align:center;">
-          <div style="font-size:1.2rem;font-weight:900;color:#F48FB1;">१,०१६</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👩 महिला</div>
-        </div>
-      </div>
-
-      <!-- Row 3: Literacy + Sex Ratio -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center;">
-          <div style="font-size:1.1rem;font-weight:900;color:#76FF03;">८५.१३%</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">📚 साक्षरता दर</div>
-          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">पुरुष ९१.६७% | महिला ७८.१८%</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center;">
-          <div style="font-size:1.1rem;font-weight:900;color:#76FF03;">९१९</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">⚖️ लिंग गुणोत्तर</div>
-          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">प्रति १,००० पुरुषांमागे महिला</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:clamp(7px,1.2vw,10px);text-align:center;">
+          <div class="lok-sm-num" style="color:#76FF03;">९१९</div>
+          <div class="lok-label">⚖️ लिंग गुणोत्तर</div>
+          <div class="lok-sublabel">प्रति १,००० पुरुषांमागे</div>
         </div>
       </div>
 
-      <!-- Row 4: Children 0-6 + Child Sex Ratio -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-        <div style="background:rgba(255,235,59,0.15);border-left:3px solid #FFD600;border-radius:10px;padding:10px;text-align:center;">
-          <div style="font-size:1.1rem;font-weight:900;color:#FFD600;">३०६</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👶 बालके (०-६ वर्षे)</div>
-          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">एकूण लोकसंख्येच्या १४.४२%</div>
+      <!-- Children -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(5px,1vw,8px);margin-bottom:clamp(6px,1.2vw,8px);">
+        <div style="background:rgba(255,235,59,0.15);border-left:3px solid #FFD600;border-radius:10px;padding:clamp(7px,1.2vw,10px);text-align:center;">
+          <div class="lok-sm-num" style="color:#FFD600;">३०६</div>
+          <div class="lok-label">👶 बालके (०-६ वर्षे)</div>
+          <div class="lok-sublabel">एकूण लोकसंख्येच्या १४.४२%</div>
         </div>
-        <div style="background:rgba(255,235,59,0.15);border-left:3px solid #FFD600;border-radius:10px;padding:10px;text-align:center;">
-          <div style="font-size:1.1rem;font-weight:900;color:#FFD600;">८००</div>
-          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👧 बाल लिंग गुणोत्तर</div>
-          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">राज्य सरासरी ८९४ पेक्षा कमी</div>
-        </div>
-      </div>
-
-      <!-- SC / ST Section Header -->
-      <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:6px 10px;margin-bottom:6px;text-align:center;">
-        <div style="font-size:0.72rem;font-weight:800;letter-spacing:1px;color:#FFD600;">📊 अनुसूचित जाती व जमाती (SC / ST)</div>
-      </div>
-
-      <!-- Row 5: SC Total -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
-        <div style="background:rgba(255,152,0,0.2);border-top:2px solid #FFB300;border-radius:10px;padding:9px;text-align:center;">
-          <div style="font-size:1rem;font-weight:900;color:#FFB300;">३६३</div>
-          <div style="font-size:0.62rem;color:rgba(255,255,255,0.8);margin-top:2px;">SC एकूण</div>
-        </div>
-        <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:9px;text-align:center;">
-          <div style="font-size:1rem;font-weight:900;color:#FFB300;">१८८</div>
-          <div style="font-size:0.62rem;color:rgba(255,255,255,0.8);margin-top:2px;">SC पुरुष</div>
-        </div>
-        <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:9px;text-align:center;">
-          <div style="font-size:1rem;font-weight:900;color:#FFB300;">१७५</div>
-          <div style="font-size:0.62rem;color:rgba(255,255,255,0.8);margin-top:2px;">SC महिला</div>
+        <div style="background:rgba(255,235,59,0.15);border-left:3px solid #FFD600;border-radius:10px;padding:clamp(7px,1.2vw,10px);text-align:center;">
+          <div class="lok-sm-num" style="color:#FFD600;">८००</div>
+          <div class="lok-label">👧 बाल लिंग गुणोत्तर</div>
+          <div class="lok-sublabel">राज्य सरासरी ८९४ पेक्षा कमी</div>
         </div>
       </div>
 
+      <!-- SC/ST Header -->
+      <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:clamp(4px,0.8vw,6px) 10px;margin-bottom:clamp(4px,0.8vw,6px);text-align:center;">
+        <div class="lok-sec-head">📊 अनुसूचित जाती व जमाती (SC / ST)</div>
+      </div>
+
+      <!-- SC Total -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(4px,0.8vw,6px);">
+        <div style="background:rgba(255,152,0,0.2);border-top:2px solid #FFB300;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
+          <div class="lok-xs-num" style="color:#FFB300;">३६३</div>
+          <div class="lok-label">SC एकूण</div>
+        </div>
+        <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
+          <div class="lok-xs-num" style="color:#FFB300;">१८८</div>
+          <div class="lok-label">SC पुरुष</div>
+        </div>
+        <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
+          <div class="lok-xs-num" style="color:#FFB300;">१७५</div>
+          <div class="lok-label">SC महिला</div>
+        </div>
+      </div>
     </div>
 
-    <!-- PANEL 3: इतर माहिती — Dark Blue -->
-    <div style="background:linear-gradient(160deg,#0A2647,#1a3a5c);border-radius:18px;padding:22px;color:white;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
-        <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📌</div>
+    <!-- PANEL 3: इतर माहिती -->
+    <div class="about-panel about-panel--navy">
+      <div class="about-panel__header">
+        <div class="about-panel__icon">📌</div>
         <div class="panel-heading-title">इतर माहिती</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,214,0,0.12);border-left:3px solid #FFD600;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">📍</span>
+      <div style="display:flex;flex-direction:column;gap:clamp(5px,0.9vw,8px);flex:1;">
+        <div class="about-panel__item" style="background:rgba(255,214,0,0.12);border-left:3px solid #FFD600;">
+          <span class="about-panel__item-icon">📍</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">जि.मुख्यालयापासून अंतर</div>
-            <div style="font-size:0.85rem;font-weight:700;">४५-५० किलोमीटर (बुलढाणा)</div>
+            <div class="about-panel__item-label">जि.मुख्यालयापासून अंतर</div>
+            <div class="about-panel__item-value">४५-५० किमी (बुलढाणा)</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(118,255,3,0.1);border-left:3px solid #76FF03;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">🌾</span>
+        <div class="about-panel__item" style="background:rgba(118,255,3,0.1);border-left:3px solid #76FF03;">
+          <span class="about-panel__item-icon">🌾</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">मुख्य पिके</div>
-            <div style="font-size:0.82rem;font-weight:700;">☀️ सोयाबीन, कापूस &nbsp;|&nbsp; ❄️ गहू, हरभरा</div>
+            <div class="about-panel__item-label">मुख्य पिके</div>
+            <div class="about-panel__item-value">☀️ सोयाबीन, कापूस | ❄️ गहू, हरभरा</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,69,0,0.12);border-left:3px solid #FF4500;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">⛩️</span>
+        <div class="about-panel__item" style="background:rgba(255,69,0,0.12);border-left:3px solid #FF4500;">
+          <span class="about-panel__item-icon">⛩️</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">धार्मिक स्थळ</div>
-            <div style="font-size:0.85rem;font-weight:700;">श्री जगदंबा माता मंदिर</div>
+            <div class="about-panel__item-label">धार्मिक स्थळ</div>
+            <div class="about-panel__item-value">श्री जगदंबा माता मंदिर</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(0,229,255,0.1);border-left:3px solid #00E5FF;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">🚂</span>
+        <div class="about-panel__item" style="background:rgba(0,229,255,0.1);border-left:3px solid #00E5FF;">
+          <span class="about-panel__item-icon">🚂</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">जवळचे रेल्वे स्टेशन</div>
-            <div style="font-size:0.85rem;font-weight:700;">नांदुरा — <span style="color:#00E5FF;">२० किमी</span></div>
+            <div class="about-panel__item-label">जवळचे रेल्वे स्टेशन</div>
+            <div class="about-panel__item-value">नांदुरा — <span style="color:#00E5FF;">२० किमी</span></div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(33,150,243,0.12);border-left:3px solid #42A5F5;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">🏫</span>
+        <div class="about-panel__item" style="background:rgba(33,150,243,0.12);border-left:3px solid #42A5F5;">
+          <span class="about-panel__item-icon">🏫</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">माध्यमिक शाळा</div>
-            <div style="font-size:0.82rem;font-weight:700;">म. पु. माध्यमिक शाळा, निपाणा</div>
+            <div class="about-panel__item-label">माध्यमिक शाळा</div>
+            <div class="about-panel__item-value">म. पु. माध्यमिक शाळा, निपाणा</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(255,183,77,0.12);border-left:3px solid #FFB74D;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">🧒</span>
+        <div class="about-panel__item" style="background:rgba(255,183,77,0.12);border-left:3px solid #FFB74D;">
+          <span class="about-panel__item-icon">🧒</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">अंगणवाडी केंद्र</div>
-            <div style="font-size:0.82rem;font-weight:700;">अंगणवाडी केंद्र, निपाणा</div>
+            <div class="about-panel__item-label">अंगणवाडी केंद्र</div>
+            <div class="about-panel__item-value">अंगणवाडी केंद्र, निपाणा</div>
           </div>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;background:rgba(239,83,80,0.12);border-left:3px solid #EF5350;border-radius:8px;padding:9px 12px;">
-          <span style="font-size:1.1rem;flex-shrink:0;">🏥</span>
+        <div class="about-panel__item" style="background:rgba(239,83,80,0.12);border-left:3px solid #EF5350;">
+          <span class="about-panel__item-icon">🏥</span>
           <div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;">जवळची PHC</div>
-            <div style="font-size:0.82rem;font-weight:700;">प्रा. आरोग्य केंद्र, बोरजवळा</div>
-            <div style="font-size:0.7rem;color:rgba(255,255,255,0.55);">अंतर: ५ किमी</div>
+            <div class="about-panel__item-label">जवळची PHC</div>
+            <div class="about-panel__item-value">प्रा. आरोग्य केंद्र, बोरजवळा</div>
+            <div class="about-panel__item-sub">अंतर: ५ किमी</div>
           </div>
         </div>
       </div>
@@ -1203,10 +1473,10 @@ window.addEventListener('load', function() {
       <strong>📌 महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५ अन्वये</strong> ग्रामपंचायतीमार्फत खालील ७ दाखले विहित कालमर्यादेत दिले जातात. अर्ज भरून प्रिंट करा व कार्यालयात सादर करा.
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px;">
-      <button onclick="showForm('janma')" style="background:white;border:2px solid var(--green);color:var(--green);padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='var(--green)';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='var(--green)'">👶 जन्म नोंद दाखला<br/><small style="font-weight:400">(७ दिवस)</small></button>
+      <button onclick="showForm('janma')" style="background:white;border:2px solid var(--green);color:var(--green);padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#1B5E20';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#1B5E20'">👶 जन्म नोंद दाखला<br/><small style="font-weight:400">(७ दिवस)</small></button>
       <button onclick="showForm('mrutyu')" style="background:white;border:2px solid #555;color:#555;padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='#555';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#555'">⚰️ मृत्यू नोंद दाखला<br/><small style="font-weight:400">(७ दिवस)</small></button>
       <button onclick="showForm('vivah')" style="background:white;border:2px solid #c2185b;color:#c2185b;padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='#c2185b';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#c2185b'">💍 विवाह नोंद दाखला<br/><small style="font-weight:400">(७ दिवस)</small></button>
-      <button onclick="showForm('bpl')" style="background:white;border:2px solid var(--saffron);color:var(--saffron);padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='var(--saffron)';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='var(--saffron)'">📊 दारिद्र्य रेषेखालील<br/><small style="font-weight:400">(७ दिवस)</small></button>
+      <button onclick="showForm('bpl')" style="background:white;border:2px solid var(--saffron);color:var(--saffron);padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='#E65100';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#E65100'">📊 दारिद्र्य रेषेखालील<br/><small style="font-weight:400">(७ दिवस)</small></button>
       <button onclick="showForm('yenebaki')" style="background:white;border:2px solid #0277bd;color:#0277bd;padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='#0277bd';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#0277bd'">✅ येणे बाकी नसल्याचा<br/><small style="font-weight:400">(५ दिवस)</small></button>
       <button onclick="showForm('namuna8utara')" style="background:white;border:2px solid #5d4037;color:#5d4037;padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='#5d4037';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#5d4037'">🏠 नमुना ८ उतारा<br/><small style="font-weight:400">(५ दिवस)</small></button>
       <button onclick="showForm('niradhar')" style="background:white;border:2px solid #6a1b9a;color:#6a1b9a;padding:14px;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;" onmouseover="this.style.background='#6a1b9a';this.style.color='white'" onmouseout="this.style.background='white';this.style.color='#6a1b9a'">🤲 निराधार असल्याचा<br/><small style="font-weight:400">(२० दिवस)</small></button>
@@ -1502,9 +1772,9 @@ function showTab(tab) {
         btn.style.color = t===tab ? 'white' : '#0277bd';
         btn.style.border = t===tab ? 'none' : '2px solid #0277bd';
       } else {
-        btn.style.background = t===tab ? 'var(--navy)' : 'white';
-        btn.style.color = t===tab ? 'white' : 'var(--navy)';
-        btn.style.border = t===tab ? 'none' : '2px solid var(--navy)';
+        btn.style.background = t===tab ? '#0A2647' : 'white';
+        btn.style.color = t===tab ? 'white' : '#0A2647';
+        btn.style.border = t===tab ? 'none' : '2px solid #0A2647';
       }
     }
   });
@@ -1815,7 +2085,7 @@ function showForm(type) {
     </div>`;
   }
 
-  const pdfBtn = `<button onclick="generatePDF(currentFormType,{})" style="margin-top:16px;padding:11px 28px;background:linear-gradient(135deg,var(--green),#004d26);color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.92rem;box-shadow:0 4px 16px rgba(0,100,0,0.3);">📄 अर्ज PDF तयार करा व डाउनलोड करा</button>`;
+  const pdfBtn = `<button onclick="generatePDF(currentFormType,{})" style="margin-top:16px;padding:11px 28px;background:linear-gradient(135deg,#1B5E20,#004d26);color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.92rem;box-shadow:0 4px 16px rgba(0,100,0,0.3);" aria-label="अर्ज PDF तयार करा">📄 अर्ज PDF तयार करा व डाउनलोड करा</button>`;
 
   const forms = {
     janma: `
@@ -1967,7 +2237,7 @@ function showSwayam(type) {
       ${body}
     </div>
 
-    <button onclick="generatePDF(currentFormType, {})" style="margin-top:14px;padding:10px 24px;background:#c62828;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;">📄 स्वयंघोषणापत्र PDF डाउनलोड करा</button>`;
+    <button onclick="generatePDF(currentFormType, {})" style="margin-top:14px;padding:10px 24px;background:#c62828;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer;" aria-label="स्वयंघोषणापत्र PDF">📄 स्वयंघोषणापत्र PDF डाउनलोड करा</button>`;
 
   const swayamForms = {
     rahivasi: common('रहिवासी स्वयंघोषणापत्र', `<div style="grid-column:1/-1;background:#e3f2fd;border-radius:8px;padding:10px;font-size:0.83rem;color:#0d47a1;">मी घोषित करतो/करते की, मी उपरोक्त पत्त्यावर कायम/तात्पुरता रहिवासी आहे. (रहिवासी दाखला आता महसूल विभागामार्फत मिळतो)</div>`),
@@ -1994,7 +2264,7 @@ function showSwayam(type) {
 </script>
 
 <!-- MEMBERS SECTION -->
-<section id="members" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0A2647,#1a3a5c,#0A2647);border-radius:24px;padding:48px 24px 40px;">
+<section id="members" style="scroll-margin-top:calc(var(--nav-h) + 8px);background:linear-gradient(135deg,#0A2647,#1a3a5c,#0A2647);border-radius:24px;padding:48px 24px 40px;">
   <div class="section-header">
     <div class="section-icon">👥</div>
     <div class="section-title">
@@ -2217,7 +2487,7 @@ function showSwayam(type) {
 </section>
 
 <!-- PROGRAMS SECTION -->
-<section id="programs" style="scroll-margin-top:60px;background:linear-gradient(135deg,#1a0a00,#3d1a00,#1a0a00);border-radius:24px;padding:48px 24px 40px;">
+<section id="programs" style="scroll-margin-top:calc(var(--nav-h) + 8px);background:linear-gradient(135deg,#1a0a00,#3d1a00,#1a0a00);border-radius:24px;padding:48px 24px 40px;">
   <div class="section-header">
     <div class="section-icon" style="background:linear-gradient(135deg,var(--saffron),var(--deep-saffron));font-size:1.8rem;">🎉</div>
     <div class="section-title">
@@ -2245,7 +2515,7 @@ function showSwayam(type) {
 
     <!-- स्वच्छता -->
     <div id="p-swach" class="prog-detail" style="display:none;">
-      <div style="background:linear-gradient(135deg,var(--green),#004d26);padding:20px 24px;color:white;">
+      <div style="background:linear-gradient(135deg,#1B5E20,#004d26);padding:20px 24px;color:white;">
         <div style="font-size:1.8rem;margin-bottom:6px;">🌿</div>
         <h3 style="margin:0;font-size:1.2rem;">ग्रामस्वच्छता अभियान</h3>
         <div style="font-size:0.82rem;opacity:0.8;margin-top:4px;">दिनांक: १५ जानेवारी २०२५ | स्वच्छता</div>
@@ -2554,7 +2824,7 @@ function showSwayam(type) {
 
 
 <!-- SAMITI SECTION -->
-<section id="samiti" style="scroll-margin-top:60px;background:linear-gradient(135deg,#1a0533,#2d0a5c,#1a0533);border-radius:24px;padding:48px 24px 40px;">
+<section id="samiti" style="scroll-margin-top:calc(var(--nav-h) + 8px);background:linear-gradient(135deg,#1a0533,#2d0a5c,#1a0533);border-radius:24px;padding:48px 24px 40px;">
   <div class="section-header">
     <div class="section-icon" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);">🏛️</div>
     <div class="section-title">
@@ -3029,7 +3299,7 @@ function showSwayam(type) {
     document.querySelectorAll('.samiti-panel').forEach(p => p.style.display = 'none');
     // Reset button styles
     document.querySelectorAll('[id^="btn-sc-"]').forEach(b => {
-      b.style.opacity = '0.7';
+      b.style.opacity = '0.65';
       b.style.transform = 'scale(1)';
     });
     // Show selected panel
@@ -3052,7 +3322,7 @@ function showSwayam(type) {
 
 
 <!-- STAFF SECTION -->
-<section id="staff" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0d1b3e,#1a2f6b,#0d1b3e);border-radius:24px;padding:48px 24px 40px;">
+<section id="staff" style="scroll-margin-top:calc(var(--nav-h) + 8px);background:linear-gradient(135deg,#0d1b3e,#1a2f6b,#0d1b3e);border-radius:24px;padding:48px 24px 40px;">
   <div class="section-header">
     <div class="section-icon" style="background:linear-gradient(135deg,#1a237e,#283593);">👨‍💼</div>
     <div class="section-title">
@@ -3074,7 +3344,7 @@ function showSwayam(type) {
         <div style="font-size:0.72rem;color:var(--green);font-weight:700;letter-spacing:1px;margin-bottom:4px;">ग्रामपंचायत अधिकारी (सचिव)</div>
         <div style="font-size:1.05rem;font-weight:800;color:var(--navy);">श्री. एस. टी. गव्हाळे</div>
         <a href="tel:7798761837" style="display:inline-block;margin-top:8px;color:var(--green);font-weight:700;font-size:0.88rem;">📞 ७७९८७६१८३७</a><br/>
-        <button onclick="document.getElementById('duty-sachiv').style.display='flex'" style="margin-top:10px;background:linear-gradient(135deg,var(--green),#004d26);color:white;border:none;padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;">📋 कर्तव्य सूची</button>
+        <button onclick="document.getElementById('duty-sachiv').style.display='flex'" style="margin-top:10px;background:linear-gradient(135deg,#1B5E20,#004d26);color:white;border:none;padding:7px 16px;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;">📋 कर्तव्य सूची</button>
       </div>
 
       <!-- 2. शिपाई -->
@@ -3133,7 +3403,7 @@ function showSwayam(type) {
     <!-- ── सचिव Modal ── -->
     <div id="duty-sachiv" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
       <div style="background:white;border-radius:20px;max-width:580px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
-        <div style="background:linear-gradient(135deg,var(--green),#004d26);padding:20px 24px;color:white;display:flex;align-items:center;gap:14px;">
+        <div style="background:linear-gradient(135deg,#1B5E20,#004d26);padding:20px 24px;color:white;display:flex;align-items:center;gap:14px;">
           <div style="font-size:2.4rem;">👨‍💼</div>
           <div>
             <div style="font-size:1.1rem;font-weight:800;">ग्रामपंचायत अधिकारी (सचिव)</div>
@@ -3470,7 +3740,7 @@ function showSwayam(type) {
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" style="scroll-margin-top:60px;background:linear-gradient(135deg,#0A2647 0%,#1a3a5c 60%,#0f2647 100%);border-radius:24px;padding:48px 24px 40px;">
+<section id="contact" style="scroll-margin-top:calc(var(--nav-h) + 8px);background:linear-gradient(135deg,#0A2647 0%,#1a3a5c 60%,#0f2647 100%);border-radius:24px;padding:48px 24px 40px;">
   <div class="section-header">
     <div class="section-icon">📞</div>
     <div class="section-title">
@@ -3512,7 +3782,7 @@ function showSwayam(type) {
 </section>
 
 <!-- ══ VILLAGE LOCATION MAP ══ -->
-<section id="location" style="scroll-margin-top:60px;">
+<section id="location" style="scroll-margin-top:calc(var(--nav-h) + 8px);">
   <div class="section-header">
     <div class="section-icon">📍</div>
     <div class="section-title">
@@ -3544,46 +3814,83 @@ function showSwayam(type) {
 </main>
 
 <!-- FOOTER -->
-<footer>
+<footer class="site-footer" role="contentinfo">
+
   <div class="footer-grid">
+
+    <!-- Col 1: Address + Contact -->
     <div>
       <h4>🏛️ ग्रामपंचायत निपाणा</h4>
-      <p>तालुका खामगाव, जिल्हा बुलढाणा<br/>महाराष्ट्र शासन<br/><br/>नागरिक सुविधा पोर्टल — सेवा सर्वांसाठी!</p>
+      <address class="site-footer__address">
+        ग्रामपंचायत कार्यालय निपाणा,<br/>
+        तालुका खामगाव, जिल्हा बुलढाणा,<br/>
+        महाराष्ट्र — ४४४३०६
+      </address>
+      <p style="margin-top:10px;">
+        📞 <a href="tel:+917798761837" class="site-footer__tel">७७९८७६१८३७</a><br/>
+        ✉️ <a href="mailto:nipana172812@gmail.com" class="site-footer__tel">nipana172812@gmail.com</a>
+      </p>
+      <p style="margin-top:8px;font-size:0.8rem;color:rgba(255,255,255,0.55);">नागरिक सुविधा पोर्टल — सेवा सर्वांसाठी</p>
     </div>
+
+    <!-- Col 2: Services -->
     <div>
       <h4>📋 महत्त्वाच्या सेवा</h4>
       <ul>
-        <li>जन्म / मृत्यू दाखला</li>
-        <li>विवाह नोंद दाखला</li>
-        <li>मालमत्ता कर</li>
-        <li>नळ जोडणी</li>
-        <li>स्वयंघोषणापत्र</li>
+        <li><a href="#forms">जन्म / मृत्यू दाखला</a></li>
+        <li><a href="#forms">विवाह नोंद दाखला</a></li>
+        <li><a href="#forms">मालमत्ता कर</a></li>
+        <li><a href="#forms">नळ जोडणी</a></li>
+        <li><a href="#forms">स्वयंघोषणापत्र</a></li>
       </ul>
     </div>
+
+    <!-- Col 3: Portals -->
     <div>
       <h4>🔗 शासकीय पोर्टल्स</h4>
       <ul>
-        <li><a href="https://mahaonline.gov.in" target="_blank" style="color:#aaa;">MahaOnline</a></li>
-        <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" style="color:#aaa;">आपले सरकार</a></li>
-        <li><a href="https://majhivasundhara.in/mar/majhi-vasundhara" target="_blank" style="color:#aaa;">माझी वसुंधरा</a></li>
-        <li><a href="https://india.gov.in" target="_blank" style="color:#aaa;">भारत सरकार पोर्टल</a></li>
+        <li><a href="https://mahaonline.gov.in" target="_blank" rel="noopener">MahaOnline</a></li>
+        <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" rel="noopener">आपले सरकार</a></li>
+        <li><a href="https://majhivasundhara.in/mar/majhi-vasundhara" target="_blank" rel="noopener">माझी वसुंधरा</a></li>
+        <li><a href="https://zpbuldhana.maharashtra.gov.in/" target="_blank" rel="noopener">जि.प. बुलढाणा</a></li>
+        <li><a href="https://india.gov.in" target="_blank" rel="noopener">भारत सरकार पोर्टल</a></li>
       </ul>
     </div>
+
+    <!-- Col 4: Policy -->
     <div>
       <h4>ℹ️ धोरण</h4>
       <ul>
-        <li>गोपनीयता धोरण</li>
-        <li><a href="#" onclick="document.getElementById('abhiprayModal').style.display='flex';return false;" style="color:#aaa;text-decoration:underline;cursor:pointer;">📝 अभिप्राय (Feedback)</a></li>
-        <li><a href="https://rtionline.maharashtra.gov.in/" target="_blank" style="color:#aaa;text-decoration:underline;">🔎 माहितीचा अधिकार (RTI) ↗</a></li>
-        <li><a href="#" onclick="document.getElementById('takrarModal').style.display='flex';return false;" style="color:#aaa;text-decoration:underline;cursor:pointer;">📣 तक्रार निवारण</a></li>
+        <li><span>गोपनीयता धोरण</span></li>
+        <li><a href="#" onclick="document.getElementById('abhiprayModal').style.display='flex';return false;">📝 अभिप्राय</a></li>
+        <li><a href="https://rtionline.maharashtra.gov.in/" target="_blank" rel="noopener">🔎 माहितीचा अधिकार (RTI)</a></li>
+        <li><a href="#" onclick="document.getElementById('takrarModal').style.display='flex';return false;">📣 तक्रार निवारण</a></li>
       </ul>
     </div>
+
   </div>
+
   <div class="footer-bottom">
-    <p>© २०२५-२६ ग्रामपंचायत निपाणा, बुलढाणा | सर्व हक्क राखीव<br/>
-    <span style="color:var(--light-gold);">जिल्हा परिषद बुलढाणा</span> यांच्या मार्गदर्शनाखाली संचालित</p>
+    <p>© २०२५-२६ ग्रामपंचायत निपाणा, बुलढाणा | सर्व हक्क राखीव</p>
+    <p><span style="color:var(--light-gold);">जिल्हा परिषद बुलढाणा</span> यांच्या मार्गदर्शनाखाली संचालित</p>
   </div>
 </footer>
+
+<style>
+/* ══ FOOTER UPGRADES ══ */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.78); margin-top: 60px; }
+.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; padding: 40px 24px 20px; }
+.site-footer__address { font-style: normal; font-size: 0.85rem; line-height: 1.8; color: rgba(255,255,255,0.72); }
+.site-footer__tel { color: var(--light-gold); text-decoration: none; font-weight: 600; }
+.site-footer__tel:hover { text-decoration: underline; }
+footer h4 { color: var(--light-gold); font-size: 0.95rem; margin-bottom: 12px; }
+footer p, footer li { font-size: 0.84rem; line-height: 1.8; }
+footer ul { list-style: none; }
+footer ul li::before { content: "› "; color: var(--saffron); }
+footer a { color: rgba(255,255,255,0.72); text-decoration: none; }
+footer a:hover { color: var(--light-gold); text-decoration: underline; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 16px 24px 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.78rem; }
+</style>
 
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
 
@@ -3605,17 +3912,9 @@ const now = new Date();
 document.getElementById('dateDisplay').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
 
 // Scroll top button
-// Scroll: back-to-top + active nav (single listener)
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
-window.addEventListener('scroll', () => {
+// Scroll: back-to-top button only (active nav handled by new nav script)
+window.addEventListener('scroll', function() {
   document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'block' : 'none';
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
 }, { passive: true });
 
 // ── PDF GENERATION FOR CERTIFICATES ──
@@ -3693,7 +3992,8 @@ h2{font-size:14px;font-weight:bold;text-decoration:underline;text-align:center;m
 </div>
 <div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong> | ✉️ nipana172812@gmail.com</div>
 </body></html>`;
-  const w2=window.open('','_blank','width=820,height=1000');
+  const w2=window.open('','_blank','width=820,height=1000,noopener');
+  if(!w2){alert('कृपया popup blocker बंद करा आणि पुन्हा प्रयत्न करा.'); return;}
   w2.document.write(sw_html);w2.document.close();
   setTimeout(()=>{w2.focus();w2.print();},600);
     return;  // end swayam block
@@ -3769,6 +4069,7 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 </body></html>`;
 
   const w3 = window.open('','_blank','width=820,height=1000');
+  if(!w3){alert('कृपया popup blocker बंद करा आणि पुन्हा प्रयत्न करा.'); return;}
   w3.document.write(certPDF);
   w3.document.close();
   setTimeout(()=>{w3.focus();w3.print();},600);
@@ -4528,6 +4829,7 @@ td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
 </body></html>`;
 
   const w = window.open('','_blank','width=820,height=1060');
+  if(!w){alert('कृपया popup blocker बंद करा आणि पुन्हा प्रयत्न करा.'); return;}
   w.document.write(pdfHtml);
   w.document.close();
   setTimeout(()=>{ w.focus(); w.print(); }, 600);
@@ -4655,6 +4957,7 @@ td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
 </body></html>`;
 
   const w = window.open('','_blank','width=820,height=1060');
+  if(!w){alert('कृपया popup blocker बंद करा आणि पुन्हा प्रयत्न करा.'); return;}
   w.document.write(pdfHtml);
   w.document.close();
   setTimeout(()=>{ w.focus(); w.print(); }, 600);
