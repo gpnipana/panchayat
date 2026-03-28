@@ -1045,7 +1045,7 @@ window.addEventListener('load', function() {
     <div class="section-icon" style="background:linear-gradient(135deg,#1565c0,#1976d2);">📝</div>
     <div class="section-title">
       <h3>ऑनलाइन अर्ज | Online Applications</h3>
-      <p>ग्रामपंचायत निपाणा — ७ दाखले, नमुना ८ फेरफार व १५ स्वयंघोषणापत्रे</p>
+      <p>ग्रामपंचायत निपाणा — ७ दाखले, नमुना ८ फेरफार, १५ स्वयंघोषणापत्रे व नळ जोडणी अर्ज</p>
     </div>
   </div>
 
@@ -1062,6 +1062,10 @@ window.addEventListener('load', function() {
       <button onclick="showTab('swayam')" id="tab-swayam"
         style="flex:1;min-width:140px;max-width:260px;padding:11px 16px;background:white;color:var(--navy);border:2px solid var(--navy);border-radius:10px;font-size:0.84rem;font-weight:700;cursor:pointer;text-align:center;">
         📄 १५ स्वयंघोषणापत्रे
+      </button>
+      <button onclick="showTab('naljodan')" id="tab-naljodan"
+        style="flex:1;min-width:140px;max-width:260px;padding:11px 16px;background:white;color:#0277bd;border:2px solid #0277bd;border-radius:10px;font-size:0.84rem;font-weight:700;cursor:pointer;text-align:center;">
+        💧 नळ जोडणी अर्ज
       </button>
   </div>
 
@@ -1199,6 +1203,157 @@ window.addEventListener('load', function() {
       <p style="font-size:0.78rem;color:#888;margin-top:8px;">* हा अर्ज भरून प्रिंट करा व आवश्यक कागदपत्रांसह ग्रामपंचायत कार्यालयात सादर करा.</p>
     </div>
   </div>
+  <!-- TAB: नळ जोडणी -->
+  <div id="tab-naljodan-content" style="display:none;">
+    <div style="background:#e3f2fd;border-left:5px solid #0277bd;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:0.88rem;color:#01579b;">
+      <strong>📌 पेयजल नळ जोडणी अर्ज</strong> — महाराष्ट्र ग्रामपंचायत अधिनियम १९५८ व जल जीवन मिशन अंतर्गत. अर्ज भरा, PDF डाउनलोड करा व ग्रामपंचायत कार्यालयात आवश्यक कागदपत्रांसह सादर करा.
+    </div>
+
+    <!-- Sub-tab buttons -->
+    <div style="display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;">
+      <button onclick="showNalTab('new')" id="nal-btn-new"
+        style="flex:1;min-width:180px;padding:13px 18px;background:linear-gradient(135deg,#0277bd,#01579b);color:white;border:none;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(2,119,189,0.35);">
+        💧 नवीन नळ जोडणी अर्ज
+      </button>
+      <button onclick="showNalTab('radd')" id="nal-btn-radd"
+        style="flex:1;min-width:180px;padding:13px 18px;background:white;color:#c62828;border:2px solid #c62828;border-radius:12px;font-size:0.9rem;font-weight:700;cursor:pointer;">
+        🚫 नळ जोडणी रद्द करणेबाबत अर्ज
+      </button>
+    </div>
+
+    <!-- NEW CONNECTION FORM -->
+    <div id="nal-new-form" style="background:white;border-radius:16px;padding:26px;box-shadow:0 4px 24px rgba(0,0,0,0.10);border-top:4px solid #0277bd;">
+      <h4 style="color:#0277bd;margin-bottom:6px;font-size:1rem;">💧 नवीन पेयजल नळ जोडणी — विनंती अर्ज</h4>
+      <p style="font-size:0.78rem;color:#888;margin-bottom:18px;">कालमर्यादा: १५ कामकाजाचे दिवस | महाराष्ट्र लोकसेवा हक्क अधिनियम २०१५</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:0.87rem;">
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">अर्जदाराचे पूर्ण नाव *</label>
+          <input id="nal_naam" type="text" placeholder="पूर्ण नाव" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">वडिलांचे/पतीचे नाव *</label>
+          <input id="nal_vadil" type="text" placeholder="वडिलांचे/पतीचे नाव" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">मोबाईल नंबर *</label>
+          <input id="nal_mobile" type="text" maxlength="10" placeholder="10 अंकी मोबाईल" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">आधार क्रमांक *</label>
+          <input id="nal_aadhaar" type="text" maxlength="12" placeholder="12 अंकी आधार" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/></div>
+
+        <div style="grid-column:1/-1;"><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">घराचा/मालमत्तेचा पूर्ण पत्ता *</label>
+          <input id="nal_patta" type="text" placeholder="घर क्र., वॉर्ड, निपाणा, ता. खामगाव" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">घरकर/मिळकत क्रमांक (नमुना ८)</label>
+          <input id="nal_milkat" type="text" placeholder="मिळकत क्रमांक" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">घराचा प्रकार *</label>
+          <select id="nal_ghartype" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+            <option value="">निवडा...</option>
+            <option>निवासी (Residential)</option>
+            <option>व्यावसायिक (Commercial)</option>
+            <option>धार्मिक / सार्वजनिक</option>
+          </select></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">जोडणीचा उद्देश *</label>
+          <select id="nal_uddeshy" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+            <option value="">निवडा...</option>
+            <option>पेयजल (घरगुती वापर)</option>
+            <option>व्यावसायिक वापर</option>
+            <option>शेतीसाठी</option>
+          </select></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">पाईप जोडणीचे ठिकाण *</label>
+          <input id="nal_jagha" type="text" placeholder="मुख्य पाईपलाईन जवळील ठिकाण" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">घरात किती व्यक्ती राहतात?</label>
+          <input id="nal_vyakti" type="text" maxlength="3" placeholder="व्यक्ती संख्या" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/></div>
+
+        <div style="grid-column:1/-1;background:#e3f2fd;border-radius:10px;padding:12px 16px;">
+          <div style="font-size:0.8rem;font-weight:700;color:#01579b;margin-bottom:8px;">📎 आवश्यक कागदपत्रे (अर्जासोबत जोडावीत):</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:0.78rem;color:#333;">
+            <div>✓ विनंती अर्ज (स्वहस्ते)</div>
+            <div>✓ आधार कार्ड (स्व-साक्षांकित)</div>
+            <div>✓ घरकर/पाणीकर पावती (चालू वर्षाची)</div>
+            <div>✓ रेशन कार्ड / रहिवास पुरावा</div>
+            <div>✓ नमुना ८ उतारा (मिळकत नोंद)</div>
+            <div>✓ पासपोर्ट साईज फोटो (२)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <button onclick="generateNalPDF('new')"
+        style="margin-top:18px;padding:12px 28px;background:linear-gradient(135deg,#0277bd,#01579b);color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.9rem;box-shadow:0 4px 16px rgba(2,119,189,0.3);">
+        📄 अर्ज PDF तयार करा व डाउनलोड करा
+      </button>
+      <p style="font-size:0.76rem;color:#888;margin-top:8px;">* PDF प्रिंट करा व आवश्यक कागदपत्रांसह ग्रामपंचायत कार्यालयात सादर करा.</p>
+    </div>
+
+    <!-- DISCONNECTION FORM -->
+    <div id="nal-radd-form" style="display:none;background:white;border-radius:16px;padding:26px;box-shadow:0 4px 24px rgba(0,0,0,0.10);border-top:4px solid #c62828;">
+      <h4 style="color:#c62828;margin-bottom:6px;font-size:1rem;">🚫 नळ जोडणी रद्द करणेबाबत — विनंती अर्ज</h4>
+      <p style="font-size:0.78rem;color:#888;margin-bottom:18px;">कालमर्यादा: ७ कामकाजाचे दिवस | ग्रामपंचायत निपाणा</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:0.87rem;">
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">अर्जदाराचे पूर्ण नाव *</label>
+          <input id="ral_naam" type="text" placeholder="पूर्ण नाव" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">वडिलांचे/पतीचे नाव *</label>
+          <input id="ral_vadil" type="text" placeholder="वडिलांचे/पतीचे नाव" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">मोबाईल नंबर *</label>
+          <input id="ral_mobile" type="text" maxlength="10" placeholder="10 अंकी मोबाईल" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">विद्यमान नळ क्रमांक *</label>
+          <input id="ral_nalnum" type="text" placeholder="नळ/कनेक्शन क्रमांक" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div style="grid-column:1/-1;"><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">घराचा/मालमत्तेचा पूर्ण पत्ता *</label>
+          <input id="ral_patta" type="text" placeholder="घर क्र., वॉर्ड, निपाणा, ता. खामगाव" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">घरकर/मिळकत क्रमांक</label>
+          <input id="ral_milkat" type="text" placeholder="मिळकत क्रमांक" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;"/></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">नळ जोडणी रद्द करण्याचे कारण *</label>
+          <select id="ral_karan" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+            <option value="">कारण निवडा...</option>
+            <option>घर विकले / स्थलांतर</option>
+            <option>घर पाडणे / पुनर्बांधणी</option>
+            <option>नळ वापरात नाही</option>
+            <option>थकबाकी भरणे शक्य नाही</option>
+            <option>इतर कारण</option>
+          </select></div>
+
+        <div><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">थकबाकी स्थिती *</label>
+          <select id="ral_thakbaki" style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+            <option value="">निवडा...</option>
+            <option>थकबाकी नाही — सर्व पाणीपट्टी भरली आहे</option>
+            <option>थकबाकी आहे — भरणा करणार आहे</option>
+          </select></div>
+
+        <div style="grid-column:1/-1;"><label style="font-weight:700;color:#333;display:block;margin-bottom:4px;">इतर माहिती / विशेष सूचना (असल्यास)</label>
+          <textarea id="ral_note" rows="3" placeholder="इतर माहिती..." style="width:100%;padding:9px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:0.87rem;font-family:inherit;resize:vertical;"></textarea></div>
+
+        <div style="grid-column:1/-1;background:#ffebee;border-radius:10px;padding:12px 16px;">
+          <div style="font-size:0.8rem;font-weight:700;color:#b71c1c;margin-bottom:8px;">📎 आवश्यक कागदपत्रे (अर्जासोबत जोडावीत):</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:0.78rem;color:#333;">
+            <div>✓ विनंती अर्ज (स्वहस्ते)</div>
+            <div>✓ आधार कार्ड (स्व-साक्षांकित)</div>
+            <div>✓ चालू वर्षाची पाणीपट्टी पावती</div>
+            <div>✓ नळ जोडणी पावती (मूळ)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <button onclick="generateNalPDF('radd')"
+        style="margin-top:18px;padding:12px 28px;background:linear-gradient(135deg,#c62828,#b71c1c);color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.9rem;box-shadow:0 4px 16px rgba(198,40,40,0.3);">
+        📄 अर्ज PDF तयार करा व डाउनलोड करा
+      </button>
+      <p style="font-size:0.76rem;color:#888;margin-top:8px;">* PDF प्रिंट करा व आवश्यक कागदपत्रांसह ग्रामपंचायत कार्यालयात सादर करा.</p>
+    </div>
+  </div>
+
 </section>
 
 <script>
@@ -1209,11 +1364,207 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function showTab(tab) {
-  ['cert','swayam','namuna8'].forEach(t => {
-    document.getElementById('tab-'+t+'-content').style.display = t===tab ? 'block' : 'none';
+  ['cert','swayam','namuna8','naljodan'].forEach(t => {
+    const content = document.getElementById('tab-'+t+'-content');
+    if (content) content.style.display = t===tab ? 'block' : 'none';
     const btn = document.getElementById('tab-'+t);
-    if(btn) { btn.style.background = t===tab ? 'var(--navy)' : 'white'; btn.style.color = t===tab ? 'white' : 'var(--navy)'; }
+    if (btn) {
+      if (t === 'naljodan') {
+        btn.style.background = t===tab ? '#0277bd' : 'white';
+        btn.style.color = t===tab ? 'white' : '#0277bd';
+        btn.style.border = t===tab ? 'none' : '2px solid #0277bd';
+      } else {
+        btn.style.background = t===tab ? 'var(--navy)' : 'white';
+        btn.style.color = t===tab ? 'white' : 'var(--navy)';
+        btn.style.border = t===tab ? 'none' : '2px solid var(--navy)';
+      }
+    }
   });
+  // Default to 'new' sub-tab when naljodan is opened
+  if (tab === 'naljodan') showNalTab('new');
+}
+
+function showNalTab(type) {
+  document.getElementById('nal-new-form').style.display = type === 'new' ? 'block' : 'none';
+  document.getElementById('nal-radd-form').style.display = type === 'radd' ? 'block' : 'none';
+  const btnNew = document.getElementById('nal-btn-new');
+  const btnRadd = document.getElementById('nal-btn-radd');
+  if (type === 'new') {
+    btnNew.style.background = 'linear-gradient(135deg,#0277bd,#01579b)';
+    btnNew.style.color = 'white';
+    btnNew.style.border = 'none';
+    btnRadd.style.background = 'white';
+    btnRadd.style.color = '#c62828';
+    btnRadd.style.border = '2px solid #c62828';
+  } else {
+    btnRadd.style.background = 'linear-gradient(135deg,#c62828,#b71c1c)';
+    btnRadd.style.color = 'white';
+    btnRadd.style.border = 'none';
+    btnNew.style.background = 'white';
+    btnNew.style.color = '#0277bd';
+    btnNew.style.border = '2px solid #0277bd';
+  }
+}
+
+// ── नळ जोडणी PDF GENERATOR ──
+function generateNalPDF(type) {
+  const now = new Date();
+  const months = ['जानेवारी','फेब्रुवारी','मार्च','एप्रिल','मे','जून','जुलै','ऑगस्ट','सप्टेंबर','ऑक्टोबर','नोव्हेंबर','डिसेंबर'];
+  const dateStr = now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear();
+  const dateMr = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  const gv = (id, fb='—') => {
+    const el = document.getElementById(id);
+    if (!el) return fb;
+    if (el.tagName === 'SELECT') return el.options[el.selectedIndex]?.text || fb;
+    return el.value?.trim() || fb;
+  };
+
+  if (type === 'new') {
+    const naam = gv('nal_naam');
+    if (!naam || naam === '—') { alert('कृपया अर्जदाराचे पूर्ण नाव भरा.'); return; }
+    if (!gv('nal_patta') || gv('nal_patta') === '—') { alert('कृपया मालमत्तेचा पत्ता भरा.'); return; }
+
+    const pdfHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Devanagari',Arial,sans-serif;font-size:11.5px;color:#000;padding:14px 20px;max-width:210mm;}
+.hdr{border:2px solid #0277bd;border-radius:8px;padding:10px 14px;text-align:center;margin-bottom:12px;}
+.hdr-top{font-size:9.5px;color:#555;margin-bottom:3px;}
+.hdr-main{font-size:15px;font-weight:bold;color:#0277bd;margin-bottom:2px;}
+.hdr-sub{font-size:9.5px;color:#555;}
+.title{font-size:13px;font-weight:bold;text-decoration:underline;text-align:center;margin:10px 0 4px;border-bottom:2px solid #000;padding-bottom:5px;}
+.sh{font-size:10px;font-weight:800;color:#0277bd;letter-spacing:1px;text-transform:uppercase;margin:11px 0 5px;border-left:4px solid #0277bd;padding-left:8px;}
+table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+td{padding:6px 10px;border:1px solid #ccc;font-size:11px;vertical-align:top;}
+td:first-child{font-weight:700;background:#f0f8ff;width:38%;color:#222;}
+.docs-box{background:#e3f2fd;border-radius:8px;padding:10px 14px;font-size:10.5px;margin:8px 0;}
+.declare{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:9px 12px;font-size:10.5px;color:#5d4037;margin:10px 0;}
+.sign-row{display:flex;justify-content:space-between;margin-top:16px;font-size:11px;}
+.office-box{border:1px dashed #888;border-radius:8px;padding:10px 14px;font-size:10px;color:#555;margin-top:10px;}
+.footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;color:#555;}
+@page{size:A4;margin:9mm;} @media print{body{padding:0;}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-top">महाराष्ट्र शासन | ग्रामविकास विभाग | जल जीवन मिशन</div>
+  <div class="hdr-main">ग्रामपंचायत निपाणा</div>
+  <div class="hdr-sub">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | ✉️ nipana172812@gmail.com | 📞 ७७९८७६१८३७</div>
+</div>
+<div class="title">नवीन पेयजल नळ जोडणी — विनंती अर्ज</div>
+<div style="text-align:right;font-size:10px;margin-bottom:8px;">दिनांक: ${dateMr}</div>
+<div style="font-size:11px;margin-bottom:10px;"><strong>प्रती,</strong><br/>मा. ग्रामपंचायत अधिकारी / प्रशासक,<br/>ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.</div>
+<div style="font-size:11px;margin-bottom:8px;"><strong>विषय:</strong> नवीन घरगुती पेयजल नळ जोडणी मिळणेबाबत विनंती.</div>
+<div style="font-size:11px;margin-bottom:8px;">महोदय/महोदया,<br/>मी विनंती करतो/करते की, माझ्या खाली नमूद केलेल्या मालमत्तेसाठी नवीन पेयजल नळ जोडणी मंजूर करावी:</div>
+<div class="sh">१. अर्जदाराची माहिती</div>
+<table>
+  <tr><td>पूर्ण नाव</td><td>${gv('nal_naam')}</td></tr>
+  <tr><td>वडिलांचे/पतीचे नाव</td><td>${gv('nal_vadil')}</td></tr>
+  <tr><td>मोबाईल नंबर</td><td>${gv('nal_mobile')}</td></tr>
+  <tr><td>आधार क्रमांक</td><td>${gv('nal_aadhaar')}</td></tr>
+  <tr><td>पूर्ण पत्ता</td><td>${gv('nal_patta')}</td></tr>
+</table>
+<div class="sh">२. मालमत्ता माहिती</div>
+<table>
+  <tr><td>मिळकत क्रमांक (नमुना ८)</td><td>${gv('nal_milkat')}</td></tr>
+  <tr><td>घराचा प्रकार</td><td>${gv('nal_ghartype')}</td></tr>
+  <tr><td>जोडणीचा उद्देश</td><td>${gv('nal_uddeshy')}</td></tr>
+  <tr><td>पाईप जोडणीचे ठिकाण</td><td>${gv('nal_jagha')}</td></tr>
+  <tr><td>घरातील व्यक्ती संख्या</td><td>${gv('nal_vyakti')}</td></tr>
+</table>
+<div class="docs-box">
+  <strong style="color:#01579b;">📎 सोबत जोडलेली कागदपत्रे:</strong><br/>
+  ☐ आधार कार्ड (स्व-साक्षांकित) &nbsp;&nbsp; ☐ घरकर/पाणीकर पावती (चालू वर्षाची)<br/>
+  ☐ रेशन कार्ड / रहिवास पुरावा &nbsp;&nbsp; ☐ नमुना ८ उतारा &nbsp;&nbsp; ☐ पासपोर्ट साईज फोटो (२)
+</div>
+<div class="declare">✅ <strong>घोषणा:</strong> मी घोषित करतो/करते की वरील सर्व माहिती खरी व अचूक आहे. याआधी मला कोणतीही नळ जोडणी मंजूर झालेली नाही. खोटी माहिती दिल्यास शासकीय नियमानुसार कारवाईस मी जबाबदार राहीन.</div>
+<div class="sign-row">
+  <div><p>ठिकाण: निपाणा, ता. खामगाव</p><p style="margin-top:5px;">दिनांक: ${dateStr}</p></div>
+  <div style="text-align:right;"><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">नाव: ${gv('nal_naam')}</p></div>
+</div>
+<div class="office-box">
+  <strong>कार्यालय वापरासाठी (Office Use Only):</strong><br/>
+  अर्ज क्र.: ______________ | प्राप्त दिनांक: ______________ | कर्मचारी स्वाक्षरी: ______________<br/>
+  मंजुरी दिनांक: ______________ | नळ क्र.: ______________ | अधिकारी स्वाक्षरी व शिक्का: ______________
+</div>
+<div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong><br/>जल जीवन मिशन | महाराष्ट्र शासन | कालमर्यादा: १५ कामकाजाचे दिवस</div>
+</body></html>`;
+    const w = window.open('','_blank','width=820,height=1060');
+    w.document.write(pdfHtml); w.document.close();
+    setTimeout(()=>{ w.focus(); w.print(); }, 600);
+
+  } else {
+    // RADD
+    const naam = gv('ral_naam');
+    if (!naam || naam === '—') { alert('कृपया अर्जदाराचे पूर्ण नाव भरा.'); return; }
+    if (!gv('ral_patta') || gv('ral_patta') === '—') { alert('कृपया मालमत्तेचा पत्ता भरा.'); return; }
+    if (!gv('ral_karan') || gv('ral_karan').includes('निवडा')) { alert('कृपया रद्द करण्याचे कारण निवडा.'); return; }
+
+    const noteVal = document.getElementById('ral_note') ? document.getElementById('ral_note').value.trim() : '—';
+
+    const pdfHtml2 = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Devanagari',Arial,sans-serif;font-size:11.5px;color:#000;padding:14px 20px;max-width:210mm;}
+.hdr{border:2px solid #c62828;border-radius:8px;padding:10px 14px;text-align:center;margin-bottom:12px;}
+.hdr-top{font-size:9.5px;color:#555;margin-bottom:3px;}
+.hdr-main{font-size:15px;font-weight:bold;color:#c62828;margin-bottom:2px;}
+.hdr-sub{font-size:9.5px;color:#555;}
+.title{font-size:13px;font-weight:bold;text-decoration:underline;text-align:center;margin:10px 0 4px;border-bottom:2px solid #000;padding-bottom:5px;}
+.sh{font-size:10px;font-weight:800;color:#c62828;letter-spacing:1px;text-transform:uppercase;margin:11px 0 5px;border-left:4px solid #c62828;padding-left:8px;}
+table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+td{padding:6px 10px;border:1px solid #ccc;font-size:11px;vertical-align:top;}
+td:first-child{font-weight:700;background:#fff0f0;width:38%;color:#222;}
+.docs-box{background:#ffebee;border-radius:8px;padding:10px 14px;font-size:10.5px;margin:8px 0;}
+.declare{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:9px 12px;font-size:10.5px;color:#5d4037;margin:10px 0;}
+.sign-row{display:flex;justify-content:space-between;margin-top:16px;font-size:11px;}
+.office-box{border:1px dashed #888;border-radius:8px;padding:10px 14px;font-size:10px;color:#555;margin-top:10px;}
+.footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;color:#555;}
+@page{size:A4;margin:9mm;} @media print{body{padding:0;}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-top">महाराष्ट्र शासन | ग्रामविकास विभाग | जिल्हा परिषद बुलढाणा</div>
+  <div class="hdr-main">ग्रामपंचायत निपाणा</div>
+  <div class="hdr-sub">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | ✉️ nipana172812@gmail.com | 📞 ७७९८७६१८३७</div>
+</div>
+<div class="title">नळ जोडणी रद्द करणेबाबत — विनंती अर्ज</div>
+<div style="text-align:right;font-size:10px;margin-bottom:8px;">दिनांक: ${dateMr}</div>
+<div style="font-size:11px;margin-bottom:10px;"><strong>प्रती,</strong><br/>मा. ग्रामपंचायत अधिकारी / प्रशासक,<br/>ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.</div>
+<div style="font-size:11px;margin-bottom:8px;"><strong>विषय:</strong> विद्यमान पेयजल नळ जोडणी रद्द करणेबाबत विनंती.</div>
+<div style="font-size:11px;margin-bottom:8px;">महोदय/महोदया,<br/>मी विनंती करतो/करते की, माझ्या खाली नमूद केलेल्या मालमत्तेची नळ जोडणी रद्द करण्यात यावी:</div>
+<div class="sh">१. अर्जदाराची माहिती</div>
+<table>
+  <tr><td>पूर्ण नाव</td><td>${gv('ral_naam')}</td></tr>
+  <tr><td>वडिलांचे/पतीचे नाव</td><td>${gv('ral_vadil')}</td></tr>
+  <tr><td>मोबाईल नंबर</td><td>${gv('ral_mobile')}</td></tr>
+  <tr><td>पूर्ण पत्ता</td><td>${gv('ral_patta')}</td></tr>
+</table>
+<div class="sh">२. नळ जोडणी तपशील</div>
+<table>
+  <tr><td>विद्यमान नळ क्रमांक</td><td>${gv('ral_nalnum')}</td></tr>
+  <tr><td>मिळकत क्रमांक</td><td>${gv('ral_milkat')}</td></tr>
+  <tr><td>रद्द करण्याचे कारण</td><td><strong>${gv('ral_karan')}</strong></td></tr>
+  <tr><td>थकबाकी स्थिती</td><td>${gv('ral_thakbaki')}</td></tr>
+  <tr><td>इतर माहिती</td><td>${noteVal || '—'}</td></tr>
+</table>
+<div class="docs-box">
+  <strong style="color:#b71c1c;">📎 सोबत जोडलेली कागदपत्रे:</strong><br/>
+  ☐ आधार कार्ड (स्व-साक्षांकित) &nbsp;&nbsp; ☐ चालू वर्षाची पाणीपट्टी पावती<br/>
+  ☐ नळ जोडणी मूळ पावती
+</div>
+<div class="declare">✅ <strong>घोषणा:</strong> मी घोषित करतो/करते की वरील सर्व माहिती खरी व अचूक आहे. नळ जोडणी रद्द झाल्यानंतर मला पुन्हा नवीन अर्ज करावा लागेल याची मला जाणीव आहे.</div>
+<div class="sign-row">
+  <div><p>ठिकाण: निपाणा, ता. खामगाव</p><p style="margin-top:5px;">दिनांक: ${dateStr}</p></div>
+  <div style="text-align:right;"><p>अर्जदाराची सही: ____________________</p><p style="margin-top:5px;">नाव: ${gv('ral_naam')}</p></div>
+</div>
+<div class="office-box">
+  <strong>कार्यालय वापरासाठी (Office Use Only):</strong><br/>
+  अर्ज क्र.: ______________ | प्राप्त दिनांक: ______________ | कर्मचारी स्वाक्षरी: ______________<br/>
+  जोडणी रद्द दिनांक: ______________ | अधिकारी स्वाक्षरी व शिक्का: ______________
+</div>
+<div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong><br/>महाराष्ट्र शासन | कालमर्यादा: ७ कामकाजाचे दिवस</div>
+</body></html>`;
+    const w2 = window.open('','_blank','width=820,height=1060');
+    w2.document.write(pdfHtml2); w2.document.close();
+    setTimeout(()=>{ w2.focus(); w2.print(); }, 600);
+  }
 }
 
 function toggleMembersSection() {
@@ -3060,7 +3411,7 @@ function showSwayam(type) {
         <a href="https://zp.buldhana.gov.in" target="_blank">जि.प. बुलढाणा</a><br/>
         <a href="https://maharashtra.gov.in" target="_blank">महाराष्ट्र शासन</a><br/>
         <a href="https://egramswaraj.gov.in" target="_blank">eGramSwaraj</a><br/>
-        <a href="http://www.khamgaonpanchayatsamiti.com" target="_blank" style="color:var(--green);font-weight:700;" onclick="window.open('http://www.khamgaonpanchayatsamiti.com','_blank');event.preventDefault();">🏛️ खामगाव पंचायत समिती</a><br/>
+        <a href="https://www.panchayatsamitikhamgaon.com/" target="_blank" style="color:var(--green);font-weight:700;">🏛️ खामगाव पंचायत समिती</a><br/>
         <a href="https://www.instagram.com/gp_nipana_172812?igsh=MTEzcW1pMHIxYmttdw==" target="_blank" style="color:#E1306C;font-weight:700;">📸 Instagram: @gp_nipana_172812</a><br/>
         <span style="color:var(--saffron);font-weight:700;">✉️ <span id="emailDisplay">nipana172812[at]gmail.com</span> <button onclick="document.getElementById('emailDisplay').innerHTML='<a href=&quot;mailto:nipana172812@gmail.com&quot;>nipana172812@gmail.com</a>';this.style.display='none'" style="font-size:0.75rem;background:var(--saffron);color:white;border:none;border-radius:6px;padding:2px 8px;cursor:pointer;">दाखवा</button></span>
       </p>
@@ -3122,15 +3473,10 @@ function showSwayam(type) {
       <ul>
         <li><a href="https://maharashtra.gov.in" target="_blank" style="color:#aaa;">महाराष्ट्र शासन</a></li>
         <li><a href="https://zp.buldhana.gov.in" target="_blank" style="color:#aaa;">जि.प. बुलढाणा</a></li>
-        <li><a href="http://www.khamgaonpanchayatsamiti.com" target="_blank" style="color:#aaa;">खामगाव पंचायत समिती</a></li>
+        <li><a href="https://www.panchayatsamitikhamgaon.com/" target="_blank" style="color:#aaa;">खामगाव पंचायत समिती</a></li>
         <li><a href="https://egramswaraj.gov.in" target="_blank" style="color:#aaa;">eGramSwaraj</a></li>
         <li><a href="https://mahaonline.gov.in" target="_blank" style="color:#aaa;">MahaOnline</a></li>
         <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" style="color:#aaa;">आपले सरकार</a></li>
-        <li><a href="https://pmayg.nic.in" target="_blank" style="color:#aaa;">PM आवास योजना</a></li>
-        <li><a href="https://nreganarep.nic.in" target="_blank" style="color:#aaa;">MGNREGS पोर्टल</a></li>
-        <li><a href="https://jaljeevanmission.gov.in" target="_blank" style="color:#aaa;">जल जीवन मिशन</a></li>
-        <li><a href="https://pmsuryaghar.gov.in" target="_blank" style="color:#aaa;">PM सूर्य घर योजना</a></li>
-        <li><a href="https://swachhbharatmission.gov.in" target="_blank" style="color:#aaa;">स्वच्छ भारत मिशन</a></li>
         <li><a href="https://india.gov.in" target="_blank" style="color:#aaa;">भारत सरकार पोर्टल</a></li>
         <li><a href="https://www.instagram.com/gp_nipana_172812" target="_blank" style="color:#E1306C;">📸 Instagram</a></li>
       </ul>
@@ -3139,9 +3485,9 @@ function showSwayam(type) {
       <h4>ℹ️ धोरण</h4>
       <ul>
         <li>गोपनीयता धोरण</li>
-        <li>अभिप्राय</li>
-        <li>माहितीचा अधिकार (RTI)</li>
-        <li>तक्रार निवारण</li>
+        <li><a href="#" onclick="document.getElementById('abhiprayModal').style.display='flex';return false;" style="color:#aaa;text-decoration:underline;cursor:pointer;">📝 अभिप्राय (Feedback)</a></li>
+        <li><a href="https://rtionline.maharashtra.gov.in/" target="_blank" style="color:#aaa;text-decoration:underline;">🔎 माहितीचा अधिकार (RTI) ↗</a></li>
+        <li><a href="#" onclick="document.getElementById('takrarModal').style.display='flex';return false;" style="color:#aaa;text-decoration:underline;cursor:pointer;">📣 तक्रार निवारण</a></li>
       </ul>
     </div>
   </div>
@@ -3746,6 +4092,502 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
     </div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- अभिप्राय (FEEDBACK) MODAL -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div id="abhiprayModal" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
+  <div style="background:white;border-radius:20px;max-width:580px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.5);margin:auto;">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#006633,#004d26);padding:20px 24px;color:white;display:flex;align-items:center;gap:14px;position:relative;">
+      <div style="font-size:2.2rem;">📝</div>
+      <div style="flex:1;">
+        <div style="font-size:1.05rem;font-weight:800;">नागरिक अभिप्राय फॉर्म</div>
+        <div style="font-size:0.76rem;opacity:0.85;">ग्रामपंचायत निपाणा — आपले मत महत्त्वाचे आहे</div>
+      </div>
+      <button onclick="document.getElementById('abhiprayModal').style.display='none'"
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;flex-shrink:0;">✕</button>
+    </div>
+
+    <!-- Form Body -->
+    <div style="padding:22px 24px;max-height:75vh;overflow-y:auto;">
+      <div style="background:#e8f5e9;border-left:4px solid #006633;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:#1b5e20;margin-bottom:18px;">
+        📌 कृपया खालील फॉर्म भरा. भरल्यानंतर PDF तयार करा व ग्रामपंचायत कार्यालयात सादर करा.
+      </div>
+
+      <div style="display:grid;gap:14px;">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">पूर्ण नाव *</label>
+            <input id="ab_naam" type="text" placeholder="आपले पूर्ण नाव" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+          </div>
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">मोबाईल नंबर *</label>
+            <input id="ab_mobile" type="text" maxlength="10" placeholder="10 अंकी नंबर" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">वय</label>
+            <input id="ab_vay" type="text" maxlength="3" placeholder="वय (वर्षे)" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+          </div>
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">लिंग</label>
+            <select id="ab_ling" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+              <option value="">निवडा...</option>
+              <option>पुरुष</option>
+              <option>स्त्री</option>
+              <option>इतर</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">पत्ता (गाव/वॉर्ड) *</label>
+          <input id="ab_patta" type="text" placeholder="आपला पत्ता — गाव, वॉर्ड, तालुका" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">अभिप्रायाचा विषय *</label>
+          <select id="ab_vishay" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+            <option value="">विषय निवडा...</option>
+            <option>पाणीपुरवठा सेवा</option>
+            <option>स्वच्छता व कचरा व्यवस्थापन</option>
+            <option>रस्ते व पायाभूत सुविधा</option>
+            <option>ग्रामपंचायत कार्यालय सेवा</option>
+            <option>शासकीय योजना अंमलबजावणी</option>
+            <option>ग्रामसभा व प्रशासन</option>
+            <option>सार्वजनिक आरोग्य व स्वच्छता</option>
+            <option>वीज व दिवाबत्ती</option>
+            <option>इतर</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">सेवेचे मूल्यांकन *</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <label style="display:flex;align-items:center;gap:6px;background:#e8f5e9;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:0.82rem;border:1.5px solid #c8e6c9;">
+              <input type="radio" name="ab_rating" value="अत्यंत समाधानी (⭐⭐⭐⭐⭐)"/> ⭐⭐⭐⭐⭐ अत्यंत समाधानी
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:#f1f8e9;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:0.82rem;border:1.5px solid #dcedc8;">
+              <input type="radio" name="ab_rating" value="समाधानी (⭐⭐⭐⭐)"/> ⭐⭐⭐⭐ समाधानी
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:#fff8e1;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:0.82rem;border:1.5px solid #fff9c4;">
+              <input type="radio" name="ab_rating" value="साधारण (⭐⭐⭐)"/> ⭐⭐⭐ साधारण
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:#fff3e0;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:0.82rem;border:1.5px solid #ffe0b2;">
+              <input type="radio" name="ab_rating" value="असमाधानी (⭐⭐)"/> ⭐⭐ असमाधानी
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;background:#ffebee;padding:7px 14px;border-radius:20px;cursor:pointer;font-size:0.82rem;border:1.5px solid #ffcdd2;">
+              <input type="radio" name="ab_rating" value="अत्यंत असमाधानी (⭐)"/> ⭐ अत्यंत असमाधानी
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">तपशीलवार अभिप्राय / सूचना *</label>
+          <textarea id="ab_abhipray" rows="4" placeholder="आपला अभिप्राय, सूचना किंवा शिफारस येथे लिहा..." style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">सुधारणेसाठी सूचना (असल्यास)</label>
+          <textarea id="ab_suchana" rows="3" placeholder="ग्रामपंचायतीच्या सेवेत सुधारणेसाठी आपल्या सूचना..." style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button onclick="generateAbhiprayPDF()"
+          style="flex:1;background:linear-gradient(135deg,#006633,#004d26);color:white;border:none;padding:12px;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.88rem;box-shadow:0 4px 14px rgba(0,102,51,0.3);">
+          📄 PDF तयार करा व डाउनलोड करा
+        </button>
+        <button onclick="document.getElementById('abhiprayModal').style.display='none'"
+          style="background:#f0f0f0;color:#555;border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.88rem;">
+          बंद करा
+        </button>
+      </div>
+      <div style="margin-top:10px;text-align:center;font-size:0.75rem;color:#888;">
+        📌 PDF डाउनलोड केल्यानंतर ग्रामपंचायत कार्यालय निपाणा येथे प्रत्यक्ष सादर करा.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- तक्रार निवारण (COMPLAINT) MODAL -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div id="takrarModal" onclick="if(event.target===this)this.style.display='none'"
+  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
+  <div style="background:white;border-radius:20px;max-width:580px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.5);margin:auto;">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#b71c1c,#c62828);padding:20px 24px;color:white;display:flex;align-items:center;gap:14px;position:relative;">
+      <div style="font-size:2.2rem;">📣</div>
+      <div style="flex:1;">
+        <div style="font-size:1.05rem;font-weight:800;">तक्रार निवारण अर्ज</div>
+        <div style="font-size:0.76rem;opacity:0.85;">ग्रामपंचायत निपाणा — आपली तक्रार नोंदवा</div>
+      </div>
+      <button onclick="document.getElementById('takrarModal').style.display='none'"
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;flex-shrink:0;">✕</button>
+    </div>
+
+    <!-- Form Body -->
+    <div style="padding:22px 24px;max-height:75vh;overflow-y:auto;">
+      <div style="background:#ffebee;border-left:4px solid #b71c1c;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:#b71c1c;margin-bottom:18px;">
+        📌 कृपया तक्रार अर्ज भरा, PDF तयार करा व ग्रामपंचायत कार्यालयात प्रत्यक्ष सादर करा. प्रत्येक तक्रारीचा निपटारा ३० दिवसांत केला जाईल.
+      </div>
+
+      <div style="display:grid;gap:14px;">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">अर्जदाराचे पूर्ण नाव *</label>
+            <input id="tk_naam" type="text" placeholder="आपले पूर्ण नाव" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+          </div>
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">वडिलांचे/पतीचे नाव *</label>
+            <input id="tk_vadil" type="text" placeholder="वडिलांचे/पतीचे नाव" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">मोबाईल नंबर *</label>
+            <input id="tk_mobile" type="text" maxlength="10" placeholder="10 अंकी नंबर" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+          </div>
+          <div>
+            <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">आधार क्रमांक (पर्यायी)</label>
+            <input id="tk_aadhaar" type="text" maxlength="12" placeholder="12 अंकी आधार" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;" onkeypress="return /[0-9]/.test(event.key)" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">पूर्ण पत्ता (गाव/वॉर्ड) *</label>
+          <input id="tk_patta" type="text" placeholder="घर क्र., वॉर्ड, गाव — निपाणा, ता. खामगाव" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">तक्रारीचा प्रकार *</label>
+          <select id="tk_prakar" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;">
+            <option value="">तक्रारीचा प्रकार निवडा...</option>
+            <option>पाणीपुरवठा तक्रार</option>
+            <option>रस्ते व सार्वजनिक बांधकाम तक्रार</option>
+            <option>स्वच्छता व कचरा व्यवस्थापन तक्रार</option>
+            <option>घरपट्टी / पाणीपट्टी कर तक्रार</option>
+            <option>शासकीय योजनेचा लाभ न मिळणे</option>
+            <option>ग्रामपंचायत कर्मचाऱ्यांविरुद्ध तक्रार</option>
+            <option>सार्वजनिक मालमत्ता अतिक्रमण</option>
+            <option>वीज व दिवाबत्ती तक्रार</option>
+            <option>अन्य तक्रार</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">तक्रारीचा दिनांक *</label>
+          <input id="tk_date" type="date" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">तक्रारीचा तपशील *</label>
+          <textarea id="tk_tafshil" rows="5" placeholder="आपली तक्रार तपशीलवार येथे लिहा — घटना, ठिकाण, वेळ, संबंधित व्यक्ती इ." style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">अपेक्षित कारवाई / मागणी</label>
+          <textarea id="tk_magni" rows="3" placeholder="आपण कोणती कारवाई अपेक्षित करता? (उदा. दुरुस्ती करणे, योग्य सेवा देणे, चौकशी करणे इ.)" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">पूर्वी तक्रार केली होती का?</label>
+          <div style="display:flex;gap:12px;">
+            <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;">
+              <input type="radio" name="tk_poorvi" value="होय"/> होय
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;">
+              <input type="radio" name="tk_poorvi" value="नाही" checked/> नाही
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.8rem;font-weight:700;color:#333;display:block;margin-bottom:5px;">साक्षीदाराचे नाव (असल्यास)</label>
+          <input id="tk_sakshi" type="text" placeholder="साक्षीदाराचे नाव व संपर्क (पर्यायी)" style="width:100%;padding:9px 11px;border:1.5px solid #ccc;border-radius:8px;font-size:0.87rem;font-family:inherit;"/>
+        </div>
+
+      </div>
+
+      <div style="margin-top:18px;background:#fff3e0;border-radius:10px;padding:12px 14px;font-size:0.78rem;color:#5d4037;">
+        ✅ <strong>घोषणा:</strong> मी घोषित करतो/करते की वरील सर्व माहिती खरी व अचूक आहे. खोटी माहिती दिल्यास शासकीय नियमानुसार कारवाईस मी जबाबदार राहीन.
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button onclick="generateTakrarPDF()"
+          style="flex:1;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;padding:12px;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.88rem;box-shadow:0 4px 14px rgba(183,28,28,0.35);">
+          📄 PDF तयार करा व डाउनलोड करा
+        </button>
+        <button onclick="document.getElementById('takrarModal').style.display='none'"
+          style="background:#f0f0f0;color:#555;border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;font-size:0.88rem;">
+          बंद करा
+        </button>
+      </div>
+      <div style="margin-top:10px;text-align:center;font-size:0.75rem;color:#888;">
+        📌 PDF डाउनलोड केल्यानंतर ग्रामपंचायत कार्यालय निपाणा येथे प्रत्यक्ष सादर करा.<br/>
+        📞 संपर्क: श्री. एस. टी. गव्हाळे — ७७९८७६१८३७
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── अभिप्राय PDF GENERATOR ──
+function generateAbhiprayPDF() {
+  const now = new Date();
+  const months = ['जानेवारी','फेब्रुवारी','मार्च','एप्रिल','मे','जून','जुलै','ऑगस्ट','सप्टेंबर','ऑक्टोबर','नोव्हेंबर','डिसेंबर'];
+  const dateStr = now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear();
+  const dateMr = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  const gv = (id, fb='—') => {
+    const el = document.getElementById(id);
+    if (!el) return fb;
+    if (el.tagName === 'SELECT') return el.options[el.selectedIndex]?.text || fb;
+    return el.value?.trim() || fb;
+  };
+  const ratingEl = document.querySelector('input[name="ab_rating"]:checked');
+  const rating = ratingEl ? ratingEl.value : '—';
+
+  const naam = gv('ab_naam');
+  if (naam === '—' || naam === '') { alert('कृपया पूर्ण नाव भरा.'); return; }
+  const vishay = gv('ab_vishay');
+  if (vishay === '—' || vishay === 'विषय निवडा...') { alert('कृपया अभिप्रायाचा विषय निवडा.'); return; }
+  const abhipray = gv('ab_abhipray');
+  if (abhipray === '—' || abhipray === '') { alert('कृपया अभिप्राय लिहा.'); return; }
+
+  const pdfHtml = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Devanagari',Arial,sans-serif;font-size:11.5px;color:#000;padding:14px 20px;max-width:210mm;}
+.hdr{border:2px solid #006633;border-radius:8px;padding:10px 14px;text-align:center;margin-bottom:12px;}
+.hdr-top{font-size:9.5px;color:#555;margin-bottom:3px;}
+.hdr-main{font-size:15px;font-weight:bold;color:#006633;margin-bottom:2px;}
+.hdr-sub{font-size:9.5px;color:#555;}
+.title{font-size:13px;font-weight:bold;text-decoration:underline;text-align:center;margin:10px 0;border-bottom:2px solid #000;padding-bottom:5px;}
+.section-head{font-size:10px;font-weight:800;color:#006633;letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;border-left:4px solid #006633;padding-left:8px;}
+table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+td{padding:6px 10px;border:1px solid #ccc;font-size:11px;vertical-align:top;}
+td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
+.rating-box{background:#e8f5e9;border:1.5px solid #a5d6a7;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:700;color:#2e7d32;text-align:center;margin:8px 0;}
+.comment-box{border:1px solid #ccc;border-radius:6px;padding:10px 12px;min-height:60px;font-size:11px;line-height:1.8;background:#fafafa;margin-bottom:8px;}
+.declare{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:9px 12px;font-size:10.5px;color:#5d4037;margin:10px 0;}
+.sign-row{display:flex;justify-content:space-between;margin-top:16px;font-size:11px;}
+.office-box{border:1px dashed #888;border-radius:8px;padding:10px 14px;font-size:10px;color:#555;margin-top:10px;}
+.footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;color:#555;}
+@page{size:A4;margin:9mm;}
+@media print{body{padding:0;}}
+</style>
+</head><body>
+
+<div class="hdr">
+  <div class="hdr-top">महाराष्ट्र शासन | ग्रामविकास विभाग | जिल्हा परिषद बुलढाणा</div>
+  <div class="hdr-main">ग्रामपंचायत निपाणा</div>
+  <div class="hdr-sub">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | ✉️ nipana172812@gmail.com | 📞 ७७९८७६१८३७</div>
+</div>
+
+<div class="title">नागरिक अभिप्राय फॉर्म | Citizen Feedback Form</div>
+
+<div style="text-align:right;font-size:10px;margin-bottom:8px;">दिनांक: ${dateMr}</div>
+
+<div style="font-size:11px;margin-bottom:10px;">
+  <strong>प्रती,</strong><br/>
+  मा. ग्रामपंचायत अधिकारी / प्रशासक,<br/>
+  ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.
+</div>
+
+<div class="section-head">१. अर्जदाराची माहिती</div>
+<table>
+  <tr><td>पूर्ण नाव</td><td>${gv('ab_naam')}</td></tr>
+  <tr><td>मोबाईल नंबर</td><td>${gv('ab_mobile')}</td></tr>
+  <tr><td>वय</td><td>${gv('ab_vay')} वर्षे</td></tr>
+  <tr><td>लिंग</td><td>${gv('ab_ling')}</td></tr>
+  <tr><td>पत्ता</td><td>${gv('ab_patta')}</td></tr>
+</table>
+
+<div class="section-head">२. अभिप्रायाची माहिती</div>
+<table>
+  <tr><td>अभिप्रायाचा विषय</td><td><strong>${gv('ab_vishay')}</strong></td></tr>
+</table>
+
+<div class="section-head">३. सेवेचे मूल्यांकन</div>
+<div class="rating-box">${rating}</div>
+
+<div class="section-head">४. तपशीलवार अभिप्राय</div>
+<div class="comment-box">${gv('ab_abhipray').replace(/\n/g,'<br/>')}</div>
+
+<div class="section-head">५. सुधारणेसाठी सूचना</div>
+<div class="comment-box">${gv('ab_suchana','—').replace(/\n/g,'<br/>')}</div>
+
+<div class="declare">
+  ✅ <strong>घोषणा:</strong> मी घोषित करतो/करते की वरील सर्व माहिती खरी व अचूक आहे.
+</div>
+
+<div class="sign-row">
+  <div>
+    <p>ठिकाण: निपाणा, ता. खामगाव, जि. बुलढाणा</p>
+    <p style="margin-top:5px;">दिनांक: ${dateStr}</p>
+  </div>
+  <div style="text-align:right;">
+    <p>अर्जदाराची सही: ____________________</p>
+    <p style="margin-top:5px;">नाव: ${gv('ab_naam')}</p>
+  </div>
+</div>
+
+<div class="office-box">
+  <strong>कार्यालय वापरासाठी (Office Use Only):</strong><br/>
+  अर्ज क्र.: ______________ | प्राप्त दिनांक: ______________ | कर्मचारी स्वाक्षरी: ______________<br/>
+  कारवाई नोंद: _______________________________________________________________________
+</div>
+
+<div class="footer">
+  <strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong><br/>
+  जिल्हा परिषद बुलढाणा | महाराष्ट्र शासन
+</div>
+</body></html>`;
+
+  const w = window.open('','_blank','width=820,height=1060');
+  w.document.write(pdfHtml);
+  w.document.close();
+  setTimeout(()=>{ w.focus(); w.print(); }, 600);
+}
+
+// ── तक्रार निवारण PDF GENERATOR ──
+function generateTakrarPDF() {
+  const now = new Date();
+  const months = ['जानेवारी','फेब्रुवारी','मार्च','एप्रिल','मे','जून','जुलै','ऑगस्ट','सप्टेंबर','ऑक्टोबर','नोव्हेंबर','डिसेंबर'];
+  const dateStr = now.getDate() + '/' + (now.getMonth()+1) + '/' + now.getFullYear();
+  const dateMr = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  const gv = (id, fb='—') => {
+    const el = document.getElementById(id);
+    if (!el) return fb;
+    if (el.tagName === 'SELECT') return el.options[el.selectedIndex]?.text || fb;
+    return el.value?.trim() || fb;
+  };
+  const poorviEl = document.querySelector('input[name="tk_poorvi"]:checked');
+  const poorvi = poorviEl ? poorviEl.value : '—';
+
+  const naam = gv('tk_naam');
+  if (!naam || naam === '—') { alert('कृपया अर्जदाराचे पूर्ण नाव भरा.'); return; }
+  const prakar = gv('tk_prakar');
+  if (!prakar || prakar === '—' || prakar.includes('निवडा')) { alert('कृपया तक्रारीचा प्रकार निवडा.'); return; }
+  const tafshil = gv('tk_tafshil');
+  if (!tafshil || tafshil === '—') { alert('कृपया तक्रारीचा तपशील लिहा.'); return; }
+
+  const pdfHtml = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans Devanagari',Arial,sans-serif;font-size:11.5px;color:#000;padding:14px 20px;max-width:210mm;}
+.hdr{border:2px solid #b71c1c;border-radius:8px;padding:10px 14px;text-align:center;margin-bottom:12px;}
+.hdr-top{font-size:9.5px;color:#555;margin-bottom:3px;}
+.hdr-main{font-size:15px;font-weight:bold;color:#b71c1c;margin-bottom:2px;}
+.hdr-sub{font-size:9.5px;color:#555;}
+.title{font-size:13px;font-weight:bold;text-decoration:underline;text-align:center;margin:10px 0;border-bottom:2px solid #000;padding-bottom:5px;}
+.section-head{font-size:10px;font-weight:800;color:#b71c1c;letter-spacing:1px;text-transform:uppercase;margin:12px 0 6px;border-left:4px solid #b71c1c;padding-left:8px;}
+table{width:100%;border-collapse:collapse;margin-bottom:8px;}
+td{padding:6px 10px;border:1px solid #ccc;font-size:11px;vertical-align:top;}
+td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
+.prakar-box{background:#ffebee;border:1.5px solid #ef9a9a;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:700;color:#b71c1c;text-align:center;margin:8px 0;}
+.comment-box{border:1px solid #ccc;border-radius:6px;padding:10px 12px;min-height:70px;font-size:11px;line-height:1.8;background:#fafafa;margin-bottom:8px;}
+.declare{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:9px 12px;font-size:10.5px;color:#5d4037;margin:10px 0;}
+.sign-row{display:flex;justify-content:space-between;margin-top:16px;font-size:11px;}
+.office-box{border:1px dashed #888;border-radius:8px;padding:10px 14px;font-size:10px;color:#555;margin-top:10px;}
+.footer{margin-top:10px;border-top:1px dashed #aaa;padding-top:6px;font-size:9.5px;text-align:center;color:#555;}
+@page{size:A4;margin:9mm;}
+@media print{body{padding:0;}}
+</style>
+</head><body>
+
+<div class="hdr">
+  <div class="hdr-top">महाराष्ट्र शासन | ग्रामविकास विभाग | जिल्हा परिषद बुलढाणा</div>
+  <div class="hdr-main">ग्रामपंचायत निपाणा</div>
+  <div class="hdr-sub">ता. खामगाव, जि. बुलढाणा – ४४४३०६ | ✉️ nipana172812@gmail.com | 📞 ७७९८७६१८३७</div>
+</div>
+
+<div class="title">तक्रार निवारण अर्ज | Grievance Redressal Form</div>
+
+<div style="text-align:right;font-size:10px;margin-bottom:8px;">दिनांक: ${dateMr}</div>
+
+<div style="font-size:11px;margin-bottom:10px;">
+  <strong>प्रती,</strong><br/>
+  मा. ग्रामपंचायत अधिकारी / प्रशासक,<br/>
+  ग्रामपंचायत निपाणा, ता. खामगाव, जि. बुलढाणा.
+</div>
+
+<div style="font-size:11px;margin-bottom:10px;">
+  <strong>विषय:</strong> ${prakar} संदर्भात तक्रार अर्ज सादर करणेबाबत.
+</div>
+
+<div style="font-size:11px;margin-bottom:10px;">महोदय/महोदया,<br/>मी खालील तपशीलानुसार तक्रार सादर करत आहे. कृपया लवकरात लवकर योग्य कारवाई करावी:</div>
+
+<div class="section-head">१. अर्जदाराची माहिती</div>
+<table>
+  <tr><td>पूर्ण नाव</td><td>${gv('tk_naam')}</td></tr>
+  <tr><td>वडिलांचे/पतीचे नाव</td><td>${gv('tk_vadil')}</td></tr>
+  <tr><td>मोबाईल नंबर</td><td>${gv('tk_mobile')}</td></tr>
+  <tr><td>आधार क्रमांक</td><td>${gv('tk_aadhaar')}</td></tr>
+  <tr><td>पूर्ण पत्ता</td><td>${gv('tk_patta')}</td></tr>
+</table>
+
+<div class="section-head">२. तक्रारीचा तपशील</div>
+<table>
+  <tr><td>तक्रारीचा प्रकार</td><td><strong style="color:#b71c1c;">${prakar}</strong></td></tr>
+  <tr><td>तक्रारीचा दिनांक</td><td>${gv('tk_date')}</td></tr>
+  <tr><td>पूर्वी तक्रार केली?</td><td>${poorvi}</td></tr>
+  <tr><td>साक्षीदार</td><td>${gv('tk_sakshi')}</td></tr>
+</table>
+
+<div class="section-head">३. तक्रारीचे संपूर्ण वर्णन</div>
+<div class="comment-box">${gv('tk_tafshil').replace(/\n/g,'<br/>')}</div>
+
+<div class="section-head">४. अपेक्षित कारवाई / मागणी</div>
+<div class="comment-box">${gv('tk_magni','—').replace(/\n/g,'<br/>')}</div>
+
+<div class="declare">
+  ✅ <strong>घोषणा:</strong> मी घोषित करतो/करते की वरील सर्व माहिती खरी व अचूक आहे. खोटी माहिती दिल्यास शासकीय नियमानुसार माझ्यावर कारवाई होईल.
+</div>
+
+<div class="sign-row">
+  <div>
+    <p>ठिकाण: निपाणा, ता. खामगाव, जि. बुलढाणा</p>
+    <p style="margin-top:5px;">दिनांक: ${dateStr}</p>
+  </div>
+  <div style="text-align:right;">
+    <p>अर्जदाराची सही: ____________________</p>
+    <p style="margin-top:5px;">नाव: ${gv('tk_naam')}</p>
+  </div>
+</div>
+
+<div class="office-box">
+  <strong>कार्यालय वापरासाठी (Office Use Only):</strong><br/>
+  तक्रार क्र.: ______________ | प्राप्त दिनांक: ______________ | कर्मचारी स्वाक्षरी: ______________<br/>
+  निपटारा दिनांक: ______________ | कारवाई नोंद: ________________________________________<br/>
+  अधिकारी स्वाक्षरी व शिक्का: ____________________
+</div>
+
+<div class="footer">
+  <strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong><br/>
+  जिल्हा परिषद बुलढाणा | महाराष्ट्र शासन | तक्रार निपटारा कालमर्यादा: ३० दिवस
+</div>
+</body></html>`;
+
+  const w = window.open('','_blank','width=820,height=1060');
+  w.document.write(pdfHtml);
+  w.document.close();
+  setTimeout(()=>{ w.focus(); w.print(); }, 600);
+}
+</script>
 
 <!-- ══ TAX INFO MODAL (50% concession) ══ -->
 <div id="taxInfoModal" onclick="if(event.target===this)this.style.display='none'"
