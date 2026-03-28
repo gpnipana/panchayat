@@ -158,6 +158,7 @@
       }
     }
 
+
     /* ─── HERO BANNER ─── */
     .hero {
       background: linear-gradient(120deg, #e8f5e9 0%, #fff8f0 50%, #e3f2fd 100%);
@@ -584,13 +585,35 @@
     .panels-2x2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-rows: auto auto;
+      gap: 18px;
       margin-bottom: 16px;
+      align-items: start;
     }
-    @media (max-width: 700px) {
+    /* लोकसंख्या panel spans both rows on desktop */
+    .panels-2x2 .panel-loksankhya {
+      grid-row: 1 / 3;
+    }
+    @media (max-width: 820px) {
       .panels-2x2 {
         grid-template-columns: 1fr;
+        grid-template-rows: unset;
       }
+      .panels-2x2 .panel-loksankhya {
+        grid-row: unset;
+      }
+    }
+    /* Panel heading size upgrade */
+    .panel-heading-title {
+      font-weight: 800;
+      font-size: 1.08rem !important;
+      color: white;
+      line-height: 1.3;
+    }
+    .panel-heading-subtitle {
+      font-size: 0.72rem !important;
+      color: rgba(255,255,255,0.65);
+      margin-top: 2px;
     }
 
     /* ─── RESPONSIVE: SAMITI BUTTONS ─── */
@@ -828,11 +851,10 @@ window.addEventListener('load', function() {
     <li><a href="#members">👥 सदस्य यादी</a></li>
     <li><a href="#schemes">📜 योजना व सेवा</a></li>
     <li><a href="#programs">🎉 कार्यक्रम व गॅलरी</a></li>
-    
-    <li><a href="#samiti" style="background:rgba(255,255,255,0.15);border-radius:4px;">🏛️ समित्या</a></li>
-    <li><a href="#staff" style="color:white;background:rgba(255,255,255,0.2);">👨‍💼 कर्मचारी</a></li>
-    <li><a href="#contact" style="color:white;">📞 संपर्क</a></li>
-    <li><a href="#location" style="color:white;">📍 स्थान</a></li>
+    <li><a href="#samiti">🏛️ समित्या</a></li>
+    <li><a href="#staff">👨‍💼 कर्मचारी</a></li>
+    <li><a href="#contact">📞 संपर्क</a></li>
+    <li><a href="#location">📍 स्थान</a></li>
   </ul>
 </nav>
 <!-- ══ SCROLLING NOTICE TICKER ══ -->
@@ -935,8 +957,8 @@ window.addEventListener('load', function() {
     <!-- PANEL 1: सामान्य माहिती — Dark Navy -->
     <div style="background:linear-gradient(160deg,#0A2647,#1a3a5c);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📋</div>
-        <div style="font-weight:800;font-size:0.95rem;color:white;">सामान्य माहिती</div>
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📋</div>
+        <div class="panel-heading-title">सामान्य माहिती</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;">
@@ -962,36 +984,104 @@ window.addEventListener('load', function() {
       </div>
     </div>
 
-    <!-- PANEL 2: लोकसंख्या — Green -->
-    <div style="background:linear-gradient(160deg,#1B5E20,#2e7d32);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">👥</div>
-        <div style="font-weight:800;font-size:0.95rem;">लोकसंख्या (२०११)</div>
+    <!-- PANEL 2: लोकसंख्या — Green (EXPANDED with full census data) -->
+    <div class="panel-loksankhya" style="background:linear-gradient(160deg,#1B5E20,#2e7d32);border-radius:18px;padding:22px;color:white;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:10px;">
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">👥</div>
+        <div>
+          <div class="panel-heading-title">लोकसंख्या माहिती (जनगणना २०११)</div>
+          <div class="panel-heading-subtitle">स्रोत: भारत सरकार, जनगणना विभाग | Village Code: 528797</div>
+        </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.5rem;font-weight:900;color:#F5E6A3;">२,१२२</div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">एकूण लोकसंख्या</div>
+
+      <!-- Row 1: Total + Households -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="background:rgba(255,255,255,0.16);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:900;color:#F5E6A3;">२,१२२</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.85);margin-top:2px;">एकूण लोकसंख्या</div>
         </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.5rem;font-weight:900;color:#F5E6A3;">४६१</div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">एकूण कुटुंबे</div>
+        <div style="background:rgba(255,255,255,0.16);border-radius:12px;padding:12px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:900;color:#F5E6A3;">४६१</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.85);margin-top:2px;">एकूण कुटुंबे</div>
         </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.3rem;font-weight:900;color:#76FF03;">१,१०६</div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">पुरुष</div>
+      </div>
+
+      <!-- Row 2: Male + Female -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="background:rgba(100,181,246,0.2);border-left:3px solid #90CAF9;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:1.2rem;font-weight:900;color:#90CAF9;">१,१०६</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👨 पुरुष</div>
         </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.3rem;font-weight:900;color:#76FF03;">१,०१६</div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">महिला</div>
+        <div style="background:rgba(240,98,146,0.2);border-left:3px solid #F48FB1;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:1.2rem;font-weight:900;color:#F48FB1;">१,०१६</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👩 महिला</div>
         </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.2rem;font-weight:900;color:#F5E6A3;">८५.१३%</div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">साक्षरता दर</div>
+      </div>
+
+      <!-- Row 3: Literacy + Sex Ratio -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:900;color:#76FF03;">८५.१३%</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">📚 साक्षरता दर</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">पुरुष ९१.६७% | महिला ७८.१८%</div>
         </div>
-        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:12px;text-align:center;">
-          <div style="font-size:1.2rem;font-weight:900;color:#F5E6A3;">९१९</div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.8);margin-top:2px;">लिंग गुणोत्तर</div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:900;color:#76FF03;">९१९</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">⚖️ लिंग गुणोत्तर</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">प्रति १,००० पुरुषांमागे महिला</div>
+        </div>
+      </div>
+
+      <!-- Row 4: Children 0-6 + Child Sex Ratio -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="background:rgba(255,235,59,0.15);border-left:3px solid #FFD600;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:900;color:#FFD600;">३०६</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👶 बालके (०-६ वर्षे)</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">एकूण लोकसंख्येच्या १४.४२%</div>
+        </div>
+        <div style="background:rgba(255,235,59,0.15);border-left:3px solid #FFD600;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:900;color:#FFD600;">८००</div>
+          <div style="font-size:0.67rem;color:rgba(255,255,255,0.8);margin-top:2px;">👧 बाल लिंग गुणोत्तर</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.55);margin-top:1px;">राज्य सरासरी ८९४ पेक्षा कमी</div>
+        </div>
+      </div>
+
+      <!-- SC / ST Section Header -->
+      <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:6px 10px;margin-bottom:6px;text-align:center;">
+        <div style="font-size:0.72rem;font-weight:800;letter-spacing:1px;color:#FFD600;">📊 अनुसूचित जाती व जमाती (SC / ST)</div>
+      </div>
+
+      <!-- Row 5: SC Total -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+        <div style="background:rgba(255,152,0,0.2);border-top:2px solid #FFB300;border-radius:10px;padding:9px;text-align:center;">
+          <div style="font-size:1rem;font-weight:900;color:#FFB300;">३६३</div>
+          <div style="font-size:0.62rem;color:rgba(255,255,255,0.8);margin-top:2px;">SC एकूण</div>
+        </div>
+        <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:9px;text-align:center;">
+          <div style="font-size:1rem;font-weight:900;color:#FFB300;">१८८</div>
+          <div style="font-size:0.62rem;color:rgba(255,255,255,0.8);margin-top:2px;">SC पुरुष</div>
+        </div>
+        <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:9px;text-align:center;">
+          <div style="font-size:1rem;font-weight:900;color:#FFB300;">१७५</div>
+          <div style="font-size:0.62rem;color:rgba(255,255,255,0.8);margin-top:2px;">SC महिला</div>
+        </div>
+      </div>
+
+      <!-- Row 6: ST (0) -->
+      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:9px;text-align:center;margin-bottom:6px;">
+        <div style="font-size:0.72rem;color:rgba(255,255,255,0.7);">🏕️ अनुसूचित जमाती (ST) — <strong style="color:white;">शून्य (०)</strong> — या गावात कोणतीही ST लोकसंख्या नाही.</div>
+      </div>
+
+      <!-- Literacy breakdown -->
+      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:9px;">
+        <div style="font-size:0.68rem;font-weight:700;color:#76FF03;margin-bottom:5px;">📚 साक्षर / निरक्षर विभाजन</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:0.65rem;color:rgba(255,255,255,0.85);">
+          <div>✅ साक्षर एकूण: <strong>१,५४६</strong></div>
+          <div>❌ निरक्षर एकूण: <strong>५७६</strong></div>
+          <div>पुरुष साक्षर: <strong>८५८</strong></div>
+          <div>पुरुष निरक्षर: <strong>२४८</strong></div>
+          <div>महिला साक्षर: <strong>६८८</strong></div>
+          <div>महिला निरक्षर: <strong>३२८</strong></div>
         </div>
       </div>
     </div>
@@ -999,8 +1089,8 @@ window.addEventListener('load', function() {
     <!-- PANEL 3: निपाणा गाव महत्त्वाची माहिती — Dark Blue -->
     <div style="background:linear-gradient(160deg,#0A2647,#1a3a5c);border-radius:18px;padding:22px;color:white;min-height:280px;display:flex;flex-direction:column;box-shadow:0 8px 28px rgba(0,0,0,0.18);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📌</div>
-        <div style="font-weight:800;font-size:0.95rem;">निपाणा गाव — माहिती</div>
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">📌</div>
+        <div class="panel-heading-title">निपाणा गाव — माहिती</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
         <div style="display:flex;align-items:center;gap:10px;background:rgba(255,214,0,0.12);border-left:3px solid #FFD600;border-radius:8px;padding:9px 12px;">
@@ -3408,9 +3498,9 @@ function showSwayam(type) {
       <span class="c-icon">🔗</span>
       <h4>उपयुक्त लिंक्स व सोशल मीडिया</h4>
       <p>
-        <a href="https://zp.buldhana.gov.in" target="_blank">जि.प. बुलढाणा</a><br/>
-        <a href="https://maharashtra.gov.in" target="_blank">महाराष्ट्र शासन</a><br/>
         <a href="https://egramswaraj.gov.in" target="_blank">eGramSwaraj</a><br/>
+        <a href="https://maharashtra.gov.in" target="_blank">महाराष्ट्र शासन</a><br/>
+        <a href="https://zp.buldhana.gov.in" target="_blank">जि.प. बुलढाणा</a><br/>
         <a href="https://www.panchayatsamitikhamgaon.com/" target="_blank" style="color:var(--green);font-weight:700;">🏛️ खामगाव पंचायत समिती</a><br/>
         <a href="https://www.instagram.com/gp_nipana_172812?igsh=MTEzcW1pMHIxYmttdw==" target="_blank" style="color:#E1306C;font-weight:700;">📸 Instagram: @gp_nipana_172812</a><br/>
         <span style="color:var(--saffron);font-weight:700;">✉️ <span id="emailDisplay">nipana172812[at]gmail.com</span> <button onclick="document.getElementById('emailDisplay').innerHTML='<a href=&quot;mailto:nipana172812@gmail.com&quot;>nipana172812@gmail.com</a>';this.style.display='none'" style="font-size:0.75rem;background:var(--saffron);color:white;border:none;border-radius:6px;padding:2px 8px;cursor:pointer;">दाखवा</button></span>
@@ -3471,14 +3561,10 @@ function showSwayam(type) {
     <div>
       <h4>🔗 शासकीय पोर्टल्स</h4>
       <ul>
-        <li><a href="https://maharashtra.gov.in" target="_blank" style="color:#aaa;">महाराष्ट्र शासन</a></li>
-        <li><a href="https://zp.buldhana.gov.in" target="_blank" style="color:#aaa;">जि.प. बुलढाणा</a></li>
-        <li><a href="https://www.panchayatsamitikhamgaon.com/" target="_blank" style="color:#aaa;">खामगाव पंचायत समिती</a></li>
         <li><a href="https://egramswaraj.gov.in" target="_blank" style="color:#aaa;">eGramSwaraj</a></li>
         <li><a href="https://mahaonline.gov.in" target="_blank" style="color:#aaa;">MahaOnline</a></li>
         <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" style="color:#aaa;">आपले सरकार</a></li>
         <li><a href="https://india.gov.in" target="_blank" style="color:#aaa;">भारत सरकार पोर्टल</a></li>
-        <li><a href="https://www.instagram.com/gp_nipana_172812" target="_blank" style="color:#E1306C;">📸 Instagram</a></li>
       </ul>
     </div>
     <div>
@@ -3494,19 +3580,6 @@ function showSwayam(type) {
   <div class="footer-bottom">
     <p>© २०२५-२६ ग्रामपंचायत निपाणा, बुलढाणा | सर्व हक्क राखीव<br/>
     <span style="color:var(--light-gold);">जिल्हा परिषद बुलढाणा</span> यांच्या मार्गदर्शनाखाली संचालित</p>
-  </div>
-
-  
-
-  <div style="text-align:center;padding:16px 0;border-top:1px solid rgba(255,255,255,0.1);margin-top:16px;">
-    <a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" rel="noopener"
-      style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#1565c0,#0277bd);color:white;text-decoration:none;padding:10px 22px;border-radius:12px;font-weight:700;font-size:0.84rem;box-shadow:0 4px 16px rgba(0,0,0,0.2);">
-      <span style="font-size:1.2rem;">🌐</span>
-      <div style="text-align:left;">
-        <div>आपले सरकार | Aapale Sarkar</div>
-        <div style="font-size:0.7rem;opacity:0.85;">महाराष्ट्र शासनाची अधिकृत ऑनलाईन सेवा पोर्टल ↗</div>
-      </div>
-    </a>
   </div>
 </footer>
 
@@ -3706,12 +3779,12 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 
 <!-- ══ SAMRUDDHA INFO MODAL ══ -->
 <div id="samruddhaInfoModal" onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9998;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
+  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9998;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
   <div style="background:white;border-radius:20px;max-width:560px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
     <div style="background:linear-gradient(135deg,#e65100,#ff6d00);padding:18px 22px;color:white;display:flex;align-items:center;gap:14px;">
       <div style="font-size:2rem;">🌟</div>
       <div style="flex:1;"><div style="font-size:1rem;font-weight:800;">मुख्यमंत्री समृद्ध पंचायत राज अभियान</div><div style="font-size:0.75rem;opacity:0.85;">ग्रामपंचायत निपाणा — ५०% कर सवलत</div></div>
-      <button onclick="document.getElementById('abhiyanInfoModal').style.display='none'" style="background:rgba(255,255,255,0.2);border:none;color:white;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
+      <button onclick="document.getElementById('samruddhaInfoModal').style.display='none'" style="background:rgba(255,255,255,0.2);border:none;color:white;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
     </div>
     <div style="padding:20px;">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 300" style="width:100%;border-radius:12px;margin-bottom:14px;">
@@ -3744,7 +3817,7 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
       <div style="background:#fff3e0;border-left:4px solid #e65100;border-radius:8px;padding:10px 14px;font-size:0.82rem;color:#5d4037;">
         <strong>📌 फक्त निवासी मालमत्तांसाठी लागू.</strong> १ एप्रिल २०२५ पूर्वीची थकबाकी माफ.
       </div>
-      <button onclick="document.getElementById('abhiyanInfoModal').style.display='none'" style="margin-top:14px;width:100%;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:11px;border-radius:12px;font-weight:700;cursor:pointer;">बंद करा ✕</button>
+      <button onclick="document.getElementById('samruddhaInfoModal').style.display='none'" style="margin-top:14px;width:100%;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:11px;border-radius:12px;font-weight:700;cursor:pointer;">बंद करा ✕</button>
     </div>
   </div>
 </div>
