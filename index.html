@@ -747,7 +747,7 @@
       </div>
       <!-- Buttons -->
       <div style="display:flex;gap:8px;">
-        <a href="#scheme-samruddhi" onclick="document.getElementById('taxInfoModal').style.display='none';setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:9px;border-radius:10px;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती</a>
+        <a href="#scheme-samruddhi" onclick="closeTaxPopup();document.getElementById('taxInfoModal').style.display='none';dontShowAgain();setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:9px;border-radius:10px;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती</a>
         <button onclick="closeTaxPopup();dontShowAgain()" style="background:#f0f0f0;color:#666;border:none;padding:9px 12px;border-radius:10px;font-weight:600;font-size:0.76rem;cursor:pointer;">नको</button>
       </div>
     </div>
@@ -3466,7 +3466,7 @@ function showSwayam(type) {
       <p>
         <a href="https://egramswaraj.gov.in" target="_blank">eGramSwaraj</a><br/>
         <a href="https://maharashtra.gov.in" target="_blank">महाराष्ट्र शासन</a><br/>
-        <a href="https://zp.buldhana.gov.in" target="_blank">जि.प. बुलढाणा</a><br/>
+        <a href="https://zpbuldhana.maharashtra.gov.in/" target="_blank">जि.प. बुलढाणा</a><br/>
         <a href="https://www.panchayatsamitikhamgaon.com/" target="_blank" style="color:var(--green);font-weight:700;">🏛️ खामगाव पंचायत समिती</a><br/>
         <a href="https://www.instagram.com/gp_nipana_172812?igsh=MTEzcW1pMHIxYmttdw==" target="_blank" style="color:#E1306C;font-weight:700;">📸 Instagram: @gp_nipana_172812</a><br/>
         <span style="color:var(--saffron);font-weight:700;">✉️ <span id="emailDisplay">nipana172812[at]gmail.com</span> <button onclick="document.getElementById('emailDisplay').innerHTML='<a href=&quot;mailto:nipana172812@gmail.com&quot;>nipana172812@gmail.com</a>';this.style.display='none'" style="font-size:0.75rem;background:var(--saffron);color:white;border:none;border-radius:6px;padding:2px 8px;cursor:pointer;">दाखवा</button></span>
