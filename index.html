@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ग्रामपंचायत निपाणा — नागरिक सुविधा पोर्टल. ता. खामगाव, जि. बुलढाणा. दाखले, अर्ज, योजना, सदस्य माहिती व अधिक."/>
+  <meta name="theme-color" content="#FF6B00"/>
+  <meta property="og:title" content="ग्रामपंचायत निपाणा | Grampanchayat Nipana"/>
+  <meta property="og:description" content="नागरिक सुविधा पोर्टल — सेवा सर्वांसाठी | ता. खामगाव, जि. बुलढाणा"/>
   <title>ग्रामपंचायत निपाणा | Grampanchayat Nipana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -22,11 +28,12 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    :focus-visible { outline: 3px solid var(--saffron); outline-offset: 2px; border-radius: 4px; }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Mukta', sans-serif;
+      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
       background: var(--cream);
       color: #1a1a1a;
       overflow-x: hidden;
@@ -75,7 +82,7 @@
       font-size: 2.4rem;
     }
     .header-text h1 {
-      font-family: 'Tiro Devanagari Marathi', serif;
+      font-family: 'Noto Sans Devanagari', sans-serif;
       font-size: 1.9rem;
       line-height: 1.2;
       text-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -99,7 +106,6 @@
     }
     .header-right .date { font-size: 0.95rem; color: var(--light-gold); font-weight: 600; }
 
-    /* ─── NAV ─── */
     /* ─── NAV ─── */
     nav {
       background: var(--saffron);
@@ -178,7 +184,7 @@
       font-size: 4rem; opacity: 0.12;
     }
     .hero h2 {
-      font-family: 'Tiro Devanagari Marathi', serif;
+      font-family: 'Noto Sans Devanagari', sans-serif;
       font-size: 2.2rem;
       color: var(--green);
       margin-bottom: 10px;
@@ -248,7 +254,7 @@
       flex-shrink: 0;
     }
     .section-title h3 {
-      font-family: 'Tiro Devanagari Marathi', serif;
+      font-family: 'Noto Sans Devanagari', sans-serif;
       font-size: 1.6rem;
       color: var(--navy);
     }
@@ -513,6 +519,7 @@
     footer p, footer li { font-size: 0.85rem; line-height: 1.8; }
     footer ul { list-style: none; }
     footer ul li::before { content: '› '; color: var(--saffron); }
+    footer a:hover { color: var(--light-gold) !important; text-decoration: underline; }
     .footer-bottom {
       max-width: 1200px;
       margin: 24px auto 0;
@@ -540,9 +547,17 @@
     }
     #scrollTop:hover { transform: scale(1.1); }
 
+    /* ─── PRINT ─── */
+    @media print {
+      nav, #scrollTop, .notice-board, .quick-services, footer { display: none !important; }
+      body { background: white; color: black; }
+      section { border: none; page-break-inside: avoid; }
+    }
+
     @media (max-width: 640px) {
       header { flex-direction: column; text-align: center; padding: 20px 16px; }
       .header-right { margin: 0; }
+      .hero { padding: 32px 16px; }
       .hero h2 { font-size: 1.5rem; }
       .hero-stats { gap: 14px; }
       nav ul li a { padding: 12px 14px; font-size: 0.82rem; }
@@ -609,6 +624,10 @@
       font-size: 1.08rem !important;
       color: white;
       line-height: 1.3;
+    }
+    /* ─── MODAL TRANSITIONS ─── */
+    [id$="Modal"], [id^="modal-"] {
+      transition: opacity 0.15s ease;
     }
     .panel-heading-subtitle {
       font-size: 0.72rem !important;
@@ -728,7 +747,7 @@
       </div>
       <!-- Buttons -->
       <div style="display:flex;gap:8px;">
-        <a href="#schemes" onclick="closeTaxPopup()" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:9px;border-radius:10px;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती</a>
+        <a href="#scheme-samruddhi" onclick="document.getElementById('taxInfoModal').style.display='none';setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:9px;border-radius:10px;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती</a>
         <button onclick="closeTaxPopup();dontShowAgain()" style="background:#f0f0f0;color:#666;border:none;padding:9px 12px;border-radius:10px;font-weight:600;font-size:0.76rem;cursor:pointer;">नको</button>
       </div>
     </div>
@@ -2091,7 +2110,7 @@ function showSwayam(type) {
       <button onclick="document.getElementById('modal-mgnregs').style.display='flex'" style="margin-top:8px;background:linear-gradient(135deg,#4a148c,#4a148ccc);color:white;border:none;padding:8px 16px;border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;width:100%;">📋 माहिती / Info ↗</button>
       
     </div>
-    <div class="scheme-card" style="border-top-color:#e65100;">
+    <div id="scheme-samruddhi" class="scheme-card" style="border-top-color:#e65100;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
         <h4 style="margin:0;">मुख्यमंत्री समृद्ध पंचायत राज अभियान</h4>
       </div>
@@ -2511,7 +2530,6 @@ function showSwayam(type) {
   <!-- Committee Buttons -->
   <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
     <button onclick="showSamiti('sc-dax')" id="btn-sc-dax" style="padding:11px 16px;background:linear-gradient(135deg,#4a148c,#7b1fa2);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👁️ ग्राम दक्षता</button>
-    <button onclick="showSamiti('sc-pocra')" id="btn-sc-pocra" style="padding:11px 16px;background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌾 POCRA</button>
     <button onclick="showSamiti('sc-aadi')" id="btn-sc-aadi" style="padding:11px 16px;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">👩 आदिशक्ती</button>
     <button onclick="showSamiti('sc-shala')" id="btn-sc-shala" style="padding:11px 16px;background:linear-gradient(135deg,#e65100,#f57c00);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🏫 शाळा व्यवस्थापन</button>
     <button onclick="showSamiti('sc-pani')" id="btn-sc-pani" style="padding:11px 16px;background:linear-gradient(135deg,#0277bd,#0288d1);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">💧 पाणीपुरवठा</button>
@@ -2525,11 +2543,6 @@ function showSwayam(type) {
     <button onclick="showSamiti('sc-balkaal')" id="btn-sc-balkaal" style="padding:11px 16px;background:linear-gradient(135deg,#f57f17,#ff6f00);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🛡️ बाल संरक्षण</button>
     <button onclick="showSamiti('sc-aapatti')" id="btn-sc-aapatti" style="padding:11px 16px;background:linear-gradient(135deg,#ad1457,#c62828);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🚨 आपत्ती व्यवस्थापन</button>
     <button onclick="showSamiti('sc-pik')" id="btn-sc-pik" style="padding:11px 16px;background:linear-gradient(135deg,#33691e,#558b2f);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;">🌾 पीक विमा</button>
-  </div>
-
-  <!-- Default hint -->
-  <div id="samiti-hint" style="text-align:center;padding:28px;background:rgba(255,255,255,0.08);border-radius:16px;color:rgba(255,255,255,0.6);font-size:0.88rem;">
-    👆 वरील कोणत्याही समितीवर क्लिक करा — त्या समितीची संपूर्ण माहिती इथे दिसेल.
   </div>
 
   <!-- Committee Panels -->
@@ -2561,36 +2574,6 @@ function showSwayam(type) {
         <div style="font-size:0.75rem;color:#4a148c;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🔍</span>ग्रामपंचायत कामकाजावर नागरिक नियंत्रण</div><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📊</span>योजनांची अंमलबजावणी तपासणे</div><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📢</span>ग्रामसभेत अहवाल सादर करणे</div><div style="display:flex;align-items:center;gap:8px;background:#4a148c12;border-left:3px solid #4a148c;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🔎</span>शासकीय निधी वापराचे परीक्षण</div></div>
         <div style="margin-top:12px;background:#f3e5f5;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#4a148c;"><strong>🎯 उद्देश:</strong> ग्रामपंचायत कामकाजात पारदर्शकता व उत्तरदायित्व सुनिश्चित करणे.</div>
-      </div>
-    </div>
-  </div>
-  <div id="sc-pocra" class="samiti-panel" style="display:none;">
-    <div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.15);">
-      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);padding:24px 28px;color:white;position:relative;">
-        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);"></div>
-        <div style="display:flex;align-items:center;gap:14px;position:relative;">
-          <div style="font-size:2.8rem;">🌾</div>
-          <div><h3 style="margin:0;font-size:1.15rem;font-weight:800;">POCRA समिती</h3><p style="margin:4px 0 0;font-size:0.8rem;opacity:0.85;">Project on Climate Resilient Agriculture</p></div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:2px solid #f0f0f0;">
-        <div style="padding:20px 24px;border-right:2px solid #f0f0f0;text-align:center;background:linear-gradient(160deg,#1b5e2010,#fff);">
-          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1b5e20,#2e7d32);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #1b5e2044;">👑</div>
-          <div style="font-size:0.65rem;color:#1b5e20;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती अध्यक्ष</div>
-          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध अध्यक्ष (माजी सरपंच)</div>
-          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. प्रभाकर किसन घाटे</div>
-        </div>
-        <div style="padding:20px 24px;text-align:center;background:linear-gradient(160deg,#1b5e2008,#fff);">
-          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#1b5e20);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 14px #2e7d3244;">✍️</div>
-          <div style="font-size:0.65rem;color:#2e7d32;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;">समिती सचिव</div>
-          <div style="font-size:0.78rem;color:#666;margin-bottom:5px;">पदसिद्ध सचिव</div>
-          <div style="font-size:0.95rem;font-weight:800;color:#1a1a2e;">श्री. एस. टी. गव्हाळे<br/><span style="font-size:0.78rem;font-weight:600;color:#666;">(ग्रामपंचायत अधिकारी)</span></div>
-        </div>
-      </div>
-      <div style="padding:20px 24px;">
-        <div style="font-size:0.75rem;color:#1b5e20;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📋 मुख्य कार्य व जबाबदाऱ्या</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;"><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🌾</span>हवामान बदलास सामोरे जाण्यासाठी शेतकरी सहाय्य</div><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">💧</span>पाणी व्यवस्थापन कार्यक्रम</div><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">🌱</span>आधुनिक शेती तंत्रज्ञान प्रसार</div><div style="display:flex;align-items:center;gap:8px;background:#1b5e2012;border-left:3px solid #1b5e20;border-radius:8px;padding:9px 12px;font-size:0.82rem;color:#333;"><span style="font-size:1rem;flex-shrink:0;">📋</span>शेतकरी उत्पन्न वाढ योजना</div></div>
-        <div style="margin-top:12px;background:#e8f5e9;border-radius:10px;padding:10px 14px;font-size:0.78rem;color:#1b5e20;"><strong>🎯 लाभार्थी:</strong> निपाणा गावातील सर्व शेतकरी.</div>
       </div>
     </div>
   </div>
@@ -3546,7 +3529,7 @@ function showSwayam(type) {
       <ul>
         <li><a href="https://mahaonline.gov.in" target="_blank" style="color:#aaa;">MahaOnline</a></li>
         <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" style="color:#aaa;">आपले सरकार</a></li>
-        <li><a href="https://mazhaswasthya.com" target="_blank" style="color:#aaa;">माझी वसुंधरा</a></li>
+        <li><a href="https://majhivasundhara.in/mar/majhi-vasundhara" target="_blank" style="color:#aaa;">माझी वसुंधरा</a></li>
         <li><a href="https://india.gov.in" target="_blank" style="color:#aaa;">भारत सरकार पोर्टल</a></li>
       </ul>
     </div>
@@ -3586,21 +3569,18 @@ const now = new Date();
 document.getElementById('dateDisplay').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
 
 // Scroll top button
-window.addEventListener('scroll', () => {
-  document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'block' : 'none';
-});
-
-// Active nav on scroll
+// Scroll: back-to-top + active nav (single listener)
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav a');
 window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'block' : 'none';
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
   navLinks.forEach(a => {
     a.classList.remove('active');
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
-});
+}, { passive: true });
 
 // ── PDF GENERATION FOR CERTIFICATES ──
 
@@ -3762,7 +3742,7 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 
 <!-- ══ SAMRUDDHA INFO MODAL ══ -->
 <div id="samruddhaInfoModal" onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9998;display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
+  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9998;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
   <div style="background:white;border-radius:20px;max-width:560px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
     <div style="background:linear-gradient(135deg,#e65100,#ff6d00);padding:18px 22px;color:white;display:flex;align-items:center;gap:14px;">
       <div style="font-size:2rem;">🌟</div>
@@ -3961,11 +3941,11 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
       <div style="flex:1;"><div style="font-size:0.95rem;font-weight:800;">प्रधानमंत्री आवास योजना (ग्रामीण)</div>
       <div style="font-size:0.72rem;opacity:0.85;">ग्रामपंचायत निपाणा</div></div>
       <button onclick="document.getElementById('modal-pmay').style.display='none'"
-        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;" onclick="document.getElementById('modal-pmay').style.display='none'">✕</button>
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;">✕</button>
     </div>
     <div style="padding:18px 20px;"><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🎯</span><div><div style="font-weight:700;font-size:0.82rem;color:#1565c0;">उद्देश</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">ग्रामीण कुटुंबांना पक्के घर बांधण्यासाठी आर्थिक सहाय्य</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#1565c0;">अनुदान</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">₹1,20,000 (सामान्य) | ₹1,30,000 (डोंगराळ भाग)</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">✅</span><div><div style="font-weight:700;font-size:0.82rem;color:#1565c0;">पात्रता</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">SECC 2011 यादीत नाव असलेले कच्चे घर असणारे BPL कुटुंब</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">📱</span><div><div style="font-weight:700;font-size:0.82rem;color:#1565c0;">अर्ज</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">Awaas Plus App — Play Store वरून Download करा</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🌐</span><div><div style="font-weight:700;font-size:0.82rem;color:#1565c0;">वेबसाईट</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">pmayg.nic.in</div></div></div>
       <button onclick="document.getElementById('modal-pmay').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;" onclick="document.getElementById('modal-pmay').style.display='none'">
+        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
         बंद करा ✕
       </button>
     </div>
@@ -3979,11 +3959,11 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
       <div style="flex:1;"><div style="font-size:0.95rem;font-weight:800;">स्वच्छ भारत मिशन</div>
       <div style="font-size:0.72rem;opacity:0.85;">ग्रामपंचायत निपाणा</div></div>
       <button onclick="document.getElementById('modal-sbm').style.display='none'"
-        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;" onclick="document.getElementById('modal-sbm').style.display='none'">✕</button>
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;">✕</button>
     </div>
     <div style="padding:18px 20px;"><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🎯</span><div><div style="font-weight:700;font-size:0.82rem;color:#2e7d32;">उद्देश</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">ग्रामीण भागात संपूर्ण स्वच्छता — ODF ग्राम</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#2e7d32;">अनुदान</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">शौचालय बांधकामासाठी ₹12,000</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">✅</span><div><div style="font-weight:700;font-size:0.82rem;color:#2e7d32;">पात्रता</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">शौचालय नसलेले BPL/APL कुटुंब</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">📋</span><div><div style="font-weight:700;font-size:0.82rem;color:#2e7d32;">आवश्यक</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">स्वयंघोषणापत्र + आधार + बँक खाते</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🌐</span><div><div style="font-weight:700;font-size:0.82rem;color:#2e7d32;">वेबसाईट</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">swachhbharatmission.gov.in</div></div></div>
       <button onclick="document.getElementById('modal-sbm').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;" onclick="document.getElementById('modal-sbm').style.display='none'">
+        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
         बंद करा ✕
       </button>
     </div>
@@ -3997,11 +3977,11 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
       <div style="flex:1;"><div style="font-size:0.95rem;font-weight:800;">जल जीवन मिशन</div>
       <div style="font-size:0.72rem;opacity:0.85;">ग्रामपंचायत निपाणा</div></div>
       <button onclick="document.getElementById('modal-jjm').style.display='none'"
-        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;" onclick="document.getElementById('modal-jjm').style.display='none'">✕</button>
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;">✕</button>
     </div>
     <div style="padding:18px 20px;"><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🎯</span><div><div style="font-weight:700;font-size:0.82rem;color:#0277bd;">उद्देश</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">प्रत्येक घरापर्यंत नळाने शुद्ध पिण्याचे पाणी</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">📊</span><div><div style="font-weight:700;font-size:0.82rem;color:#0277bd;">मानक</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">५५ लिटर/व्यक्ती/दिवस</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">✅</span><div><div style="font-weight:700;font-size:0.82rem;color:#0277bd;">पात्रता</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">नळ जोडणी नसलेले सर्व ग्रामीण कुटुंब</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">📋</span><div><div style="font-weight:700;font-size:0.82rem;color:#0277bd;">अर्ज</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">ग्रामपंचायत कार्यालय किंवा VWSC समितीकडे संपर्क</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🌐</span><div><div style="font-weight:700;font-size:0.82rem;color:#0277bd;">वेबसाईट</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">jaljeevanmission.gov.in</div></div></div>
       <button onclick="document.getElementById('modal-jjm').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#0277bd,#0277bdcc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;" onclick="document.getElementById('modal-jjm').style.display='none'">
+        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#0277bd,#0277bdcc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
         बंद करा ✕
       </button>
     </div>
@@ -4015,11 +3995,11 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
       <div style="flex:1;"><div style="font-size:0.95rem;font-weight:800;">प्रधानमंत्री सूर्य घर योजना</div>
       <div style="font-size:0.72rem;opacity:0.85;">ग्रामपंचायत निपाणा</div></div>
       <button onclick="document.getElementById('modal-surya').style.display='none'"
-        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;" onclick="document.getElementById('modal-surya').style.display='none'">✕</button>
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;">✕</button>
     </div>
     <div style="padding:18px 20px;"><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🎯</span><div><div style="font-weight:700;font-size:0.82rem;color:#f57f17;">उद्देश</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">सौर ऊर्जा पॅनेल — मोफत वीज + उत्पन्न</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#f57f17;">अनुदान</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">१-२kW: ₹30,000 | २-३kW: ₹60,000 | ३+kW: ₹78,000</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">⚡</span><div><div style="font-weight:700;font-size:0.82rem;color:#f57f17;">फायदा</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">दरमहा ३०० unit मोफत वीज (३kW पॅनेलवर)</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">📱</span><div><div style="font-weight:700;font-size:0.82rem;color:#f57f17;">अर्ज</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">pmsuryaghar.gov.in वर Online नोंदणी</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🌐</span><div><div style="font-weight:700;font-size:0.82rem;color:#f57f17;">वेबसाईट</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">pmsuryaghar.gov.in</div></div></div>
       <button onclick="document.getElementById('modal-surya').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#f57f17,#f57f17cc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;" onclick="document.getElementById('modal-surya').style.display='none'">
+        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#f57f17,#f57f17cc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
         बंद करा ✕
       </button>
     </div>
@@ -4033,11 +4013,11 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
       <div style="flex:1;"><div style="font-size:0.95rem;font-weight:800;">विकसित भारत</div>
       <div style="font-size:0.72rem;opacity:0.85;">ग्रामपंचायत निपाणा</div></div>
       <button onclick="document.getElementById('modal-mgnregs').style.display='none'"
-        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;" onclick="document.getElementById('modal-mgnregs').style.display='none'">✕</button>
+        style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:50%;font-size:0.9rem;cursor:pointer;">✕</button>
     </div>
     <div style="padding:18px 20px;"><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🎯</span><div><div style="font-weight:700;font-size:0.82rem;color:#4a148c;">उद्देश</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">वर्षात किमान १२५ दिवस रोजगार हमी</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">💰</span><div><div style="font-weight:700;font-size:0.82rem;color:#4a148c;">मजुरी</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">₹273/दिवस (महाराष्ट्र, २०२४-२५)</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">✅</span><div><div style="font-weight:700;font-size:0.82rem;color:#4a148c;">पात्रता</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">ग्रामीण कुटुंबातील १८+ वर्षे वयाचे सर्व</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">📋</span><div><div style="font-weight:700;font-size:0.82rem;color:#4a148c;">अर्ज</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">Job Card साठी ग्रामपंचायतीत अर्ज</div></div></div><div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0;"><span style="font-size:1.2rem;flex-shrink:0;">🌐</span><div><div style="font-weight:700;font-size:0.82rem;color:#4a148c;">वेबसाईट</div><div style="font-size:0.78rem;color:#444;line-height:1.5;">nreganarep.nic.in</div></div></div>
       <button onclick="document.getElementById('modal-mgnregs').style.display='none'"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#4a148c,#4a148ccc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;" onclick="document.getElementById('modal-mgnregs').style.display='none'">
+        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#4a148c,#4a148ccc);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
         बंद करा ✕
       </button>
     </div>
@@ -4711,9 +4691,9 @@ td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
         श्री. एस. टी. गव्हाळे: <strong>७७९८७६१८३७</strong>
       </div>
 
-      <button onclick="document.getElementById('taxInfoModal').style.display='none'"
+      <button onclick="document.getElementById('taxInfoModal').style.display='none';setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);"
         style="margin-top:14px;width:100%;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
-        बंद करा ✕
+        📋 योजना पाहा / बंद करा ✕
       </button>
     </div>
   </div>
