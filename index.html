@@ -729,6 +729,68 @@
     }
     .h-scroll::-webkit-scrollbar { display: none; }
 </style>
+
+<!-- ── Carousel Dependencies ── -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- ── Carousel Styles ── -->
+<style>
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out;
+    pointer-events: none;
+  }
+  .carousel-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.35); }
+  }
+  .dot-active { animation: dotPulse 1.8s ease-in-out infinite; }
+  @keyframes shimmerBar {
+    0%   { background-position: -400px 0; }
+    100% { background-position:  400px 0; }
+  }
+  .shimmer-bar {
+    background: linear-gradient(90deg, #1B5E20 0%, #43A047 30%, #FFD600 50%, #43A047 70%, #1B5E20 100%);
+    background-size: 800px 4px;
+    animation: shimmerBar 3s linear infinite;
+  }
+  @keyframes kenBurns {
+    0%   { transform: scale(1);    }
+    100% { transform: scale(1.07); }
+  }
+  .carousel-slide.is-active .slide-img {
+    animation: kenBurns 6s ease-out forwards;
+  }
+  .slide-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(10,38,71,0.82) 0%,
+      rgba(10,38,71,0.52) 55%,
+      rgba(10,38,71,0.15) 100%
+    );
+  }
+  @keyframes slideUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0);    }
+  }
+  .carousel-slide.is-active .tr1 { animation: slideUp 0.65s 0.25s both ease-out; }
+  .carousel-slide.is-active .tr2 { animation: slideUp 0.65s 0.45s both ease-out; }
+  .carousel-slide.is-active .tr3 { animation: slideUp 0.65s 0.65s both ease-out; }
+  .carousel-slide.is-active .tr4 { animation: slideUp 0.65s 0.85s both ease-out; }
+  /* progress bar reset trick */
+  @keyframes progress {
+    from { width: 0%; }
+    to   { width: 100%; }
+  }
+  .progress-bar { animation: progress 5s linear forwards; }
+</style>
 </head>
 <body>
 <!-- ═══ TAX CONCESSION POPUP ═══ -->
@@ -859,9 +921,12 @@ window.addEventListener('load', function() {
       </ul>
     </nav>
 
-    <!-- Right: date + hamburger -->
+    <!-- Right: date+time + hamburger -->
     <div class="site-header__right">
-      <div class="site-header__date" id="dateDisplay" aria-live="polite"></div>
+      <div class="site-header__date" id="dateDisplay" aria-live="polite">
+        <div id="headerDate"></div>
+        <div id="headerTime" style="font-size:0.65rem;text-align:right;color:var(--light-gold);opacity:0.85;"></div>
+      </div>
       <button class="hamburger" id="hamburgerBtn" aria-label="मेनू उघडा / बंद करा" aria-controls="mainNav" aria-expanded="false">
         <span class="hamburger__bar"></span>
         <span class="hamburger__bar"></span>
@@ -936,10 +1001,14 @@ window.addEventListener('load', function() {
   font-size: 0.72rem;
   color: var(--light-gold);
   font-weight: 600;
-  display: none;
+  display: block;
   white-space: nowrap;
+  text-align: right;
 }
-@media (min-width: 900px) { .site-header__date { display: block; } }
+@media (max-width: 479px) {
+  .site-header__date { font-size: 0.6rem; }
+  #headerDate { max-width: 110px; white-space: normal; line-height: 1.3; }
+}
 
 /* Hamburger button */
 .hamburger {
@@ -1184,6 +1253,206 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
 }
 </style>
 
+<!-- ══════════════════════════════════════════════
+     HERO CAROUSEL — ग्रामपंचायत निपाणा
+══════════════════════════════════════════════ -->
+<div
+  x-data="{
+    cur: 0,
+    total: 5,
+    timer: null,
+    paused: false,
+    slides: [
+      {
+        img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&q=80',
+        tag: '🌿 स्वागत',
+        title: 'ग्रामपंचायत निपाणामध्ये आपले स्वागत',
+        sub:  'ता. खामगाव · जि. बुलढाणा · महाराष्ट्र',
+        badge: 'नागरिक सुविधा पोर्टल',
+        bc: 'background:#1B5E20'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=1200&q=80',
+        tag: '📚 शिक्षण',
+        title: 'शिक्षण — उज्वल भविष्याचा मार्ग',
+        sub:  'प्राथमिक व माध्यमिक शाळा · अंगणवाडी केंद्र',
+        badge: 'जनसेवा',
+        bc: 'background:#1565C0'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
+        tag: '🌾 शेती',
+        title: 'समृद्ध शेती · समृद्ध गाव',
+        sub:  'सोयाबीन · कापूस · गहू · हरभरा',
+        badge: 'कृषी विकास',
+        bc: 'background:#E65100'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+        tag: '🏗️ विकास',
+        title: 'पायाभूत सुविधा व विकास कामे',
+        sub:  'रस्ते · पाणीपुरवठा · स्वच्छता',
+        badge: 'ग्रामविकास',
+        bc: 'background:#00695C'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
+        tag: '👥 समाज',
+        title: 'एकजुटीने पुढे जाऊया',
+        sub:  'ग्रामसभा · महिला सशक्तीकरण · युवाशक्ती',
+        badge: 'सामाजिक उपक्रम',
+        bc: 'background:#4527A0'
+      }
+    ],
+    init() {
+      this.startTimer();
+    },
+    startTimer() {
+      clearInterval(this.timer);
+      this.timer = setInterval(() => { if (!this.paused) this.next(); }, 5000);
+    },
+    next() { this.cur = (this.cur + 1) % this.total; },
+    prev() { this.cur = (this.cur - 1 + this.total) % this.total; },
+    goTo(i) { this.cur = i; this.startTimer(); }
+  }"
+  @mouseenter="paused = true"
+  @mouseleave="paused = false"
+  style="position:relative;width:100%;overflow:hidden;font-family:'Mukta','Noto Sans Devanagari',sans-serif;"
+  aria-label="ग्रामपंचायत निपाणा स्लाइडशो"
+>
+  <!-- Top shimmer bar -->
+  <div class="shimmer-bar" style="height:4px;width:100%;"></div>
+
+  <!-- Slide track -->
+  <div style="position:relative;width:100%;height:clamp(250px,40vw,400px);">
+
+    <template x-for="(slide, idx) in slides" :key="idx">
+      <div
+        class="carousel-slide"
+        :class="{ 'is-active': cur === idx }"
+        :aria-hidden="cur !== idx"
+      >
+        <!-- Image -->
+        <img
+          :src="slide.img"
+          :alt="slide.title"
+          class="slide-img"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          loading="lazy"
+          draggable="false"
+        />
+        <!-- Overlay -->
+        <div class="slide-overlay" style="position:absolute;inset:0;"></div>
+        <!-- Green right tint -->
+        <div style="position:absolute;inset-block:0;right:0;width:33%;background:linear-gradient(to left,rgba(27,94,32,0.22),transparent);pointer-events:none;"></div>
+
+        <!-- Text block -->
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(16px,5vw,72px);max-width:700px;">
+          <!-- Badge -->
+          <span class="tr1" :style="slide.bc"
+            style="display:inline-block;align-self:flex-start;padding:3px 14px;border-radius:99px;color:white;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,0.3);"
+            x-text="slide.badge"></span>
+          <!-- Tag -->
+          <p class="tr2" x-text="slide.tag"
+            style="color:#FFD600;font-size:clamp(0.75rem,1.8vw,0.95rem);font-weight:600;margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,0.5);"></p>
+          <!-- Title -->
+          <h2 class="tr3" x-text="slide.title"
+            style="color:white;font-weight:800;line-height:1.25;text-shadow:0 2px 12px rgba(0,0,0,0.6);font-size:clamp(1.05rem,3.5vw,2rem);margin-bottom:8px;"></h2>
+          <!-- Sub -->
+          <p class="tr4" x-text="slide.sub"
+            style="color:#BBDEFB;font-size:clamp(0.72rem,1.7vw,0.95rem);font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,0.5);"></p>
+          <!-- Accent lines -->
+          <div class="tr4" style="display:flex;align-items:center;gap:10px;margin-top:14px;">
+            <div style="height:2px;width:40px;background:#FFD600;border-radius:4px;"></div>
+            <div style="height:2px;width:24px;background:rgba(255,255,255,0.3);border-radius:4px;"></div>
+          </div>
+        </div>
+
+        <!-- Slide counter -->
+        <div style="position:absolute;top:14px;right:14px;color:white;font-size:0.7rem;font-family:monospace;opacity:0.65;background:rgba(0,0,0,0.3);padding:2px 10px;border-radius:99px;">
+          <span x-text="idx+1"></span>/<span x-text="total"></span>
+        </div>
+      </div>
+    </template>
+
+    <!-- Prev button -->
+    <button @click="prev(); startTimer();" aria-label="मागील स्लाइड"
+      style="position:absolute;left:12px;top:50%;transform:translateY(-50%);z-index:20;
+             width:clamp(32px,5vw,44px);height:clamp(32px,5vw,44px);border-radius:50%;
+             background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);
+             color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;
+             backdrop-filter:blur(6px);transition:background 0.2s;"
+      onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <!-- Next button -->
+    <button @click="next(); startTimer();" aria-label="पुढील स्लाइड"
+      style="position:absolute;right:12px;top:50%;transform:translateY(-50%);z-index:20;
+             width:clamp(32px,5vw,44px);height:clamp(32px,5vw,44px);border-radius:50%;
+             background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);
+             color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;
+             backdrop-filter:blur(6px);transition:background 0.2s;"
+      onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+    <!-- Progress bar -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.12);z-index:20;">
+      <div :key="cur" class="progress-bar" style="height:100%;background:#FFD600;width:0%;"></div>
+    </div>
+  </div>
+
+  <!-- Dot navigation bar -->
+  <div role="tablist" aria-label="स्लाइड नेव्हिगेशन"
+    style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px;
+           background:linear-gradient(135deg,#0A2647,#1B3A5C);">
+    <template x-for="(slide, idx) in slides" :key="idx">
+      <button
+        @click="goTo(idx)"
+        role="tab"
+        :aria-label="'स्लाइड ' + (idx+1)"
+        :aria-selected="cur === idx"
+        :class="cur === idx ? 'dot-active' : ''"
+        :style="cur === idx
+          ? 'width:28px;height:10px;background:#FFD600;border-radius:99px;border:none;cursor:pointer;box-shadow:0 0 8px rgba(255,214,0,0.65);transition:all 0.3s;'
+          : 'width:10px;height:10px;background:rgba(255,255,255,0.35);border-radius:50%;border:none;cursor:pointer;transition:all 0.3s;'"
+        onmouseover="if(this.getAttribute('aria-selected')!=='true') this.style.background='rgba(255,255,255,0.65)'"
+        onmouseout="if(this.getAttribute('aria-selected')!=='true') this.style.background='rgba(255,255,255,0.35)'"
+      ></button>
+    </template>
+
+    <!-- Pause / Play -->
+    <button @click="paused=!paused; if(!paused) startTimer();"
+      :aria-label="paused ? 'सुरू करा' : 'थांबवा'"
+      style="margin-left:10px;width:28px;height:28px;border-radius:50%;
+             background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);
+             color:rgba(255,255,255,0.75);cursor:pointer;display:flex;align-items:center;justify-content:center;
+             transition:background 0.2s;"
+      onmouseover="this.style.background='rgba(255,255,255,0.25)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+      <!-- Pause icon -->
+      <svg x-show="!paused" width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+        <rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/>
+      </svg>
+      <!-- Play icon -->
+      <svg x-show="paused" width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Bottom shimmer bar -->
+  <div class="shimmer-bar" style="height:3px;width:100%;"></div>
+</div>
+<!-- ══ END CAROUSEL ══ -->
+
 <!-- HERO -->
 <section id="home" class="hero">
   <h2>🌿 ग्रामपंचायत निपाणा मध्ये आपले स्वागत आहे!</h2>
@@ -1291,6 +1560,14 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
           <span class="about-panel__row-label">🗂️ एकूण वॉर्ड</span>
           <span class="about-panel__row-value">३</span>
         </div>
+        <div class="about-panel__row about-panel__row--accent">
+          <span class="about-panel__row-label">🗺️ क्षेत्रफळ</span>
+          <span class="about-panel__row-value--gold">886 हेक्टर<br/><span style="font-size:0.55rem;color:rgba(255,255,255,0.5);">स्रोत: जनगणना २०११, भारत सरकार</span></span>
+        </div>
+        <div class="about-panel__row about-panel__row--accent">
+          <span class="about-panel__row-label">⛰️ समुद्रसपाटीपासून उंची</span>
+          <span class="about-panel__row-value--gold">306 मीटर<br/><span style="font-size:0.55rem;color:rgba(255,255,255,0.5);">स्रोत: भारतीय सर्वेक्षण विभाग</span></span>
+        </div>
       </div>
     </div>
 
@@ -1356,20 +1633,36 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
       </div>
 
       <!-- SC Total -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(4px,0.8vw,6px);">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(4px,0.8vw,6px);margin-bottom:clamp(4px,0.8vw,6px);">
         <div style="background:rgba(255,152,0,0.2);border-top:2px solid #FFB300;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
-          <div class="lok-xs-num" style="color:#FFB300;">३६३</div>
+          <div class="lok-xs-num" style="color:#FFB300;">२७७</div>
           <div class="lok-label">SC एकूण</div>
         </div>
         <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
-          <div class="lok-xs-num" style="color:#FFB300;">१८८</div>
+          <div class="lok-xs-num" style="color:#FFB300;">१४४</div>
           <div class="lok-label">SC पुरुष</div>
         </div>
         <div style="background:rgba(255,152,0,0.15);border-top:2px solid #FFB300;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
-          <div class="lok-xs-num" style="color:#FFB300;">१७५</div>
+          <div class="lok-xs-num" style="color:#FFB300;">१३३</div>
           <div class="lok-label">SC महिला</div>
         </div>
       </div>
+      <!-- ST Total -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(4px,0.8vw,6px);">
+        <div style="background:rgba(100,181,246,0.2);border-top:2px solid #64B5F6;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
+          <div class="lok-xs-num" style="color:#64B5F6;">२६</div>
+          <div class="lok-label">ST एकूण</div>
+        </div>
+        <div style="background:rgba(100,181,246,0.15);border-top:2px solid #64B5F6;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
+          <div class="lok-xs-num" style="color:#64B5F6;">१४</div>
+          <div class="lok-label">ST पुरुष</div>
+        </div>
+        <div style="background:rgba(100,181,246,0.15);border-top:2px solid #64B5F6;border-radius:10px;padding:clamp(6px,1vw,9px);text-align:center;">
+          <div class="lok-xs-num" style="color:#64B5F6;">१२</div>
+          <div class="lok-label">ST महिला</div>
+        </div>
+      </div>
+      <div style="margin-top:5px;text-align:center;font-size:0.55rem;color:rgba(255,255,255,0.4);">स्रोत: census2011.co.in — Office of the Registrar General & Census Commissioner, India</div>
     </div>
 
     <!-- PANEL 3: इतर माहिती -->
@@ -3821,15 +4114,6 @@ function showSwayam(type) {
     <!-- Col 1: Address + Contact -->
     <div>
       <h4>🏛️ ग्रामपंचायत निपाणा</h4>
-      <address class="site-footer__address">
-        ग्रामपंचायत कार्यालय निपाणा,<br/>
-        तालुका खामगाव, जिल्हा बुलढाणा,<br/>
-        महाराष्ट्र — ४४४३०६
-      </address>
-      <p style="margin-top:10px;">
-        📞 <a href="tel:+917798761837" class="site-footer__tel">७७९८७६१८३७</a><br/>
-        ✉️ <a href="mailto:nipana172812@gmail.com" class="site-footer__tel">nipana172812@gmail.com</a>
-      </p>
       <p style="margin-top:8px;font-size:0.8rem;color:rgba(255,255,255,0.55);">नागरिक सुविधा पोर्टल — सेवा सर्वांसाठी</p>
     </div>
 
@@ -3853,7 +4137,7 @@ function showSwayam(type) {
         <li><a href="https://aaplesarkar.mahaonline.gov.in" target="_blank" rel="noopener">आपले सरकार</a></li>
         <li><a href="https://majhivasundhara.in/mar/majhi-vasundhara" target="_blank" rel="noopener">माझी वसुंधरा</a></li>
         <li><a href="https://zpbuldhana.maharashtra.gov.in/" target="_blank" rel="noopener">जि.प. बुलढाणा</a></li>
-        <li><a href="https://india.gov.in" target="_blank" rel="noopener">भारत सरकार पोर्टल</a></li>
+        <li><a href="https://panchayat.gov.in" target="_blank" rel="noopener">पंचायत राज मंत्रालय पोर्टल</a></li>
       </ul>
     </div>
 
@@ -3894,7 +4178,7 @@ footer a:hover { color: var(--light-gold); text-decoration: underline; }
 
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleSection(id) {
   const el = document.getElementById(id);
   if (el.style.display === 'none') {
@@ -3905,11 +4189,24 @@ function toggleSection(id) {
   }
 }
 
-// Date display
+// Date & Time display
 const days = ['रविवार','सोमवार','मंगळवार','बुधवार','गुरुवार','शुक्रवार','शनिवार'];
 const months = ['जानेवारी','फेब्रुवारी','मार्च','एप्रिल','मे','जून','जुलै','ऑगस्ट','सप्टेंबर','ऑक्टोबर','नोव्हेंबर','डिसेंबर'];
-const now = new Date();
-document.getElementById('dateDisplay').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+function updateDateTime() {
+  const now = new Date();
+  const dateEl = document.getElementById('headerDate');
+  const timeEl = document.getElementById('headerTime');
+  if (dateEl) dateEl.textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+  if (timeEl) {
+    const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+    const hh = String(h).padStart(2,'0'), mm = String(m).padStart(2,'0'), ss = String(s).padStart(2,'0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 || 12;
+    timeEl.textContent = '🕐 ' + String(h12).padStart(2,'0') + ':' + mm + ':' + ss + ' ' + ampm;
+  }
+}
+updateDateTime();
+setInterval(updateDateTime, 1000);
 
 // Scroll top button
 // Scroll: back-to-top button only (active nav handled by new nav script)
@@ -5031,12 +5328,4 @@ td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
       </div>
 
       <button onclick="document.getElementById('taxInfoModal').style.display='none';setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);"
-        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:0.85rem;">
-        📋 योजना पाहा / बंद करा ✕
-      </button>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+        style="margin-top:14px;width:100%;background:linear-gradient(135deg,#b7
