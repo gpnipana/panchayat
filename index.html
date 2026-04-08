@@ -780,86 +780,7 @@
 </style>
 </head>
 <body>
-<!-- ═══ TAX CONCESSION POPUP ═══ -->
-<div id="taxPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:99999;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:white;border-radius:18px;max-width:360px;width:100%;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.45);animation:popupIn 0.35s ease;">
-    <!-- Header -->
-    <div style="background:linear-gradient(135deg,#e65100,#ff6d00);padding:14px 18px;color:white;text-align:center;position:relative;">
-      <button onclick="closeTaxPopup()" style="position:absolute;top:8px;right:10px;background:rgba(255,255,255,0.2);border:none;color:white;width:26px;height:26px;border-radius:50%;font-size:0.9rem;cursor:pointer;font-weight:700;line-height:26px;">✕</button>
-      <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
-        <div style="background:rgba(255,255,255,0.2);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;flex-shrink:0;">50%</div>
-        <div style="text-align:left;">
-          <div style="font-size:0.9rem;font-weight:800;line-height:1.3;">मुख्यमंत्री समृद्ध पंचायत राज</div>
-          <div style="font-size:0.72rem;opacity:0.85;">थकबाकीत ५०% सूट — विशेष सूचना</div>
-        </div>
-      </div>
-    </div>
-    <!-- Content -->
-    <div style="padding:14px 16px;">
-      <!-- 3 items in a row -->
-      <div style="display:flex;gap:8px;margin-bottom:12px;">
-        <div style="flex:1;background:#fff3e0;border-radius:8px;padding:8px;text-align:center;border-top:2px solid #e65100;">
-          <div style="font-size:1.1rem;">🏠</div>
-          <div style="font-size:0.7rem;font-weight:700;color:#e65100;">घरपट्टी</div>
-        </div>
-        <div style="flex:1;background:#fff3e0;border-radius:8px;padding:8px;text-align:center;border-top:2px solid #e65100;">
-          <div style="font-size:1.1rem;">💧</div>
-          <div style="font-size:0.7rem;font-weight:700;color:#e65100;">पाणीपट्टी</div>
-        </div>
-        <div style="flex:1;background:#fff3e0;border-radius:8px;padding:8px;text-align:center;border-top:2px solid #e65100;">
-          <div style="font-size:1.1rem;">💡</div>
-          <div style="font-size:0.7rem;font-weight:700;color:#e65100;">दिवाबत्ती</div>
-        </div>
-      </div>
-      <!-- Deadline -->
-      <div style="background:#b71c1c;color:white;border-radius:10px;padding:8px 12px;text-align:center;margin-bottom:10px;">
-        <span style="font-size:0.72rem;opacity:0.85;">⏰ अंतिम मुदत — </span>
-        <strong style="font-size:0.92rem;">३१ मार्च २०२६</strong>
-      </div>
-      <!-- Condition -->
-      <div style="background:#e8f5e9;border-left:3px solid #2e7d32;border-radius:6px;padding:8px 10px;font-size:0.74rem;color:#2e7d32;margin-bottom:12px;">
-        ✅ चालू वर्षाचा कर भरा + जुनी ५०% थकबाकी एकरकमी भरा.
-      </div>
-      <!-- Buttons -->
-      <div style="display:flex;gap:8px;">
-        <a href="#scheme-samruddhi" onclick="closeTaxPopup();document.getElementById('taxInfoModal').style.display='none';dontShowAgain();setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);" style="flex:1;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:9px;border-radius:10px;font-weight:700;font-size:0.8rem;cursor:pointer;text-align:center;text-decoration:none;display:block;">📋 अधिक माहिती</a>
-        <button onclick="closeTaxPopup();dontShowAgain()" style="background:#f0f0f0;color:#666;border:none;padding:9px 12px;border-radius:10px;font-weight:600;font-size:0.76rem;cursor:pointer;">नको</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<style>
-@keyframes popupIn {
-  from { transform: scale(0.85) translateY(-20px); opacity: 0; }
-  to   { transform: scale(1) translateY(0); opacity: 1; }
-}
-</style>
-
-<script>
-function closeTaxPopup() {
-  document.getElementById('taxPopup').style.display = 'none';
-}
-function dontShowAgain() {
-  try { sessionStorage.setItem('taxPopupClosed','1'); } catch(e){}
-}
-// Show popup on load (once per session)
-window.addEventListener('load', function() {
-  try {
-    const deadline = new Date('2026-03-31');
-    const now = new Date();
-    if (now < deadline && !sessionStorage.getItem('taxPopupClosed')) {
-      setTimeout(function() {
-        document.getElementById('taxPopup').style.display = 'flex';
-      }, 1500);
-    }
-  } catch(e) {
-    setTimeout(function() {
-      document.getElementById('taxPopup').style.display = 'flex';
-    }, 1500);
-  }
-});
-</script>
 
 
 
@@ -1220,14 +1141,14 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
     <div style="overflow:hidden;flex:1;">
       <div style="display:inline-block;white-space:nowrap;animation:tickerScroll 35s linear infinite;padding:8px 0;color:white;font-size:0.8rem;font-weight:600;">
         &nbsp;&nbsp;&nbsp;&nbsp;
-        🌟 <strong style="color:#FFD600;">मुख्यमंत्री समृद्ध पंचायतराज अभियान २०२५-२६</strong> — घरपट्टी, पाणीपट्टी व दिवाबत्ती कर थकबाकीवर <strong style="color:#FFD600;">५०% सवलत</strong> मिळवण्याची सुवर्णसंधी! 
-        &nbsp;&nbsp;⏰ <strong style="color:#FF6B6B;">अंतिम मुदत: ३१ मार्च २०२६</strong> — 
-        &nbsp;&nbsp;✅ <strong>अट:</strong> चालू वर्षाचा (२०२५-२६) पूर्ण कर एकरकमी भरा + मागील थकबाकीपैकी ५०% भरा — बाकी थकबाकी माफ! 
+        🏛️ <strong style="color:#FFD600;">ग्रामपंचायत निपाणा</strong> — दाखले व प्रमाणपत्र सेवा मिळविण्यासाठी घरपट्टी व पाणीपट्टी कर वेळेवर भरणे आवश्यक आहे.
+        &nbsp;&nbsp;🏠 <strong style="color:#FFD600;">घरपट्टी भरा</strong> — जन्म, मृत्यू, रहिवास व इतर दाखल्यांसाठी कर अद्ययावत असणे अनिवार्य.
+        &nbsp;&nbsp;💧 <strong style="color:#FFD600;">पाणीपट्टी भरा</strong> — नळ जोडणी व पाणी संबंधित सेवांसाठी थकबाकी नसणे आवश्यक.
+        &nbsp;&nbsp;📋 कर भरणा केल्यानंतर ग्रामपंचायत कार्यालयात अर्ज सादर करा व प्रमाणपत्र मिळवा.
         &nbsp;&nbsp;📞 संपर्क: ग्रामपंचायत कार्यालय निपाणा — <strong style="color:#FFD600;">श्री. एस. टी. गव्हाळे: ७७९८७६१८३७</strong>
-        &nbsp;&nbsp;🏛️ महाराष्ट्र शासन | ग्रामविकास विभाग
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        🌟 <strong style="color:#FFD600;">मुख्यमंत्री समृद्ध पंचायतराज अभियान २०२५-२६</strong> — घरपट्टी, पाणीपट्टी व दिवाबत्ती कर थकबाकीवर <strong style="color:#FFD600;">५०% सवलत</strong> मिळवण्याची सुवर्णसंधी!
-        &nbsp;&nbsp;⏰ <strong style="color:#FF6B6B;">अंतिम मुदत: ३१ मार्च २०२६</strong>
+        🏛️ <strong style="color:#FFD600;">ग्रामपंचायत निपाणा</strong> — दाखले व प्रमाणपत्र सेवा मिळविण्यासाठी घरपट्टी व पाणीपट्टी कर वेळेवर भरणे आवश्यक आहे.
+        &nbsp;&nbsp;🏠 <strong style="color:#FFD600;">घरपट्टी भरा</strong> — जन्म, मृत्यू, रहिवास व इतर दाखल्यांसाठी कर अद्ययावत असणे अनिवार्य.
         &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
     </div>
@@ -1251,7 +1172,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
     paused: false,
     slides: [
       {
-        img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1464454709131-ffd692591ee5?w=1200&q=80',
         tag: '🌿 स्वागत',
         title: 'ग्रामपंचायत निपाणामध्ये आपले स्वागत',
         sub:  'ता. खामगाव · जि. बुलढाणा · महाराष्ट्र',
@@ -1259,7 +1180,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         bc: 'background:#1B5E20'
       },
       {
-        img: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=1200&q=80',
         tag: '📚 शिक्षण',
         title: 'शिक्षण — उज्वल भविष्याचा मार्ग',
         sub:  'प्राथमिक व माध्यमिक शाळा · अंगणवाडी केंद्र',
@@ -1267,7 +1188,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         bc: 'background:#1565C0'
       },
       {
-        img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80',
         tag: '🌾 शेती',
         title: 'समृद्ध शेती · समृद्ध गाव',
         sub:  'सोयाबीन · कापूस · गहू · हरभरा',
@@ -1275,7 +1196,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         bc: 'background:#E65100'
       },
       {
-        img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1617994679330-c79af5b48c2a?w=1200&q=80',
         tag: '🏗️ विकास',
         title: 'पायाभूत सुविधा व विकास कामे',
         sub:  'रस्ते · पाणीपुरवठा · स्वच्छता',
@@ -1283,7 +1204,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         bc: 'background:#00695C'
       },
       {
-        img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&q=80',
         tag: '👥 समाज',
         title: 'एकजुटीने पुढे जाऊया',
         sub:  'ग्रामसभा · महिला सशक्तीकरण · युवाशक्ती',
@@ -1619,12 +1540,6 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         <div class="about-panel__row" style="background:rgba(100,181,246,0.12);border-left:3px solid #64B5F6;">
           <span class="about-panel__row-label">🔷 ST लोकसंख्या</span>
           <span class="about-panel__row-value" style="color:#64B5F6;">२६ &nbsp;<span style="font-weight:400;font-size:0.6em;opacity:0.75;">(पु.१४ | म.१२)</span></span>
-        </div>
-
-        <!-- Total Workers -->
-        <div class="about-panel__row about-panel__row--accent">
-          <span class="about-panel__row-label">💼 एकूण कामगार</span>
-          <span class="about-panel__row-value--gold">१,१४०</span>
         </div>
 
       </div>
@@ -2674,29 +2589,7 @@ function showSwayam(type) {
       <button onclick="document.getElementById('modal-mgnregs').style.display='flex'" style="margin-top:8px;background:linear-gradient(135deg,#4a148c,#4a148ccc);color:white;border:none;padding:8px 16px;border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;width:100%;">📋 माहिती / Info ↗</button>
       
     </div>
-    <div id="scheme-samruddhi" class="scheme-card" style="border-top-color:#e65100;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <h4 style="margin:0;">मुख्यमंत्री समृद्ध पंचायत राज अभियान</h4>
-      </div>
-      <p>ग्रामीण भागाचा सर्वांगीण विकास, पायाभूत सुविधा, रोजगार व ग्रामपंचायत सक्षमीकरण. <strong>निपाणा ग्रामस्थांसाठी घरपट्टी, पाणीपट्टी व दिवाबत्ती कर थकबाकीत ५०% सवलत (३१ मार्च २०२६ पर्यंत).</strong></p>
-
-      <!-- Action Buttons Row -->
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
-        <button onclick="document.getElementById('abhiyanInfoModal').style.display='flex'"
-          style="flex:1;min-width:130px;background:linear-gradient(135deg,#FF6B00,#e65100);color:white;border:none;padding:10px 14px;border-radius:10px;font-size:0.82rem;font-weight:700;cursor:pointer;">
-          🌟 अभियान माहिती
-        </button>
-        <button onclick="document.getElementById('taxInfoModal').style.display='flex'"
-          style="flex:1;min-width:130px;background:linear-gradient(135deg,#b71c1c,#c62828);color:white;border:none;padding:10px 14px;border-radius:10px;font-size:0.82rem;font-weight:700;cursor:pointer;">
-          💰 ५०% कर सवलत
-        </button>
-        <button onclick="document.getElementById('taxCalcModal').style.display='flex'"
-          style="flex:1;min-width:130px;background:linear-gradient(135deg,#2e7d32,#43a047);color:white;border:none;padding:10px 14px;border-radius:10px;font-size:0.82rem;font-weight:700;cursor:pointer;">
-          🧮 कर कॅल्क्युलेटर
-        </button>
-      </div>
-    </div></div>
-
+    </div>
     <div class="scheme-card">
       <div class="scheme-icon">🛣️</div>
       <h4>प्रधानमंत्री ग्राम सडक योजना</h4>
@@ -4333,50 +4226,6 @@ table{width:100%;border-collapse:collapse;margin:7px 0;}
 
 </script>
 
-<!-- ══ SAMRUDDHA INFO MODAL ══ -->
-<div id="samruddhaInfoModal" onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9998;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
-  <div style="background:white;border-radius:20px;max-width:560px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4);">
-    <div style="background:linear-gradient(135deg,#e65100,#ff6d00);padding:18px 22px;color:white;display:flex;align-items:center;gap:14px;">
-      <div style="font-size:2rem;">🌟</div>
-      <div style="flex:1;"><div style="font-size:1rem;font-weight:800;">मुख्यमंत्री समृद्ध पंचायत राज अभियान</div><div style="font-size:0.75rem;opacity:0.85;">ग्रामपंचायत निपाणा — ५०% कर सवलत</div></div>
-      <button onclick="document.getElementById('samruddhaInfoModal').style.display='none'" style="background:rgba(255,255,255,0.2);border:none;color:white;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>
-    </div>
-    <div style="padding:20px;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 300" style="width:100%;border-radius:12px;margin-bottom:14px;">
-        <defs><linearGradient id="sgBg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#fff8f0"/><stop offset="100%" style="stop-color:#ffe0b2"/></linearGradient></defs>
-        <rect width="540" height="300" fill="url(#sgBg2)" rx="12"/>
-        <text x="270" y="34" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="15" fill="#e65100">मुख्यमंत्री समृद्ध पंचायत राज अभियान</text>
-        <line x1="40" y1="42" x2="500" y2="42" stroke="#e65100" stroke-width="1.5" opacity="0.4"/>
-        <circle cx="80" cy="110" r="52" fill="#e65100" opacity="0.12"/>
-        <circle cx="80" cy="110" r="42" fill="#e65100" opacity="0.2"/>
-        <text x="80" y="103" text-anchor="middle" font-family="Arial" font-weight="900" font-size="26" fill="#e65100">50%</text>
-        <text x="80" y="123" text-anchor="middle" font-family="Arial" font-weight="700" font-size="11" fill="#bf360c">थकबाकीत सूट</text>
-        <rect x="150" y="60" width="150" height="50" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
-        <text x="175" y="88" font-family="Arial" font-size="20">🏠</text>
-        <text x="205" y="80" font-family="Arial" font-weight="700" font-size="12" fill="#e65100">घरपट्टी</text>
-        <text x="205" y="97" font-family="Arial" font-size="10" fill="#555">थकबाकी ५०% माफ</text>
-        <rect x="320" y="60" width="150" height="50" rx="10" fill="#e3f2fd" stroke="#0277bd" stroke-width="1.5"/>
-        <text x="345" y="88" font-family="Arial" font-size="20">💧</text>
-        <text x="375" y="80" font-family="Arial" font-weight="700" font-size="12" fill="#0277bd">पाणीपट्टी</text>
-        <text x="375" y="97" font-family="Arial" font-size="10" fill="#555">थकबाकी ५०% माफ</text>
-        <rect x="150" y="125" width="150" height="50" rx="10" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1.5"/>
-        <text x="175" y="153" font-family="Arial" font-size="20">💡</text>
-        <text x="205" y="145" font-family="Arial" font-weight="700" font-size="12" fill="#6a1b9a">दिवाबत्ती</text>
-        <text x="205" y="162" font-family="Arial" font-size="10" fill="#555">थकबाकी ५०% माफ</text>
-        <rect x="320" y="125" width="150" height="50" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
-        <text x="395" y="155" text-anchor="middle" font-family="Arial" font-size="10" fill="#333">चालू वर्षाचा पूर्ण कर भरणे अनिवार्य</text>
-        <rect x="40" y="195" width="460" height="48" rx="12" fill="#b71c1c"/>
-        <text x="270" y="225" text-anchor="middle" font-family="Arial" font-weight="900" font-size="17" fill="white">अंतिम मुदत: ३१ मार्च २०२६</text>
-        <text x="270" y="274" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#555">📞 ७७९८७६१८३७ | प्रशासक: ९७६३८४७५९५</text>
-      </svg>
-      <div style="background:#fff3e0;border-left:4px solid #e65100;border-radius:8px;padding:10px 14px;font-size:0.82rem;color:#5d4037;">
-        <strong>📌 फक्त निवासी मालमत्तांसाठी लागू.</strong> १ एप्रिल २०२५ पूर्वीची थकबाकी माफ.
-      </div>
-      <button onclick="document.getElementById('samruddhaInfoModal').style.display='none'" style="margin-top:14px;width:100%;background:linear-gradient(135deg,#e65100,#ff6d00);color:white;border:none;padding:11px;border-radius:12px;font-weight:700;cursor:pointer;">बंद करा ✕</button>
-    </div>
-  </div>
-</div>
 
 <!-- ══ TAX CALCULATOR MODAL ══ -->
 <div id="taxCalcModal" onclick="if(event.target===this)this.style.display='none'"
