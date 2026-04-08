@@ -719,7 +719,7 @@
 
 <!-- ── Carousel Dependencies ── -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
 <!-- ── Carousel Styles ── -->
 <style>
@@ -1172,7 +1172,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
     paused: false,
     slides: [
       {
-        img: 'https://images.unsplash.com/photo-1464454709131-ffd692591ee5?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80',
         tag: '🌿 स्वागत',
         title: 'ग्रामपंचायत निपाणामध्ये आपले स्वागत',
         sub:  'ता. खामगाव · जि. बुलढाणा · महाराष्ट्र',
@@ -1180,7 +1180,15 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         bc: 'background:#1B5E20'
       },
       {
-        img: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=1200&q=80',
+        img: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1200&q=80',
+        tag: '🌾 शेती',
+        title: 'समृद्ध शेती · समृद्ध गाव',
+        sub:  'सोयाबीन · कापूस · गहू · हरभरा · शेतकरी बांधव',
+        badge: 'कृषी विकास',
+        bc: 'background:#E65100'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80',
         tag: '📚 शिक्षण',
         title: 'शिक्षण — उज्वल भविष्याचा मार्ग',
         sub:  'प्राथमिक व माध्यमिक शाळा · अंगणवाडी केंद्र',
@@ -1188,28 +1196,20 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
         bc: 'background:#1565C0'
       },
       {
-        img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80',
-        tag: '🌾 शेती',
-        title: 'समृद्ध शेती · समृद्ध गाव',
-        sub:  'सोयाबीन · कापूस · गहू · हरभरा',
-        badge: 'कृषी विकास',
-        bc: 'background:#E65100'
-      },
-      {
-        img: 'https://images.unsplash.com/photo-1617994679330-c79af5b48c2a?w=1200&q=80',
-        tag: '🏗️ विकास',
-        title: 'पायाभूत सुविधा व विकास कामे',
-        sub:  'रस्ते · पाणीपुरवठा · स्वच्छता',
-        badge: 'ग्रामविकास',
-        bc: 'background:#00695C'
-      },
-      {
-        img: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&q=80',
-        tag: '👥 समाज',
-        title: 'एकजुटीने पुढे जाऊया',
-        sub:  'ग्रामसभा · महिला सशक्तीकरण · युवाशक्ती',
+        img: 'https://images.unsplash.com/photo-1541199249251-f713e6145474?w=1200&q=80',
+        tag: '👩 महिला सशक्तीकरण',
+        title: 'महिला बचत गट — आत्मनिर्भर गाव',
+        sub:  'स्वयंसहायता बचत गट · उद्योजकता · महिला विकास',
         badge: 'सामाजिक उपक्रम',
-        bc: 'background:#4527A0'
+        bc: 'background:#6A1B9A'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80',
+        tag: '🤝 ग्रामसभा',
+        title: 'एकजुटीने पुढे जाऊया',
+        sub:  'ग्रामसभा · नागरिक सहभाग · लोकशाही विकास',
+        badge: 'सामाजिक उपक्रम',
+        bc: 'background:#004D40'
       }
     ],
     init() {
@@ -1221,10 +1221,13 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
     },
     next() { this.cur = (this.cur + 1) % this.total; },
     prev() { this.cur = (this.cur - 1 + this.total) % this.total; },
-    goTo(i) { this.cur = i; this.startTimer(); }
+    goTo(i) { this.cur = i; this.startTimer(); },
+    touchStartX: 0
   }"
   @mouseenter="paused = true"
   @mouseleave="paused = false"
+  @touchstart.passive="touchStartX = $event.touches[0].clientX"
+  @touchend.passive="let dx = $event.changedTouches[0].clientX - touchStartX; if(Math.abs(dx) > 48){ dx < 0 ? next() : prev(); startTimer(); }"
   style="position:relative;width:100%;overflow:hidden;font-family:'Mukta','Noto Sans Devanagari',sans-serif;"
   aria-label="ग्रामपंचायत निपाणा स्लाइडशो"
 >
@@ -1248,6 +1251,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
           style="width:100%;height:100%;object-fit:cover;display:block;"
           loading="lazy"
           draggable="false"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80';"
         />
         <!-- Overlay -->
         <div class="slide-overlay" style="position:absolute;inset:0;"></div>
@@ -1313,7 +1317,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
 
     <!-- Progress bar -->
     <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.12);z-index:20;">
-      <div :key="cur" class="progress-bar" style="height:100%;background:#FFD600;width:0%;"></div>
+      <div x-key="cur" class="progress-bar" style="height:100%;background:#FFD600;width:0%;animation:progress 5s linear forwards;"></div>
     </div>
   </div>
 
@@ -2132,6 +2136,7 @@ td:first-child{font-weight:700;background:#fff0f0;width:38%;color:#222;}
 <div class="footer"><strong>ग्रामपंचायत कार्यालय निपाणा, ता. खामगाव, जि. बुलढाणा – ४४४३०६</strong><br/>महाराष्ट्र शासन | कालमर्यादा: ७ कामकाजाचे दिवस</div>
 </body></html>`;
     const w2 = window.open('','_blank','width=820,height=1060');
+    if(!w2){alert('कृपया popup blocker बंद करा आणि पुन्हा प्रयत्न करा.'); return;}
     w2.document.write(pdfHtml2); w2.document.close();
     setTimeout(()=>{ w2.focus(); w2.print(); }, 600);
   }
@@ -2587,8 +2592,6 @@ function showSwayam(type) {
       <p>मनरेगाचे नवीन नाव <strong>"विकसित भारत - जी राम जी"</strong> असे झाले आहे. पात्र कुटुंबांना <strong>१२५ दिवस</strong> रोजगाराची हमी. वेळेवर मजुरी न मिळाल्यास भरपाई. VGPP अंतर्गत सर्व योजनांचा समन्वय.</p>
       <a class="apply-btn" href="https://nreganarep.nic.in" target="_blank">अर्ज करा / Apply ↗</a>
       <button onclick="document.getElementById('modal-mgnregs').style.display='flex'" style="margin-top:8px;background:linear-gradient(135deg,#4a148c,#4a148ccc);color:white;border:none;padding:8px 16px;border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;width:100%;">📋 माहिती / Info ↗</button>
-      
-    </div>
     </div>
     <div class="scheme-card">
       <div class="scheme-icon">🛣️</div>
@@ -2596,9 +2599,10 @@ function showSwayam(type) {
       <p>ग्रामीण भागातील रस्त्यांचे बांधकाम व दुरुस्तीसाठी केंद्र शासनाची प्रमुख योजना.</p>
       <span class="apply-btn" onclick="document.getElementById('pmgsyModal').style.display='flex'" style="cursor:pointer;">माहिती / Info ↗</span>
     </div>
+  </div>
 
-    <!-- PMGSY Info Modal -->
-    <div id="pmgsyModal" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+<!-- PMGSY Info Modal — moved outside grid -->
+<div id="pmgsyModal" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center;padding:20px;">
       <div style="position:relative;max-width:560px;width:100%;background:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4);">
         <button onclick="document.getElementById('pmgsyModal').style.display='none'" style="position:absolute;top:12px;right:12px;background:#e53935;color:white;border:none;border-radius:50%;width:36px;height:36px;font-size:1.2rem;cursor:pointer;z-index:10;">✕</button>
         <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);padding:24px;color:white;">
@@ -5135,5 +5139,5 @@ td:first-child{font-weight:700;background:#f9f9f9;width:36%;color:#222;}
         श्री. एस. टी. गव्हाळे: <strong>७७९८७६१८३७</strong>
       </div>
 
-      <button onclick="document.getElementById('taxInfoModal').style.display='none';setTimeout(function(){var el=document.getElementById('scheme-samruddhi');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}},200);"
+      <button onclick="document.getElementById('taxInfoModal').style.display='none';setTimeout(function(){var el=document.getElementById('schemes');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}},200);"
         style="margin-top:14px;width:100%;background:linear-gradient(135deg,#b7
